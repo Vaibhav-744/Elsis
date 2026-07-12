@@ -1,0 +1,253 @@
+{%- style -%}
+  #ElsisLifestyle-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-card {
+    max-width: 1240px;
+    margin: 0 auto;
+    border-radius: 28px;
+    min-height: {{ section.settings.min_height }}px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: {{ section.settings.overlay_color }};
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-size: cover;
+    background-position: center;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-bg-placeholder {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display:block;
+    background-color: {{ section.settings.overlay_color }};
+    background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 18px, transparent 18px 36px), linear-gradient(135deg, {{ section.settings.overlay_color }}, {{ section.settings.gradient_color_2 }});
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: {{ section.settings.overlay_color }};
+    opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-content {
+    position: relative;
+    z-index: 3;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-logo {
+    height: {{ section.settings.logo_height }}px;
+    width: auto;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-logo-svg {
+    height: {{ section.settings.logo_height }}px;
+    width: auto;
+    margin-bottom: 20px;
+    fill: #ffffff;
+    display: block;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .lifestyle-title {
+    color: {{ section.settings.text_color }};
+    font-size: clamp(32px, 4.5vw, 56px);
+    line-height: 1;
+    margin: 0 0 26px;
+    max-width: 560px;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .elsis-lifestyle-cta {
+    display: inline-block;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 15px 34px;
+    border-radius: 28px 32px 26px 30px / 32px 26px 30px 28px;
+    transition: transform .2s ease;
+  }
+
+  #ElsisLifestyle-{{ section.id }} .elsis-lifestyle-cta:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+{%- endstyle -%}
+
+<section id="ElsisLifestyle-{{ section.id }}">
+  <div class="lifestyle-card">
+    {%- if section.settings.image != blank -%}
+      <div class="lifestyle-bg-image" style="background-image: url('{{ section.settings.image | image_url: width: 1400 }}');"></div>
+      <div class="lifestyle-overlay"></div>
+    {%- else -%}
+      <div class="lifestyle-bg-placeholder"></div>
+    {%- endif -%}
+
+    <div class="lifestyle-content">
+      {%- if section.settings.logo != blank -%}
+        <img class="lifestyle-logo" src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ shop.name }}" loading="lazy">
+      {%- else -%}
+        <!-- Fallback white logo text SVG shape -->
+        <svg class="lifestyle-logo-svg" viewBox="0 0 160 50">
+          <text x="50%" y="35" font-family="Fredoka, sans-serif" font-weight="700" font-size="28" fill="#ffffff" text-anchor="middle">Elsis Organics</text>
+        </svg>
+      {%- endif -%}
+
+      {%- if section.settings.title != blank -%}
+        <h2 class="lifestyle-title h2">{{ section.settings.title }}</h2>
+      {%- endif -%}
+
+      {%- if section.settings.btn_text != blank -%}
+        <a class="elsis-lifestyle-cta" href="{{ section.settings.btn_link | default: '#sorten' }}">
+          {{ section.settings.btn_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis Lifestyle Band",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo Image (White version)"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo Height",
+      "min": 30,
+      "max": 120,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "Bio-Mahlzeiten mit Liebe zubereitet"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Jetzt einkaufen"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#FFD42E"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#115A1B"
+    },
+    {
+      "type": "header",
+      "content": "Overlay & Fallback Colors"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay / Fallback Main Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "gradient_color_2",
+      "label": "Fallback Gradient Color 2",
+      "default": "#2EA13A"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity (with Image)",
+      "min": 10,
+      "max": 90,
+      "step": 5,
+      "default": 30,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Layout settings"
+    },
+    {
+      "type": "range",
+      "id": "min_height",
+      "label": "Min Height of Band",
+      "min": 300,
+      "max": 600,
+      "step": 10,
+      "default": 420,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 70,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Lifestyle Band"
+    }
+  ]
+}
+{% endschema %}

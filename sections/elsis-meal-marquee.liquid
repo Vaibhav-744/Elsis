@@ -1,0 +1,305 @@
+{%- style -%}
+  #ElsisMealMarquee-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .marquee-header {
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto 30px;
+    padding: 0 5%;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .marquee-label {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    color: {{ section.settings.label_color }};
+    font-size: 15px;
+    letter-spacing: .08em;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .marquee-title {
+    color: {{ section.settings.title_color }};
+    margin: 8px 0 0;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .elsis-meal-line {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .elsis-meal-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 0;
+    animation: elsis-marquee-anim {{ section.settings.speed }}s linear infinite;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .elsis-meal-line:hover .elsis-meal-track {
+    animation-play-state: paused;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .elsis-meals {
+    display: flex;
+    align-items: center;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .elsis-meal-item {
+    width: 300px;
+    margin-left: -50px;
+    flex-shrink: 0;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .dish-plate {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    filter: drop-shadow(0 16px 22px rgba(0,0,0,.1));
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .dish-outer {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #fff;
+    display:block;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .dish-inner {
+    position: absolute;
+    inset: 20%;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .dish-highlight {
+    position: absolute;
+    top: 22%;
+    left: 24%;
+    width: 34%;
+    height: 30%;
+    border-radius: 50%;
+    background: rgba(255,255,255,.28);
+  }
+
+  #ElsisMealMarquee-{{ section.id }} .dish-label-tag {
+    position: absolute;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    font-family: ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    color: {{ section.settings.dish_label_color }};
+    background: rgba(255, 255, 255, 0.9);
+    padding: 5px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    z-index: 2;
+  }
+
+  @keyframes elsis-marquee-anim {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @media(max-width:760px){
+    #ElsisMealMarquee-{{ section.id }} .elsis-meal-item {
+      width: 200px;
+      margin-left: -30px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ElsisMealMarquee-{{ section.id }}">
+  <div class="marquee-header">
+    {%- if section.settings.label != blank -%}
+      <div class="marquee-label">{{ section.settings.label }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h2 class="marquee-title h2">{{ section.settings.title }}</h2>
+    {%- endif -%}
+  </div>
+
+  <div class="elsis-meal-line">
+    <div class="elsis-meal-track">
+      <!-- First Track -->
+      <div class="elsis-meals">
+        {%- for block in section.blocks -%}
+          <div class="elsis-meal-item" {{ block.shopify_attributes }}>
+            <div class="dish-plate">
+              <div class="dish-outer" style="box-shadow: inset 0 0 0 10px {{ block.settings.plate_color }};"></div>
+              <div class="dish-inner" style="background-color: {{ block.settings.food_color }}; background-image: repeating-radial-gradient(circle at 38% 34%, rgba(255,255,255,.32) 0 12px, transparent 12px 30px), repeating-linear-gradient(125deg, rgba(0,0,0,.05) 0 14px, transparent 14px 30px);">
+                <div class="dish-highlight"></div>
+              </div>
+              <div class="dish-label-tag">{{ block.settings.title }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+      <!-- Duplicate Track for Seamless Loop -->
+      <div class="elsis-meals">
+        {%- for block in section.blocks -%}
+          <div class="elsis-meal-item">
+            <div class="dish-plate">
+              <div class="dish-outer" style="box-shadow: inset 0 0 0 10px {{ block.settings.plate_color }};"></div>
+              <div class="dish-inner" style="background-color: {{ block.settings.food_color }}; background-image: repeating-radial-gradient(circle at 38% 34%, rgba(255,255,255,.32) 0 12px, transparent 12px 30px), repeating-linear-gradient(125deg, rgba(0,0,0,.05) 0 14px, transparent 14px 30px);">
+                <div class="dish-highlight"></div>
+              </div>
+              <div class="dish-label-tag">{{ block.settings.title }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis Meal Marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Sub-label",
+      "default": "frisch & mit Liebe zubereitet"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "vollwertige Mahlzeiten im Beutel"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Headline Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "dish_label_color",
+      "label": "Dish Text Color",
+      "default": "#3D6344"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Marquee Speed (Seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "default": 34,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 30,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 86,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "meal",
+      "name": "Meal Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Meal Label",
+          "default": "Gemüse · Huhn · Reis"
+        },
+        {
+          "type": "color",
+          "id": "plate_color",
+          "label": "Plate Color",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "food_color",
+          "label": "Food Color",
+          "default": "#9DBE7E"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Meal Marquee",
+      "blocks": [
+        {
+          "type": "meal",
+          "settings": {
+            "title": "Gemüse · Huhn · Reis",
+            "plate_color": "#DCEAD2",
+            "food_color": "#9DBE7E"
+          }
+        },
+        {
+          "type": "meal",
+          "settings": {
+            "title": "Couscous · Fisch",
+            "plate_color": "#D6E4E9",
+            "food_color": "#7FA9B8"
+          }
+        },
+        {
+          "type": "meal",
+          "settings": {
+            "title": "Rindfleisch · Lasagne",
+            "plate_color": "#F0DAC9",
+            "food_color": "#C68E5E"
+          }
+        },
+        {
+          "type": "meal",
+          "settings": {
+            "title": "Quitte · Mango · Banane",
+            "plate_color": "#FBE3BE",
+            "food_color": "#E2A24C"
+          }
+        },
+        {
+          "type": "meal",
+          "settings": {
+            "title": "Stachelbeere · Birne",
+            "plate_color": "#F2D9DD",
+            "food_color": "#CE8497"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

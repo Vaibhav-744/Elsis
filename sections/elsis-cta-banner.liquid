@@ -1,0 +1,204 @@
+{%- style -%}
+  #ElsisCtaBanner-{{ section.id }} {
+    padding: {{ section.settings.section_padding_top }}px 4% {{ section.settings.section_padding_bottom }}px;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .cta-card {
+    max-width: 1240px;
+    margin: 0 auto;
+    background-color: {{ section.settings.bg_color }};
+    border-radius: 28px;
+    padding: {{ section.settings.padding_top }}px 6% {{ section.settings.padding_bottom }}px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .cta-heart-decor {
+    position: absolute;
+    left: 50%;
+    bottom: -60px;
+    transform: translateX(-50%);
+    width: 380px;
+    opacity: {{ section.settings.heart_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .cta-heart-decor svg {
+    width: 100%;
+    height: auto;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .cta-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .cta-title {
+    color: {{ section.settings.text_color }};
+    margin: 0 0 26px;
+    font-size: clamp(36px, 5.5vw, 68px);
+    line-height: .95;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .elsis-cta-btn {
+    display: inline-block;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 19px;
+    padding: 16px 38px;
+    border-radius: 30px 34px 28px 32px / 34px 28px 32px 30px;
+    transition: transform .2s ease;
+  }
+
+  #ElsisCtaBanner-{{ section.id }} .elsis-cta-btn:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+{%- endstyle -%}
+
+<section id="ElsisCtaBanner-{{ section.id }}">
+  <div class="cta-card">
+    {%- if section.settings.show_heart -%}
+      <div class="cta-heart-decor">
+        <svg viewBox="0 0 24 24" fill="{{ section.settings.heart_color }}"><path d="M12 21s-7-4.5-9.3-9.2C1.2 8.6 2.8 5 6.2 5c2 0 3.2 1.2 3.8 2.2C10.6 6.2 11.8 5 13.8 5c3.4 0 5 3.6 3.5 6.8C19 16.5 12 21 12 21z"/></svg>
+      </div>
+    {%- endif -%}
+
+    <div class="cta-content">
+      {%- if section.settings.title != blank -%}
+        <h2 class="cta-title h2">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.btn_text != blank -%}
+        <a class="elsis-cta-btn" href="{{ section.settings.btn_link | default: '#sorten' }}">
+          {{ section.settings.btn_text }}
+        </a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis CTA Banner",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Card Background Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title Text",
+      "default": "mit elsis geht eine<br>Welt für dein Kind auf"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Jetzt einkaufen"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#FFD42E"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#115A1B"
+    },
+    {
+      "type": "header",
+      "content": "Heart Decorative Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_heart",
+      "label": "Show Background Heart Icon",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "heart_color",
+      "label": "Heart Icon Fill Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "heart_opacity",
+      "label": "Heart Opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 10,
+      "unit": "%"
+    },
+    {
+      "type": "header",
+      "content": "Spacing settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Outer Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 10,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Outer Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Card Inner Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Card Inner Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 96,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis CTA Banner"
+    }
+  ]
+}
+{% endschema %}

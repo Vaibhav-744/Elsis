@@ -11,6 +11,69 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "elsis_footer_4qbbhC": {
+      "type": "elsis-footer",
+      "blocks": {
+        "brand_bio_NNL8eb": {
+          "type": "brand_bio",
+          "settings": {
+            "logo": "shopify://shop_images/elsis_logo_white_1.png",
+            "bio_text": "Bio-Babynahrung – halal, nachhaltig und mit Liebe gemacht. Klein anfangen."
+          }
+        },
+        "navigation_xHtNKe": {
+          "type": "navigation",
+          "settings": {
+            "title": "Navigation",
+            "menu": "footer"
+          }
+        },
+        "navigation_pMWzLm": {
+          "type": "navigation",
+          "settings": {
+            "title": "Rechtliches",
+            "menu": "rechtliches"
+          }
+        },
+        "contact_FkVfjq": {
+          "type": "contact",
+          "settings": {
+            "title": "Kontakt",
+            "details": "<p>Kaya Foods<br>Grubenweg 19<br>38268 Lengede<br><a href=\"mailto:info@elsis-organics.de\">info@elsis-organics.de</a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "brand_bio_NNL8eb",
+        "navigation_xHtNKe",
+        "navigation_pMWzLm",
+        "contact_FkVfjq"
+      ],
+      "name": "Elsis Custom Footer",
+      "settings": {
+        "bg_color": "#115A1B",
+        "text_color": "#C7DEC9",
+        "link_hover_color": "#FFD42E",
+        "border_color": "rgba(255, 255, 255, 0.16)",
+        "block_title_color": "#ffffff",
+        "show_newsletter": true,
+        "news_title": "bleib auf dem Laufenden",
+        "news_text": "Neue Sorten, Beikost-Tipps und kleine Aktionen – direkt in dein Postfach.",
+        "news_placeholder": "Deine E-Mail-Adresse",
+        "news_btn_text": "Abonnieren",
+        "news_success_msg": "Danke! Du bist dabei.",
+        "news_bg_color": "#ffffff",
+        "news_title_color": "#197D25",
+        "news_text_color": "#5C7A60",
+        "news_input_bg": "#F8F2E8",
+        "news_input_border": "rgba(25, 125, 37, 0.3)",
+        "news_btn_bg": "#197D25",
+        "news_btn_text_color": "#ffffff",
+        "copyright_text": "© 2024–2026 Elsis Organics · Kaya Foods. Alle Rechte vorbehalten.",
+        "padding_top": 64,
+        "padding_bottom": 34
+      }
+    },
     "footer-1": {
       "type": "footer-01",
       "blocks": {
@@ -147,6 +210,7 @@
         "d935a709-71e0-48ff-8d74-5a367ae6d12d",
         "41adb6e5-e71d-422b-a1e1-d2034c83869c"
       ],
+      "disabled": true,
       "settings": {
         "container": "1170",
         "padding_full_width": 60,
@@ -184,6 +248,7 @@
     }
   },
   "order": [
+    "elsis_footer_4qbbhC",
     "footer-1"
   ]
 }

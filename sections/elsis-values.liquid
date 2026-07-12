@@ -1,0 +1,402 @@
+{%- style -%}
+  #ElsisValues-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 5% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ElsisValues-{{ section.id }} .values-container {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  #ElsisValues-{{ section.id }} .values-header-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+    margin-bottom: 64px;
+  }
+
+  #ElsisValues-{{ section.id }} .values-header-left {
+    text-align: left;
+  }
+
+  #ElsisValues-{{ section.id }} .values-label {
+    font-family: var(--heading-font);
+    font-weight: 500;
+    color: {{ section.settings.label_color }};
+    font-size: 15px;
+    letter-spacing: .06em;
+  }
+
+  #ElsisValues-{{ section.id }} .values-title {
+    color: {{ section.settings.title_color }};
+    margin: 8px 0 0;
+    text-align: left;
+  }
+
+  #ElsisValues-{{ section.id }} .values-header-right {
+    color: {{ section.settings.desc_color }};
+  }
+
+  #ElsisValues-{{ section.id }} .values-header-right p {
+    margin: 0 0 14px;
+  }
+
+  #ElsisValues-{{ section.id }} .values-header-right p:last-child {
+    margin-bottom: 0;
+  }
+
+  #ElsisValues-{{ section.id }} .elsis-val-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  #ElsisValues-{{ section.id }} .value-card {
+    text-align: center;
+  }
+
+  #ElsisValues-{{ section.id }} .value-outer-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ElsisValues-{{ section.id }} .value-inner-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+
+  #ElsisValues-{{ section.id }} .value-inner-circle svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+    fill:none;
+  }
+
+  #ElsisValues-{{ section.id }} .value-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+
+  #ElsisValues-{{ section.id }} .value-desc {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  @media(max-width:760px){
+    #ElsisValues-{{ section.id }} .values-header-grid {
+      grid-template-columns: 1fr!important;
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    #ElsisValues-{{ section.id }} .elsis-val-grid {
+      grid-template-columns: 1fr 1fr!important;
+      gap: 24px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ElsisValues-{{ section.id }}" data-screen-label="BioHalal">
+  <div class="values-container">
+    <div class="values-header-grid">
+      <div class="values-header-left">
+        {%- if section.settings.label != blank -%}
+          <div class="values-label">{{ section.settings.label }}</div>
+        {%- endif -%}
+        {%- if section.settings.title_1 != blank or section.settings.title_2 != blank -%}
+          <h2 class="values-title h2">
+            {%- if section.settings.title_1 != blank -%}
+              <span style="display: block;">{{ section.settings.title_1 }}</span>
+            {%- endif -%}
+            {%- if section.settings.title_2 != blank -%}
+              <span style="display: block; margin-top: 4px;">{{ section.settings.title_2 }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+      </div>
+      <div class="values-header-right p">
+        {{ section.settings.description }}
+      </div>
+    </div>
+
+    <div class="elsis-val-grid">
+      {%- for block in section.blocks -%}
+        {%- style -%}
+          #ElsisValItem-{{ block.id }} .value-outer-circle {
+            background-color: {{ block.settings.outer_circle_bg }};
+          }
+          #ElsisValItem-{{ block.id }} .value-inner-circle {
+            background-color: {{ block.settings.inner_circle_bg }};
+            color: {{ block.settings.inner_circle_text_color }};
+          }
+          #ElsisValItem-{{ block.id }} .value-title {
+            color: {{ block.settings.item_title_color }};
+          }
+          #ElsisValItem-{{ block.id }} .value-desc {
+            color: {{ block.settings.item_desc_color }};
+          }
+        {%- endstyle -%}
+        <div id="ElsisValItem-{{ block.id }}" class="value-card" {{ block.shopify_attributes }}>
+          <div class="value-outer-circle">
+            <div class="value-inner-circle">
+              {%- if block.settings.symbol_type == 'text' -%}
+                <span style="font-size: {{ block.settings.text_size }}px;">{{ block.settings.symbol_text }}</span>
+              {%- else -%}
+                {{ block.settings.symbol_svg }}
+              {%- endif -%}
+            </div>
+          </div>
+          <h3 class="value-title">{{ block.settings.title }}</h3>
+          <p class="value-desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis Brand Values",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Header Sub-label",
+      "default": "verantwortungsvoll"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title Line 1",
+      "default": "biologisch"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title Line 2",
+      "default": "und halal"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Headline Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description Text",
+      "default": "<p>Elsis hat Liebe für dein Kind und Respekt für die Welt. Deshalb verwenden wir ausschließlich biologische Zutaten – ohne chemische Zusätze.</p><p>Unser Fleisch stammt aus halal-zertifizierter Herkunft, unser Fisch trägt das MSC-Siegel für nachhaltige Fischerei. So geben Eltern ihrem Kind mit gutem Gewissen eine gesunde, verantwortungsvolle Mahlzeit. Hergestellt in Deutschland von Kaya Foods.</p>"
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Color",
+      "default": "#3D6344"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 96,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 96,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_block",
+      "name": "Value Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "symbol_type",
+          "label": "Symbol Render Type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text (e.g. BIO)"
+            },
+            {
+              "value": "svg",
+              "label": "SVG Code"
+            }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "symbol_text",
+          "label": "Symbol Text",
+          "default": "BIO"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text Size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "default": 16,
+          "unit": "px"
+        },
+        {
+          "type": "html",
+          "id": "symbol_svg",
+          "label": "Symbol HTML/SVG",
+          "default": "<svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12a9 9 0 0 1 9-9 9 9 0 0 1 6.5 2.8L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9 9 0 0 1-6.5-2.8L3 16\"/><path d=\"M3 21v-5h5\"/></svg>"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Value Title",
+          "default": "biologisch"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Value Subtext",
+          "default": "EU-Bio zertifiziert"
+        },
+        {
+          "type": "header",
+          "content": "Colors"
+        },
+        {
+          "type": "color",
+          "id": "outer_circle_bg",
+          "label": "Outer Circle Background",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "inner_circle_bg",
+          "label": "Inner Circle Background",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "inner_circle_text_color",
+          "label": "Inner Circle Text/SVG Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "item_title_color",
+          "label": "Title Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "item_desc_color",
+          "label": "Subtext Color",
+          "default": "#5C7A60"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Brand Values",
+      "blocks": [
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "BIO",
+            "text_size": 16,
+            "title": "biologisch",
+            "description": "EU-Bio zertifiziert",
+            "outer_circle_bg": "#DCEAD2",
+            "inner_circle_bg": "#197D25",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#197D25",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "حلال",
+            "text_size": 19,
+            "title": "halal",
+            "description": "garantiert zertifiziert",
+            "outer_circle_bg": "#F2D9DD",
+            "inner_circle_bg": "#D9756E",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#A24A62",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "MSC",
+            "text_size": 15,
+            "title": "nachhaltiger Fisch",
+            "description": "MSC-Standard",
+            "outer_circle_bg": "#D6E4E9",
+            "inner_circle_bg": "#4E7E94",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#2A5566",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "svg",
+            "title": "verantwortlich",
+            "description": "100% recycelbar",
+            "outer_circle_bg": "#FBE3BE",
+            "inner_circle_bg": "#E89A4C",
+            "inner_circle_text_color": "#115A1B",
+            "item_title_color": "#B5610F",
+            "item_desc_color": "#5C7A60"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

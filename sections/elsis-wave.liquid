@@ -1,0 +1,56 @@
+{%- style -%}
+  #ElsisWave-{{ section.id }} {
+    line-height: 0;
+    margin-top: 0;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #ElsisWave-{{ section.id }} svg {
+    display: block;
+    width: 100%;
+    height: {{ section.settings.height }}px;
+    fill:none;
+    stroke:none;
+  }
+{%- endstyle -%}
+
+<div id="ElsisWave-{{ section.id }}" class="elsis-wave-divider">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+    <path fill="{{ section.settings.wave_color }}" d="M0,40 C240,90 480,0 720,30 C960,60 1200,90 1440,40 L1440,80 L0,80 Z"></path>
+  </svg>
+</div>
+
+{% schema %}
+{
+  "name": "Elsis Wave Divider",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color Below/Container",
+      "default": "#F8F2E8"
+    },
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Wave SVG Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "label": "Height",
+      "min": 20,
+      "max": 150,
+      "step": 5,
+      "default": 60,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Wave Divider"
+    }
+  ]
+}
+{% endschema %}

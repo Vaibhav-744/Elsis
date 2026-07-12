@@ -1,0 +1,194 @@
+{%- style -%}
+  #ElsisStockists-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 5% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockists-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockists-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: {{ section.settings.title_color }};
+    font-size: clamp(22px, 3vw, 34px);
+    margin: 0 0 40px;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockists-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 44px;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockist-logo-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockist-placeholder {
+    width: 130px;
+    height: 60px;
+    border-radius: 14px;
+    background: repeating-linear-gradient(45deg, #EDE6D8 0 10px, #F6F0E4 10px 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .9;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockist-placeholder span {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: #9B9588;
+  }
+
+  #ElsisStockists-{{ section.id }} .stockist-img {
+    display: block;
+    width: auto;
+    max-width: 150px;
+    height: auto;
+    max-height: 80px;
+    object-fit: contain;
+  }
+{%- endstyle -%}
+
+<section id="ElsisStockists-{{ section.id }}" data-screen-label="Haendler">
+  <div class="stockists-container">
+    {%- if section.settings.title != blank -%}
+      <h3 class="stockists-title">{{ section.settings.title }}</h3>
+    {%- endif -%}
+
+    <div class="stockists-grid">
+      {%- for block in section.blocks -%}
+        <div class="stockist-logo-item" {{ block.shopify_attributes }}>
+          {%- if block.settings.logo != blank -%}
+            <img class="stockist-img" src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.title }}" loading="lazy" style="max-height: {{ block.settings.height }}px;">
+          {%- else -%}
+            <div class="stockist-placeholder">
+              <span>{{ block.settings.title }}</span>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis Stockists",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "elsis ist auch erhältlich bei"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Headline Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 80,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "retailer",
+      "name": "Retailer Brand",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Retailer Name",
+          "default": "Bio-Markt"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Brand Logo"
+        },
+        {
+          "type": "range",
+          "id": "height",
+          "label": "Logo Max Height",
+          "min": 30,
+          "max": 100,
+          "step": 5,
+          "default": 60,
+          "unit": "px"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Stockists",
+      "blocks": [
+        {
+          "type": "retailer",
+          "settings": {
+            "title": "Bio-Markt"
+          }
+        },
+        {
+          "type": "retailer",
+          "settings": {
+            "title": "Supermarkt"
+          }
+        },
+        {
+          "type": "retailer",
+          "settings": {
+            "title": "Drogerie"
+          }
+        },
+        {
+          "type": "retailer",
+          "settings": {
+            "title": "Reformhaus"
+          }
+        },
+        {
+          "type": "retailer",
+          "settings": {
+            "title": "Online"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

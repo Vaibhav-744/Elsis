@@ -1,0 +1,143 @@
+{%- style -%}
+  #ElsisHeartsMarquee-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 0;
+    overflow: hidden;
+  }
+
+  #ElsisHeartsMarquee-{{ section.id }} .hearts-bar {
+    background-color: {{ section.settings.bar_bg_color }};
+    transform: rotate({{ section.settings.tilt_angle }}deg);
+    width: 110%;
+    margin-left: -5%;
+    padding: {{ section.settings.bar_padding }}px 0;
+    overflow: hidden;
+  }
+
+  #ElsisHeartsMarquee-{{ section.id }} .hearts-track {
+    display: flex;
+    width: max-content;
+    animation: elsis-marquee-hearts {{ section.settings.speed }}s linear infinite;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: {{ section.settings.font_size }}px;
+    color: {{ section.settings.text_color }};
+    align-items: center;
+  }
+
+  #ElsisHeartsMarquee-{{ section.id }} .hearts-group {
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  @keyframes elsis-marquee-hearts {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+{%- endstyle -%}
+
+<section id="ElsisHeartsMarquee-{{ section.id }}">
+  <div class="hearts-bar">
+    <div class="hearts-track">
+      <div class="hearts-group">
+        {%- for i in (1..6) -%}
+          {{ section.settings.text | escape }}&nbsp;
+        {%- endfor -%}
+      </div>
+      <div class="hearts-group">
+        {%- for i in (1..6) -%}
+          {{ section.settings.text | escape }}&nbsp;
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Elsis Hearts Marquee",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bar_bg_color",
+      "label": "Marquee Bar Background",
+      "default": "#F8F2E8"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Marquee Text Pattern",
+      "default": "halal ♥ biologisch ♥ verantwortlich ♥ 100% recycelbar ♥"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "label": "Font Size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "default": 20,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "tilt_angle",
+      "label": "Tilt Angle (Degrees)",
+      "min": -10,
+      "max": 10,
+      "step": 1,
+      "default": -3,
+      "unit": "deg"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Marquee Speed (Seconds)",
+      "min": 5,
+      "max": 50,
+      "step": 1,
+      "default": 24,
+      "unit": "s"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top/Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "bar_padding",
+      "label": "Bar Inner Padding",
+      "min": 5,
+      "max": 40,
+      "step": 1,
+      "default": 16,
+      "unit": "px"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Hearts Marquee"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,533 @@
+{%- style -%}
+  #ElsisFooter-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Newsletter Card Styling */
+  #ElsisFooter-{{ section.id }} .newsletter-card {
+    background-color: {{ section.settings.news_bg_color }};
+    border-radius: 24px;
+    padding: 40px 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    align-items: center;
+    margin-bottom: 54px;
+  }
+
+  #ElsisFooter-{{ section.id }} .news-heading {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.news_title_color }};
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+
+  #ElsisFooter-{{ section.id }} .news-subtext {
+    font-size: 15px;
+    color: {{ section.settings.news_text_color }};
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  #ElsisFooter-{{ section.id }} .newsletter-form-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  #ElsisFooter-{{ section.id }} .newsletter-input {
+    flex: 1;
+    min-width: 200px;
+    border: 1.5px solid {{ section.settings.news_input_border }};
+    background-color: {{ section.settings.news_input_bg }};
+    border-radius: 30px;
+    padding: 13px 20px;
+    font-family: var(--body-font);
+    font-size: 15px;
+    color: {{ section.settings.news_title_color }};
+    outline: none;
+  }
+
+  #ElsisFooter-{{ section.id }} .newsletter-submit-btn {
+    cursor: pointer;
+    border: none;
+    background-color: {{ section.settings.news_btn_bg }};
+    color: {{ section.settings.news_btn_text_color }};
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 13px 28px;
+    border-radius: 26px 30px 24px 28px / 30px 24px 28px 26px;
+    transition: transform .2s ease;
+  }
+
+  #ElsisFooter-{{ section.id }} .newsletter-submit-btn:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+
+  /* Grid layout for footer blocks */
+  #ElsisFooter-{{ section.id }} .footer-blocks-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 36px;
+    padding-bottom: 42px;
+    border-bottom: 1px solid {{ section.settings.border_color }};
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-block-column {
+    text-align: left;
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-block-logo {
+    height: 54px;
+    width: auto;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-block-logo-svg {
+    height: 54px;
+    width: auto;
+    margin-bottom: 16px;
+    fill: #ffffff;
+    display: block;
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-block-heading {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 16px;
+    color: {{ section.settings.block_title_color }};
+    margin: 0 0 14px;
+    text-transform: uppercase;
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-block-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: {{ section.settings.text_color }};
+  }
+  #ElsisFooter-{{ section.id }} .block-type-brand_bio .footer-block-content.p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #9FBDA3;
+    max-width: 260px;
+}
+
+.block-type-contact .contact-details-rich p{
+  font-size:14px !important;
+}
+
+  #ElsisFooter-{{ section.id }} .footer-links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  #ElsisFooter-{{ section.id }} .elsis-foot-link {
+    color: {{ section.settings.text_color }};
+    transition: opacity .2s, color .2s;
+  }
+
+  #ElsisFooter-{{ section.id }} .elsis-foot-link:hover {
+    opacity: .75;
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  #ElsisFooter-{{ section.id }} .contact-details-rich a {
+    color: {{ section.settings.link_hover_color }};
+  }
+
+  /* Footer bottom styling */
+  #ElsisFooter-{{ section.id }} .footer-bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-top: 24px;
+    font-size: 13px;
+    color: {{ section.settings.text_color }};
+  }
+
+  #ElsisFooter-{{ section.id }} .footer-social-links {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+  }
+
+  @media(max-width:960px){
+    #ElsisFooter-{{ section.id }} .footer-blocks-grid {
+      grid-template-columns: 1fr 1fr!important;
+      gap: 36px;
+    }
+  }
+
+  @media(max-width:760px){
+    #ElsisFooter-{{ section.id }} .newsletter-card {
+      grid-template-columns: 1fr!important;
+      gap: 20px;
+      padding: 30px;
+      margin-bottom: 36px;
+    }
+  }
+
+  @media(max-width:520px){
+    #ElsisFooter-{{ section.id }} .footer-blocks-grid {
+      grid-template-columns: 1fr!important;
+      gap: 28px;
+    }
+    #ElsisFooter-{{ section.id }} .footer-bottom-bar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+{%- endstyle -%}
+
+<footer id="ElsisFooter-{{ section.id }}">
+  <div class="footer-container">
+    
+    <!-- Newsletter Form Block -->
+    {%- if section.settings.show_newsletter -%}
+      <div class="newsletter-card">
+        <div>
+          {%- if section.settings.news_title != blank -%}
+            <h3 class="news-heading">{{ section.settings.news_title }}</h3>
+          {%- endif -%}
+          {%- if section.settings.news_text != blank -%}
+            <p class="news-subtext">{{ section.settings.news_text }}</p>
+          {%- endif -%}
+        </div>
+        <div>
+          {%- form 'customer', id: 'ElsisFooterNewsletter' -%}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div class="newsletter-form-container">
+              {%- if form.posted_successfully? -%}
+                <div style="font-family: var(--heading-font); font-weight: 600; color: {{ section.settings.news_title_color }}; font-size: 17px;">
+                  {{ section.settings.news_success_msg }} 🌱
+                </div>
+              {%- else -%}
+                {%- if form.errors -%}
+                  <div class="form__message" style="color: red; margin-bottom: 8px;">
+                    {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
+                  </div>
+                {%- endif -%}
+                <input type="email" name="contact[email]" required placeholder="{{ section.settings.news_placeholder }}" class="newsletter-input" value="{{ form.email }}" aria-label="E-Mail-Adresse">
+                <button type="submit" class="newsletter-submit-btn">{{ section.settings.news_btn_text }}</button>
+              {%- endif -%}
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    <!-- Footer Columns Grid -->
+    <div class="footer-blocks-grid">
+      {%- for block in section.blocks -%}
+        <div class="footer-block-column block-type-{{ block.type }}" {{ block.shopify_attributes }}>
+          {%- case block.type -%}
+            {%- when 'brand_bio' -%}
+              {%- if block.settings.logo != blank -%}
+                <img class="footer-block-logo" src="{{ block.settings.logo | image_url: width: 250 }}" alt="{{ shop.name }}" loading="lazy">
+              {%- else -%}
+                <svg class="footer-block-logo-svg" viewBox="0 0 160 50">
+                  <text x="0" y="35" font-family="Fredoka, sans-serif" font-weight="700" font-size="28" fill="#ffffff">Elsis</text>
+                </svg>
+              {%- endif -%}
+              {%- if block.settings.bio_text != blank -%}
+                <div class="footer-block-content p">{{ block.settings.bio_text }}</div>
+              {%- endif -%}
+
+            {%- when 'navigation' -%}
+              {%- if block.settings.title != blank -%}
+                <h4 class="footer-block-heading">{{ block.settings.title }}</h4>
+              {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <div class="footer-links-list">
+                  {%- for link in linklists[block.settings.menu].links -%}
+                    <a class="elsis-foot-link" href="{{ link.url }}">{{ link.title }}</a>
+                  {%- endfor -%}
+                </div>
+              {%- endif -%}
+
+            {%- when 'contact' -%}
+              {%- if block.settings.title != blank -%}
+                <h4 class="footer-block-heading">{{ block.settings.title }}</h4>
+              {%- endif -%}
+              <div class="footer-block-content contact-details-rich p">
+                {{ block.settings.details }}
+              </div>
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <!-- Bottom copyright / social bar -->
+    <div class="footer-bottom-bar">
+      <span>{{ section.settings.copyright_text }}</span>
+      
+      <div class="footer-social-links">
+        {%- if settings.social_instagram_link != blank -%}
+          <a class="elsis-foot-link" href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener">Instagram</a>
+        {%- endif -%}
+        {%- if settings.social_facebook_link != blank -%}
+          <a class="elsis-foot-link" href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener">Facebook</a>
+        {%- endif -%}
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Elsis Custom Footer",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Footer Background Color",
+      "default": "#115A1B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Footer Text Color",
+      "default": "#C7DEC9"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "label": "Link Hover Color",
+      "default": "#FFD42E"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Divider Color",
+      "default": "rgba(255, 255, 255, 0.16)"
+    },
+    {
+      "type": "color",
+      "id": "block_title_color",
+      "label": "Block Title Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter",
+      "label": "Show Newsletter Signup Card",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "news_title",
+      "label": "Newsletter Heading",
+      "default": "bleib auf dem Laufenden"
+    },
+    {
+      "type": "text",
+      "id": "news_text",
+      "label": "Newsletter Subtext",
+      "default": "Neue Sorten, Beikost-Tipps und kleine Aktionen – direkt in dein Postfach."
+    },
+    {
+      "type": "text",
+      "id": "news_placeholder",
+      "label": "Newsletter Input Placeholder",
+      "default": "Deine E-Mail-Adresse"
+    },
+    {
+      "type": "text",
+      "id": "news_btn_text",
+      "label": "Newsletter Button Label",
+      "default": "Abonnieren"
+    },
+    {
+      "type": "text",
+      "id": "news_success_msg",
+      "label": "Success Confirmation Text",
+      "default": "Danke! Du bist dabei."
+    },
+    {
+      "type": "color",
+      "id": "news_bg_color",
+      "label": "Newsletter Card Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "news_title_color",
+      "label": "Newsletter Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "news_text_color",
+      "label": "Newsletter Subtext Color",
+      "default": "#5C7A60"
+    },
+    {
+      "type": "color",
+      "id": "news_input_bg",
+      "label": "Input Field Background",
+      "default": "#F8F2E8"
+    },
+    {
+      "type": "color",
+      "id": "news_input_border",
+      "label": "Input Field Border",
+      "default": "rgba(25, 125, 37, 0.3)"
+    },
+    {
+      "type": "color",
+      "id": "news_btn_bg",
+      "label": "Button Background",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "news_btn_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Footer Bottom Bar"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "© 2024–2026 Elsis Organics · Kaya Foods. Alle Rechte vorbehalten."
+    },
+    {
+      "type": "header",
+      "content": "Spacing settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 64,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 34,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "brand_bio",
+      "name": "Brand Info / Bio",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo Image"
+        },
+        {
+          "type": "textarea",
+          "id": "bio_text",
+          "label": "Brand Description Text",
+          "default": "Bio-Babynahrung – halal, nachhaltig und mit Liebe gemacht. Klein anfangen."
+        }
+      ]
+    },
+    {
+      "type": "navigation",
+      "name": "Navigation Links Menu",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Menu Heading",
+          "default": "Navigation"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Link List Menu Selection"
+        }
+      ]
+    },
+    {
+      "type": "contact",
+      "name": "Contact Details",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Contact Heading",
+          "default": "Kontakt"
+        },
+        {
+          "type": "richtext",
+          "id": "details",
+          "label": "Address & Contact Details",
+          "default": "<p>Kaya Foods<br>Grubenweg 19<br>38268 Lengede<br><a href=\"mailto:info@elsis-organics.de\">info@elsis-organics.de</a></p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Custom Footer",
+      "blocks": [
+        {
+          "type": "brand_bio",
+          "settings": {
+            "bio_text": "Bio-Babynahrung – halal, nachhaltig und mit Liebe gemacht. Klein anfangen."
+          }
+        },
+        {
+          "type": "navigation",
+          "settings": {
+            "title": "Navigation"
+          }
+        },
+        {
+          "type": "navigation",
+          "settings": {
+            "title": "Rechtliches"
+          }
+        },
+        {
+          "type": "contact",
+          "settings": {
+            "title": "Kontakt"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

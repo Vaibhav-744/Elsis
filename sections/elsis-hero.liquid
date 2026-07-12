@@ -1,0 +1,694 @@
+{%- style -%}
+  #ElsisHero-{{ section.id }} {
+    position: relative;
+    padding: {{ section.settings.padding_top }}px 5% 0;
+    overflow: hidden;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: {{ section.settings.pattern_opacity | divided_by: 100.0 }};
+    pointer-events: none;
+    background-image: radial-gradient({{ section.settings.pattern_color_1 }} 2.2px, transparent 2.3px), radial-gradient({{ section.settings.pattern_color_2 }} 2.2px, transparent 2.3px);
+    background-size: 38px 38px, 38px 38px;
+    background-position: 0 0, 19px 19px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-cloud-1 {
+    position: absolute;
+    top: 90px;
+    left: 6%;
+    width: 150px;
+    height: 54px;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.7;
+    box-shadow: 46px 8px 0 -6px #fff, -30px 10px 0 -8px #fff;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-cloud-2 {
+    position: absolute;
+    top: 150px;
+    right: 9%;
+    width: 130px;
+    height: 46px;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.6;
+    box-shadow: 40px 6px 0 -6px #fff, -26px 8px 0 -8px #fff;
+  }
+
+  #ElsisHero-{{ section.id }} .hero-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #ElsisHero-{{ section.id }} .hero-label {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    letter-spacing: .12em;
+    font-size: 15px;
+    color: {{ section.settings.label_color }};
+    text-transform: uppercase;
+  }
+
+  #ElsisHero-{{ section.id }} .hero-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    line-height: .86;
+    margin: 14px 0 0;
+    letter-spacing: -.01em;
+  }
+
+  #ElsisHero-{{ section.id }} .hero-btn-wrap {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: {{ section.settings.btn_bg_color }};
+    color: {{ section.settings.btn_text_color }};
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 20px;
+    padding: 17px 38px;
+    border-radius: 30px 34px 28px 32px / 34px 28px 32px 30px;
+    box-shadow: 0 8px 0 {{ section.settings.btn_shadow_color }};
+    transition: transform .2s ease;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-btn:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+
+  #ElsisHero-{{ section.id }} .hero-tagline {
+    margin-top: 14px;
+    font-family: var(--heading-font);
+    font-weight: 500;
+    color: {{ section.settings.tagline_color }};
+    font-size: 14px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-area {
+    position: relative;
+    max-width: 920px;
+    margin: 6px auto -30px;
+    height: 330px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-badge {
+    position: absolute;
+    z-index: 5;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    line-height: 1;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-badge-bio {
+    right: 28%;
+    top: 10px;
+    background-color: {{ section.settings.bio_bg_color }};
+    color: {{ section.settings.bio_text_color }};
+    transform: rotate(-10deg);
+    animation: elsis-bob 5s ease-in-out infinite;
+    box-shadow: 0 8px 18px {{ section.settings.bio_shadow_color }};
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-badge-halal {
+    left: 30%;
+    top: -6px;
+    background-color: {{ section.settings.halal_bg_color }};
+    color: {{ section.settings.halal_text_color }};
+    transform: rotate(9deg);
+    animation: elsis-bob 5.6s ease-in-out .4s infinite;
+    box-shadow: 0 8px 18px {{ section.settings.halal_shadow_color }};
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-badge span:first-child {
+    font-weight: 700;
+    font-size: 22px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-badge span:last-child {
+    font-size: 8px;
+    letter-spacing: .08em;
+    margin-top: 3px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-slot {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    z-index: 2;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-slot-center {
+    left: 50%;
+    margin-left: -115px;
+    bottom: 14px;
+    width: 230px;
+    z-index: 3;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-slot[data-slot="0"] {
+    left: 15%;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-slot[data-slot="2"] {
+    right: 15%;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-float {
+    animation-fill-mode: both;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-swap {
+    transition: transform .5s ease, opacity .5s ease;
+  }
+
+  @keyframes elsis-bob {
+    0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+    50% { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+  }
+
+  @keyframes elsis-float {
+    0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); }
+    50% { transform: translateY(-16px) rotate(var(--r, 0deg)); }
+  }
+
+  @media(max-width:760px){
+    #ElsisHero-{{ section.id }} .elsis-hero-area {
+      height: 260px;
+      max-width: 100%;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot {
+      width: 150px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot-center {
+      width: 172px;
+      margin-left: -86px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge {
+      width: 66px;
+      height: 66px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge-bio {
+      right: 20%;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge-halal {
+      left: 18%;
+    }
+  }
+
+  @media(max-width:520px){
+    #ElsisHero-{{ section.id }} .elsis-hero-area {
+      height: 230px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot {
+      width: 116px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot[data-slot="0"] {
+      left: 7%;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot[data-slot="2"] {
+      right: 7%;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-slot-center {
+      width: 138px;
+      margin-left: -69px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge {
+      width: 56px;
+      height: 56px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge-bio span:first-child {
+      font-size: 17px;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-badge-halal span:first-child {
+      font-size: 15px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ElsisHero-{{ section.id }}" data-screen-label="Hero">
+  {%- if section.settings.show_pattern -%}
+    <div class="elsis-hero-pattern"></div>
+  {%- endif -%}
+
+  {%- if section.settings.show_clouds -%}
+    <div class="elsis-hero-cloud-1"></div>
+    <div class="elsis-hero-cloud-2"></div>
+  {%- endif -%}
+
+  <div class="hero-container">
+    {%- if section.settings.label != blank -%}
+      <div class="hero-label">{{ section.settings.label }}</div>
+    {%- endif -%}
+    {%- if section.settings.title != blank -%}
+      <h1 class="hero-title">{{ section.settings.title }}</h1>
+    {%- endif -%}
+    {%- if section.settings.btn_text != blank -%}
+      <div class="hero-btn-wrap">
+        <a class="elsis-hero-btn" href="{{ section.settings.btn_link | default: '#sorten' }}">
+          {{ section.settings.btn_text }}
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.3-9.2C1.2 8.6 2.8 5 6.2 5c2 0 3.2 1.2 3.8 2.2C10.6 6.2 11.8 5 13.8 5c3.4 0 5 3.6 3.5 6.8C19 16.5 12 21 12 21z"/></svg>
+        </a>
+      </div>
+    {%- endif -%}
+    {%- if section.settings.tagline != blank -%}
+      <div class="hero-tagline">{{ section.settings.tagline }}</div>
+    {%- endif -%}
+  </div>
+
+  <div class="elsis-hero-area" id="ElsisHeroArea-{{ section.id }}">
+    <div class="elsis-hero-badge elsis-hero-badge-bio" style="--rot: -10deg;">
+      <span>{{ section.settings.bio_badge_title }}</span>
+      <span>{{ section.settings.bio_badge_subtitle }}</span>
+    </div>
+    <div class="elsis-hero-badge elsis-hero-badge-halal" style="--rot: 9deg;">
+      <span>{{ section.settings.halal_badge_title }}</span>
+      <span>{{ section.settings.halal_badge_subtitle }}</span>
+    </div>
+
+    <!-- slot: left (0) -->
+    <div class="elsis-hero-slot" data-slot="0">
+      <div class="elsis-hero-float" style="--r:-7deg; animation: elsis-float 6.5s ease-in-out infinite;">
+        <div class="elsis-hero-swap">
+          <div class="elsis-hero-pouch-el"></div>
+        </div>
+      </div>
+    </div>
+    <!-- slot: center (1) -->
+    <div class="elsis-hero-slot elsis-hero-slot-center" data-slot="1">
+      <div class="elsis-hero-float" style="--r:0deg; animation: elsis-float 7.2s ease-in-out 0.5s infinite;">
+        <div class="elsis-hero-swap">
+          <div class="elsis-hero-pouch-el"></div>
+        </div>
+      </div>
+    </div>
+    <!-- slot: right (2) -->
+    <div class="elsis-hero-slot" data-slot="2">
+      <div class="elsis-hero-float" style="--r:7deg; animation: elsis-float 6.8s ease-in-out 0.9s infinite;">
+        <div class="elsis-hero-swap">
+          <div class="elsis-hero-pouch-el"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script id="ElsisHeroFlavors-{{ section.id }}" type="application/json">
+  [
+    {%- for block in section.blocks -%}
+      {
+        "flavour": {{ block.settings.title | json }},
+        "bg": "{{ block.settings.pouch_bg }}",
+        "stripe": "{{ block.settings.pouch_stripe }}",
+        "accent": "{{ block.settings.pouch_accent }}",
+        "age": "{{ block.settings.pouch_age }}"
+      }{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const container = document.getElementById('ElsisHeroArea-{{ section.id }}');
+  if (!container) return;
+
+  const flavorsDataEl = document.getElementById('ElsisHeroFlavors-{{ section.id }}');
+  if (!flavorsDataEl) return;
+
+  const ELSIS_FLAVORS = JSON.parse(flavorsDataEl.textContent);
+  const n = ELSIS_FLAVORS.length;
+  if (n === 0) return;
+
+  const slots = Array.from(container.querySelectorAll('.elsis-hero-slot')).map(s => ({
+    slot: s,
+    swap: s.querySelector('.elsis-hero-swap'),
+    pouchEl: s.querySelector('.elsis-hero-pouch-el')
+  }));
+
+  function buildPouch(el, d) {
+    const bg = d.bg || '#fff';
+    const stripe = d.stripe || '#ddd';
+    const accent = d.accent || '#197D25';
+    const flavour = d.flavour || '';
+    const age = d.age || '';
+    
+    el.style.cssText = 'position:relative;width:100%;aspect-ratio:3/4.1;filter:drop-shadow(0 10px 16px rgba(0,0,0,.12));';
+    el.innerHTML =
+      '<div style="position:absolute;left:50%;top:-3px;transform:translateX(-50%);width:20%;height:14px;background:' + accent + ';border-radius:7px 7px 2px 2px;z-index:3;"></div>' +
+      '<div style="position:absolute;left:50%;top:8px;transform:translateX(-50%);width:42%;height:13px;background:' + accent + ';border-radius:8px;z-index:2;"></div>' +
+      '<div style="position:absolute;inset:16px 0 0;background:' + bg + ';border:2.5px solid ' + accent + ';border-radius:14px 14px 30px 30px / 18px 18px 46px 46px;overflow:hidden;background-image:repeating-linear-gradient(135deg,' + stripe + '88 0 8px,transparent 8px 18px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 9px 16px;">' +
+        (age ? '<div style="position:absolute;top:9px;left:9px;background:' + accent + ';color:#fff;font-family:Fredoka,sans-serif;font-weight:700;font-size:10px;padding:3px 8px;border-radius:18px;">' + age + '</div>' : '') +
+        '<div style="position:absolute;top:14%;left:18%;width:64%;height:50%;border-radius:50%;background:rgba(255,255,255,.6);"></div>' +
+        '<div style="position:relative;text-align:center;font-family:Fredoka,sans-serif;font-weight:600;color:' + accent + ';font-size:11px;line-height:1.15;background:rgba(255,255,255,.85);padding:6px 7px;border-radius:9px;">' + flavour + '</div>' +
+      '</div>';
+  }
+
+  let offset = 0;
+  let timer = null;
+
+  // Initialize slots
+  slots.forEach((o, i) => buildPouch(o.pouchEl, ELSIS_FLAVORS[i % n]));
+
+  function shift(dir) {
+    offset = ((offset + dir) % n + n) % n;
+    const outX = dir > 0 ? '-38px' : '38px';
+    const inX = dir > 0 ? '38px' : '-38px';
+    slots.forEach((o, i) => {
+      const f = ELSIS_FLAVORS[((offset + i) % n + n) % n];
+      o.swap.style.transition = 'transform .45s ease, opacity .45s ease';
+      o.swap.style.opacity = '0';
+      o.swap.style.transform = 'translateX(' + outX + ')';
+      setTimeout(() => {
+        buildPouch(o.pouchEl, f);
+        o.swap.style.transition = 'none';
+        o.swap.style.transform = 'translateX(' + inX + ')';
+        requestAnimationFrame(() => {
+          o.swap.style.transition = 'transform .5s ease, opacity .5s ease';
+          o.swap.style.opacity = '1';
+          o.swap.style.transform = 'translateX(0)';
+        });
+      }, 200 + i * 90);
+    });
+  }
+
+  const advance = () => shift(1);
+  const start = () => { if (!timer) timer = setInterval(advance, 4000); };
+  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+  start();
+
+  container.addEventListener('mouseenter', stop);
+  container.addEventListener('mouseleave', start);
+
+  // Swipe support
+  let sx = null;
+  container.addEventListener('touchstart', e => { sx = e.touches[0].clientX; stop(); }, { passive: true });
+  container.addEventListener('touchend', e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 36) { shift(dx < 0 ? 1 : -1); }
+    sx = null;
+    start();
+  }, { passive: true });
+
+  // Mouse drag support
+  let mx = null;
+  container.addEventListener('mousedown', e => { mx = e.clientX; stop(); });
+  window.addEventListener('mouseup', e => {
+    if (mx === null) return;
+    const dx = e.clientX - mx;
+    if (Math.abs(dx) > 40) { shift(dx < 0 ? 1 : -1); }
+    mx = null;
+    start();
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Elsis Hero",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F8F2E8"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_pattern",
+      "label": "Show Dot Pattern Background",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "pattern_color_1",
+      "label": "Pattern Color 1",
+      "default": "rgba(106, 179, 122, 0.2)"
+    },
+    {
+      "type": "color",
+      "id": "pattern_color_2",
+      "label": "Pattern Color 2",
+      "default": "rgba(25, 121, 37, 0.07)"
+    },
+    {
+      "type": "range",
+      "id": "pattern_opacity",
+      "label": "Pattern Opacity",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_clouds",
+      "label": "Show Decorative Clouds",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Sub-label",
+      "default": "Halal & Bio Babynahrung"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Headline",
+      "default": "Klein anfangen."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Headline Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Jetzt einkaufen"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "color",
+      "id": "btn_bg_color",
+      "label": "Button Background Color",
+      "default": "#FFD42E"
+    },
+    {
+      "type": "color",
+      "id": "btn_text_color",
+      "label": "Button Text Color",
+      "default": "#115A1B"
+    },
+    {
+      "type": "color",
+      "id": "btn_shadow_color",
+      "label": "Button Shadow Color",
+      "default": "rgba(25, 125, 37, 0.14)"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "100% Bio & Halal · ab dem 4. Monat"
+    },
+    {
+      "type": "color",
+      "id": "tagline_color",
+      "label": "Tagline Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "header",
+      "content": "BIO Badge"
+    },
+    {
+      "type": "text",
+      "id": "bio_badge_title",
+      "label": "BIO Badge Title",
+      "default": "BIO"
+    },
+    {
+      "type": "text",
+      "id": "bio_badge_subtitle",
+      "label": "BIO Badge Subtitle",
+      "default": "100%"
+    },
+    {
+      "type": "color",
+      "id": "bio_bg_color",
+      "label": "BIO Badge Background",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "bio_text_color",
+      "label": "BIO Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "bio_shadow_color",
+      "label": "BIO Badge Shadow",
+      "default": "rgba(25, 125, 37, 0.25)"
+    },
+    {
+      "type": "header",
+      "content": "HALAL Badge"
+    },
+    {
+      "type": "text",
+      "id": "halal_badge_title",
+      "label": "HALAL Badge Title",
+      "default": "حلال"
+    },
+    {
+      "type": "text",
+      "id": "halal_badge_subtitle",
+      "label": "HALAL Badge Subtitle",
+      "default": "HALAL"
+    },
+    {
+      "type": "color",
+      "id": "halal_bg_color",
+      "label": "HALAL Badge Background",
+      "default": "#D9756E"
+    },
+    {
+      "type": "color",
+      "id": "halal_text_color",
+      "label": "HALAL Badge Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "halal_shadow_color",
+      "label": "HALAL Badge Shadow",
+      "default": "rgba(217, 117, 110, 0.3)"
+    },
+    {
+      "type": "header",
+      "content": "Spacing settings"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 54,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pouch",
+      "name": "Pouch Variety",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Variety Flavour",
+          "default": "Gemüse · Huhn · Reis"
+        },
+        {
+          "type": "color",
+          "id": "pouch_bg",
+          "label": "Pouch Base Background",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "pouch_stripe",
+          "label": "Pouch Stripe Color",
+          "default": "#BBD6A8"
+        },
+        {
+          "type": "color",
+          "id": "pouch_accent",
+          "label": "Pouch Accent Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "text",
+          "id": "pouch_age",
+          "label": "Pouch Age Tag",
+          "default": "6+"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Hero",
+      "blocks": [
+        {
+          "type": "pouch",
+          "settings": {
+            "title": "Gemüse · Huhn · Reis",
+            "pouch_bg": "#DCEAD2",
+            "pouch_stripe": "#BBD6A8",
+            "pouch_accent": "#197D25",
+            "pouch_age": "6+"
+          }
+        },
+        {
+          "type": "pouch",
+          "settings": {
+            "title": "Gemüse · Couscous · Fisch",
+            "pouch_bg": "#D6E4E9",
+            "pouch_stripe": "#BBD3DB",
+            "pouch_accent": "#4E7E94",
+            "pouch_age": "6+"
+          }
+        },
+        {
+          "type": "pouch",
+          "settings": {
+            "title": "Rindfleisch · Lasagne",
+            "pouch_bg": "#F0DAC9",
+            "pouch_stripe": "#E0BC9E",
+            "pouch_accent": "#B07A4E",
+            "pouch_age": "8+"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
