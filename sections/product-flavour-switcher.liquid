@@ -1,0 +1,236 @@
+{%- style -%}
+  #ProductSwitcher-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #ProductSwitcher-{{ section.id }} .switcher-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  #ProductSwitcher-{{ section.id }} .switcher-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: {{ section.settings.title_color }};
+    font-size: 20px;
+    margin: 0 0 16px;
+    text-align: left;
+  }
+
+  #ProductSwitcher-{{ section.id }} .switcher-grid {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  /* Thumbnails styling */
+  #ProductSwitcher-{{ section.id }} .elsis-pdp-thumb {
+    cursor: pointer;
+    border-radius: 18px;
+    padding: 12px 8px 10px;
+    width: 108px;
+    text-align: center;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s, background-color 0.2s;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2.5px solid transparent;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pdp-thumb:hover {
+    transform: translateY(-2px);
+    background-color: #fff;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pdp-thumb.active {
+    border-color: var(--accent-color, #197D25);
+    background-color: #fff;
+  }
+
+  /* Pouch Thumbnail Drawing */
+  #ProductSwitcher-{{ section.id }} .mini-pouch-wrap {
+    width: 56px;
+    margin: 0 auto 7px;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pouch-design {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4.1;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 6px;
+    background: var(--accent-color, #197D25);
+    border-radius: 3px 3px 1px 1px;
+    z-index: 3;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pouch-neck {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 6px;
+    background: var(--accent-color, #197D25);
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pouch-body {
+    position: absolute;
+    inset: 8px 0 0;
+    background: #fff;
+    border: 1.5px solid var(--accent-color, #197D25);
+    border-radius: 7px 7px 15px 15px / 9px 9px 23px 23px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--card-bg, #DCEAD2) 53%, transparent) 0 4px, transparent 4px 9px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ProductSwitcher-{{ section.id }} .elsis-pouch-reflection {
+    position: absolute;
+    top: 14%;
+    left: 18%;
+    width: 64%;
+    height: 50%;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+  }
+
+  #ProductSwitcher-{{ section.id }} .thumb-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--accent-color, #197D25);
+    display: block;
+    text-align: center;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    max-height: 25px;
+  }
+{%- endstyle -%}
+
+<section id="ProductSwitcher-{{ section.id }}" data-screen-label="Sortenwahl">
+  <div class="switcher-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="switcher-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="switcher-grid">
+      {%- assign switcher_collection = section.settings.switcher_collection -%}
+      {%- assign current_handle = product.handle -%}
+
+      {%- if collections[switcher_collection].products.size > 0 -%}
+        {%- for alt_product in collections[switcher_collection].products -%}
+          {%- if alt_product.handle == current_handle -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          {%- liquid
+            assign bg_color = alt_product.metafields.custom.product_card_background_color | default: '#DCEAD2'
+            assign btn_color = alt_product.metafields.custom.product_card_button_color | default: '#197D25'
+          -%}
+
+          <a href="{{ alt_product.url }}" class="elsis-pdp-thumb{% if is_active %} active{% endif %}" style="--card-bg: {{ bg_color }}; --accent-color: {{ btn_color }};">
+            <div class="mini-pouch-wrap">
+              <div class="elsis-pouch-design">
+                <div class="elsis-pouch-cap-top"></div>
+                <div class="elsis-pouch-neck"></div>
+                <div class="elsis-pouch-body">
+                  <div class="elsis-pouch-reflection"></div>
+                </div>
+              </div>
+            </div>
+            <span class="thumb-title">{{ alt_product.title }}</span>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback Placeholder options -->
+        {%- for i in (1..5) -%}
+          <div class="elsis-pdp-thumb{% if i == 1 %} active{% endif %}" style="--card-bg: #DCEAD2; --accent-color: #197D25;">
+            <div class="mini-pouch-wrap">
+              <div class="elsis-pouch-design">
+                <div class="elsis-pouch-cap-top"></div>
+                <div class="elsis-pouch-neck"></div>
+                <div class="elsis-pouch-body">
+                  <div class="elsis-pouch-reflection"></div>
+                </div>
+              </div>
+            </div>
+            <span class="thumb-title">Gemüse · Huhn · Reis</span>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Variety Switcher",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Sorte wählen"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "collection",
+      "id": "switcher_collection",
+      "label": "Switcher Collection",
+      "info": "Choose the collection containing the pouch varieties to display as alternate flavor switches."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 54
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Variety Switcher"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,275 @@
+{%- style -%}
+  #ProductCrossSell-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #ProductCrossSell-{{ section.id }} .crosssell-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  #ProductCrossSell-{{ section.id }} .crosssell-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    font-size: clamp(26px, 3.5vw, 40px);
+    text-align: center;
+    margin: 0 0 34px;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pdp-x-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  /* Crosssell card styling */
+  #ProductCrossSell-{{ section.id }} .elsis-pdp-x {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+    padding: 44px 14px 16px;
+    text-align: center;
+    text-decoration: none;
+    background: var(--card-bg, #DCEAD2);
+    transition: transform 0.28s ease;
+    color: inherit;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pdp-x:hover {
+    transform: translateY(-8px);
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pdp-x:hover .pdp-x-pouch {
+    transform: translateY(-8px) rotate(-3deg) scale(1.05);
+  }
+
+  /* Mini Pouch */
+  #ProductCrossSell-{{ section.id }} .pdp-x-pouch {
+    width: 88px;
+    margin: -36px auto 10px;
+    position: relative;
+    transition: transform 0.28s ease;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pouch-design {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4.1;
+    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.08));
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute;
+    left: 50%;
+    top: -2px;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 8px;
+    background: var(--accent-color, #197D25);
+    border-radius: 4px 4px 1px 1px;
+    z-index: 3;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pouch-neck {
+    position: absolute;
+    left: 50%;
+    top: 5px;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 8px;
+    background: var(--accent-color, #197D25);
+    border-radius: 5px;
+    z-index: 2;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pouch-body {
+    position: absolute;
+    inset: 10px 0 0;
+    background: #fff;
+    border: 2px solid var(--accent-color, #197D25);
+    border-radius: 10px 10px 22px 22px / 12px 12px 34px 34px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--card-bg, #DCEAD2) 53%, transparent) 0 6px, transparent 6px 14px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ProductCrossSell-{{ section.id }} .elsis-pouch-reflection {
+    position: absolute;
+    top: 14%;
+    left: 18%;
+    width: 64%;
+    height: 50%;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+  }
+
+  #ProductCrossSell-{{ section.id }} .pdp-x-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--accent-color, #197D25);
+    display: block;
+    line-height: 1.2;
+    margin: 4px 0 2px;
+    text-align: center;
+  }
+
+  #ProductCrossSell-{{ section.id }} .pdp-x-price {
+    font-size: 12px;
+    color: color-mix(in srgb, var(--accent-color, #197D25) 70%, #000);
+    display: block;
+    text-align: center;
+  }
+
+  /* Responsive styling */
+  @media(max-width:960px) {
+    #ProductCrossSell-{{ section.id }} .elsis-pdp-x-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+
+  @media(max-width:540px) {
+    #ProductCrossSell-{{ section.id }} .elsis-pdp-x-grid {
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 12px !important;
+    }
+
+    #ProductCrossSell-{{ section.id }} .elsis-pdp-x {
+      padding: 38px 10px 14px !important;
+    }
+
+    #ProductCrossSell-{{ section.id }} .pdp-x-pouch {
+      width: 72px !important;
+      margin: -30px auto 8px !important;
+    }
+
+    #ProductCrossSell-{{ section.id }} .pdp-x-title {
+      font-size: 15px !important;
+    }
+
+    #ProductCrossSell-{{ section.id }} .pdp-x-price {
+      font-size: 13px !important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ProductCrossSell-{{ section.id }}" data-screen-label="AuchLecker">
+  <div class="crosssell-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="crosssell-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="elsis-pdp-x-grid">
+      {%- assign cross_collection = section.settings.cross_collection -%}
+      {%- assign current_handle = product.handle -%}
+
+      {%- if collections[cross_collection].products.size > 0 -%}
+        {%- for alt_product in collections[cross_collection].products -%}
+          {%- if alt_product.handle == current_handle -%}
+            {%- continue -%}
+          {%- endif -%}
+
+          {%- liquid
+            assign bg_color = alt_product.metafields.custom.product_card_background_color | default: '#DCEAD2'
+            assign btn_color = alt_product.metafields.custom.product_card_button_color | default: '#197D25'
+          -%}
+
+          <a href="{{ alt_product.url }}" class="elsis-pdp-x" style="--card-bg: {{ bg_color }}; --accent-color: {{ btn_color }};">
+            <div class="pdp-x-pouch">
+              <div class="elsis-pouch-design">
+                <div class="elsis-pouch-cap-top"></div>
+                <div class="elsis-pouch-neck"></div>
+                <div class="elsis-pouch-body">
+                  <div class="elsis-pouch-reflection"></div>
+                </div>
+              </div>
+            </div>
+            <span class="pdp-x-title">{{ alt_product.title }}</span>
+            <span class="pdp-x-price">{{ alt_product.price | money }}</span>
+          </a>
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback Placeholder options -->
+        {%- for i in (1..4) -%}
+          <div class="elsis-pdp-x" style="--card-bg: #DCEAD2; --accent-color: #197D25;">
+            <div class="pdp-x-pouch">
+              <div class="elsis-pouch-design">
+                <div class="elsis-pouch-cap-top"></div>
+                <div class="elsis-pouch-neck"></div>
+                <div class="elsis-pouch-body">
+                  <div class="elsis-pouch-reflection"></div>
+                </div>
+              </div>
+            </div>
+            <span class="pdp-x-title">Gemüse · Huhn · Reis</span>
+            <span class="pdp-x-price">1,99 €</span>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Cross Sell Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "auch lecker"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "collection",
+      "id": "cross_collection",
+      "label": "Recommendations Collection",
+      "info": "Choose the collection (usually the main shop collection) to pull cross sell options from."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "transparent"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 70
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Cross Sell Grid"
+    }
+  ]
+}
+{% endschema %}

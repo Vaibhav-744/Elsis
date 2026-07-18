@@ -1,0 +1,741 @@
+{%- style -%}
+  #ProductPDP-{{ section.id }} {
+    position: relative;
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    overflow: hidden;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-container {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-breadcrumbs {
+    font-size: 13px;
+    color: #6AB37A;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-breadcrumbs a:hover {
+    color: #197D25;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-breadcrumbs span {
+    color: #197D25;
+  }
+
+  /* Grid layout */
+  #ProductPDP-{{ section.id }} .elsis-pdp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  /* Left visual column */
+  #ProductPDP-{{ section.id }} .elsis-pdp-visual {
+    position: relative;
+    height: 440px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pdp-circle {
+    position: absolute;
+    width: min(380px, 90%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--card-bg, #DCEAD2);
+    transition: background 0.4s;
+    z-index: 1;
+    display:block;
+  }
+
+  /* Absolute badges */
+  #ProductPDP-{{ section.id }} .badge-bio {
+    position: absolute;
+    top: 8%;
+    left: 12%;
+    z-index: 3;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #197D25;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    line-height: 1;
+    transform: rotate(-10deg);
+    animation: elsis-bob 5s ease-in-out infinite;
+    box-shadow: 0 8px 18px rgba(25, 125, 37, 0.25);
+  }
+
+  #ProductPDP-{{ section.id }} .badge-bio span:first-child {
+    font-weight: 700;
+    font-size: 17px;
+  }
+
+  #ProductPDP-{{ section.id }} .badge-bio span:last-child {
+    font-size: 7px;
+    letter-spacing: .08em;
+    margin-top: 2px;
+  }
+
+  #ProductPDP-{{ section.id }} .badge-halal {
+    position: absolute;
+    bottom: 12%;
+    right: 10%;
+    z-index: 3;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #D9756E;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    line-height: 1;
+    transform: rotate(9deg);
+    animation: elsis-bob 5.6s ease-in-out .4s infinite;
+    box-shadow: 0 8px 18px rgba(217, 117, 110, 0.3);
+  }
+
+  #ProductPDP-{{ section.id }} .badge-halal span:first-child {
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #ProductPDP-{{ section.id }} .badge-halal span:last-child {
+    font-size: 7px;
+    letter-spacing: .06em;
+    margin-top: 3px;
+  }
+
+  /* Pouch Container */
+  #ProductPDP-{{ section.id }} .pdp-pouch-container {
+    position: relative;
+    width: 230px;
+    z-index: 2;
+    animation: elsis-float 6.5s ease-in-out infinite;
+  }
+
+  /* Pouch drawing */
+  #ProductPDP-{{ section.id }} .elsis-pouch-design {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4.1;
+    filter: drop-shadow(0 14px 24px rgba(0,0,0,0.12));
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 14px;
+    background: var(--accent-color, #197D25);
+    border-radius: 7px 7px 2px 2px;
+    z-index: 3;
+    display:block;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-neck {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 13px;
+    background: var(--accent-color, #197D25);
+    border-radius: 8px;
+    z-index: 2;
+    display:block;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-body {
+    position: absolute;
+    inset: 16px 0 0;
+    background: #fff;
+    border: 3px solid var(--accent-color, #197D25);
+    border-radius: 14px 14px 30px 30px / 18px 18px 46px 46px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--card-bg, #DCEAD2) 53%, transparent) 0 8px, transparent 8px 18px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 24px 14px 28px;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-reflection {
+    position: absolute;
+    top: 14%;
+    left: 18%;
+    width: 64%;
+    height: 50%;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    display:block;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-label {
+    position: relative;
+    text-align: center;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--accent-color, #197D25);
+    font-size: 19px;
+    line-height: 1.15;
+    background: rgba(255,255,255,0.85);
+    padding: 8px 12px;
+    border-radius: 12px;
+    word-break: break-word;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-pouch-age {
+    position: absolute !important;
+    top: 9px !important;
+    left: 9px !important;
+    background: var(--accent-color, #197D25) !important;
+    color: #fff !important;
+    font-family: var(--heading-font), sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+    border-radius: 18px !important;
+    z-index: 4 !important;
+    display: block !important;
+    line-height: normal !important;
+  }
+
+  /* Right Info Column */
+  #ProductPDP-{{ section.id }} .pdp-info-age-tag {
+    display: inline-block;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--accent-color, #197D25);
+    background: color-mix(in srgb, var(--accent-color, #197D25) 14%, transparent);
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-info-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: var(--accent-color, #197D25);
+    font-size: clamp(34px, 4.5vw, 54px);
+    line-height: 1;
+    margin: 14px 0 12px;
+    text-align: left;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-info-desc {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #3D6344;
+    margin: 0 0 18px;
+    max-width: 480px;
+    text-align: left;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-info-desc ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 18px 0 22px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-info-desc li {
+    position: relative !important;
+    padding-left: 29px !important;
+    font-family: var(--heading-font) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: var(--accent-color, #197D25) !important;
+    line-height: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-info-desc li::before {
+    content: "✓" !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 20px !important;
+    height: 20px !important;
+    border-radius: 50% !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 14%, transparent) !important;
+    color: var(--accent-color, #197D25) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+  }
+
+
+
+  /* Price Layout */
+  #ProductPDP-{{ section.id }} .pdp-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-price {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--accent-color, #197D25);
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-price-sub {
+    font-size: 13px;
+    color: #6E8A72;
+  }
+
+  #ProductPDP-{{ section.id }} .pdp-pack-info {
+    font-size: 13px;
+    color: #6E8A72;
+    margin-bottom: 22px;
+    text-align: left;
+  }
+
+  /* Buy Actions */
+  #ProductPDP-{{ section.id }} .pdp-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-qty {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1.5px solid color-mix(in srgb, var(--accent-color, #197D25) 30%, transparent);
+    border-radius: 26px;
+    overflow: hidden;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-qty-btn {
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 42px;
+    height: 48px;
+    font-size: 22px;
+    line-height: 1;
+    color: var(--accent-color, #197D25);
+    font-family: var(--heading-font);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-qty-val-display {
+    min-width: 26px;
+    text-align: center;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent-color, #197D25);
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-add {
+    cursor: pointer;
+    border: none;
+    background: var(--accent-color, #197D25);
+    color: #fff;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 17px;
+    padding: 15px 32px;
+    border-radius: 28px 32px 26px 30px / 32px 26px 30px 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    transition: transform .2s, background .2s;
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-add:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+
+  #ProductPDP-{{ section.id }} .elsis-shipping-notice {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    font-size: 13px;
+    color: #6E8A72;
+    text-align: left;
+  }
+
+  /* Responsive PDG Grid */
+  @media(max-width:760px) {
+    #ProductPDP-{{ section.id }} .pdp-info-age-tag {
+      font-size: 15px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-info-title {
+      font-size: 36px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-info-desc {
+      font-size: 19px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-info-desc li {
+      font-size: 17px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-price {
+      font-size: 38px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-price-sub {
+      font-size: 15px !important;
+    }
+    #ProductPDP-{{ section.id }} .pdp-pack-info {
+      font-size: 15px !important;
+    }
+    #ProductPDP-{{ section.id }} .elsis-add {
+      font-size: 19px !important;
+    }
+    #ProductPDP-{{ section.id }} .elsis-shipping-notice {
+      font-size: 15px !important;
+    }
+    #ProductPDP-{{ section.id }} .elsis-pdp-grid {
+      grid-template-columns: 1fr !important;
+      gap: 36px !important;
+    }
+
+    #ProductPDP-{{ section.id }} .elsis-pdp-visual {
+      height: 380px !important;
+    }
+  }
+
+  /* Core floating / bobbing animations */
+  @keyframes elsis-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+  @keyframes elsis-bob {
+    0%, 100% { transform: translateY(0) rotate(-10deg); }
+    50% { transform: translateY(-8px) rotate(-10deg); }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign bg_color = product.metafields.custom.product_card_background_color | default: '#DCEAD2'
+  assign btn_color = product.metafields.custom.product_card_button_color | default: '#197D25'
+  assign age_limit = product.metafields.custom.product_age_limit
+  assign custom_type = product.metafields.custom.product_custom_type
+  assign short_desc = product.metafields.custom.product_short_description
+  assign current_variant = product.selected_or_first_available_variant
+  assign variant_id = current_variant.id
+  assign pack_info = product.metafields.custom.per_pack_info
+-%}
+
+<section id="ProductPDP-{{ section.id }}" style="--card-bg: {{ bg_color }}; --accent-color: {{ btn_color }};">
+  <div class="pdp-container">
+    {%- if section.settings.show_breadcrumbs -%}
+      <div class="pdp-breadcrumbs">
+        <a href="{{ routes.root_url }}">{{ section.settings.breadcrumb_home }}</a> › 
+        <a href="{{ routes.all_products_collection_url }}">{{ section.settings.breadcrumb_shop }}</a> › 
+        <span>{{ product.title }}</span>
+      </div>
+    {%- endif -%}
+
+    <div class="elsis-pdp-grid">
+      <!-- visual column -->
+      <div class="elsis-pdp-visual">
+        <div class="elsis-pdp-circle"></div>
+        
+        {%- if section.settings.show_bio_badge -%}
+          <div class="badge-bio">
+            <span>{{ section.settings.bio_badge_title }}</span>
+            <span>{{ section.settings.bio_badge_subtitle }}</span>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.show_halal_badge -%}
+          <div class="badge-halal" style="animation: elsis-bob 5.6s ease-in-out 0.4s infinite;">
+            <span>{{ section.settings.halal_badge_title }}</span>
+            <span>{{ section.settings.halal_badge_subtitle }}</span>
+          </div>
+        {%- endif -%}
+
+        <div class="pdp-pouch-container">
+          <div class="elsis-pouch-design">
+            <div class="elsis-pouch-cap-top"></div>
+            <div class="elsis-pouch-neck"></div>
+            <div class="elsis-pouch-body">
+              {%- if age_limit != blank -%}
+                <div class="elsis-pouch-age">{{ age_limit }}</div>
+              {%- endif -%}
+              <div class="elsis-pouch-reflection"></div>
+              <div class="elsis-pouch-label">{{ product.title }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- info column -->
+      <div>
+        {%- if age_limit != blank -%}
+          <span class="pdp-info-age-tag">{{ age_limit }} {{ section.settings.age_suffix }}</span>
+        {%- endif -%}
+
+        <h1 class="pdp-info-title">{{ product.title }}</h1>
+        
+        <div class="pdp-info-desc">
+          {%- if product.description != blank -%}
+            {{ product.description }}
+          {%- else -%}
+            <p>{{ short_desc }}</p>
+          {%- endif -%}
+        </div>
+
+
+
+        <div class="pdp-price-row">
+          <span class="pdp-price">{{ product.price | money }}</span>
+          <span class="pdp-price-sub">{{ section.settings.price_subtext }}</span>
+        </div>
+
+        {%- if pack_info != blank -%}
+          <div class="pdp-pack-info">{{ pack_info }}</div>
+        {%- endif -%}
+
+        <form action="{{ routes.cart_url }}/add" method="post" class="variants elsis-product-form" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="{{ variant_id }}">
+          <input type="hidden" name="quantity" class="elsis-qty-input" value="1">
+
+          <div class="pdp-actions-row">
+            <div class="elsis-qty">
+              <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+              <span class="elsis-qty-val-display">1</span>
+              <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+            </div>
+
+            {%- if current_variant.available -%}
+              <button class="elsis-add" type="submit" name="add" data-btn-addToCart>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="20" r="1.2"/>
+                  <circle cx="18" cy="20" r="1.2"/>
+                  <path d="M2 3h3l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2L22 7H6"/>
+                </svg>
+                {{ section.settings.add_to_cart_text }}
+              </button>
+            {%- else -%}
+              <button class="elsis-add" type="submit" name="add" disabled="disabled">
+                {{ section.settings.sold_out_text }}
+              </button>
+            {%- endif -%}
+          </div>
+        </form>
+
+        {%- if section.settings.shipping_notice != blank -%}
+          <div class="elsis-shipping-notice">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6AB37A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;">
+              <path d="M1 4h13v11H1zM14 8h4l3 3v4h-7"/>
+              <circle cx="6.5" cy="18" r="1.6"/>
+              <circle cx="17.5" cy="18" r="1.6"/>
+            </svg>
+            {{ section.settings.shipping_notice }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function initPDPQty() {
+  document.querySelectorAll('.elsis-product-form').forEach(form => {
+    const decBtn = form.querySelector('.elsis-qty-dec-btn');
+    const incBtn = form.querySelector('.elsis-qty-inc-btn');
+    const displayVal = form.querySelector('.elsis-qty-val-display');
+    const inputVal = form.querySelector('.elsis-qty-input');
+    
+    if (decBtn && incBtn && displayVal && inputVal) {
+      if (decBtn.dataset.qtyInit) return;
+      decBtn.dataset.qtyInit = 'true';
+
+      decBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentVal = parseInt(inputVal.value) || 1;
+        if (currentVal > 1) {
+          currentVal--;
+          inputVal.value = currentVal;
+          displayVal.textContent = currentVal;
+        }
+      });
+      
+      incBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentVal = parseInt(inputVal.value) || 1;
+        currentVal++;
+        inputVal.value = currentVal;
+        displayVal.textContent = currentVal;
+      });
+    }
+  });
+}
+
+initPDPQty();
+document.addEventListener('DOMContentLoaded', initPDPQty);
+document.addEventListener('shopify:section:load', initPDPQty);
+</script>
+
+{% schema %}
+{
+  "name": "Product Main Details",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F8F2E8"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumbs",
+      "label": "Show Breadcrumbs",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_home",
+      "label": "Home Label",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "breadcrumb_shop",
+      "label": "Shop Label",
+      "default": "Produkte"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bio_badge",
+      "label": "Show BIO Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bio_badge_title",
+      "label": "BIO Badge Title",
+      "default": "BIO"
+    },
+    {
+      "type": "text",
+      "id": "bio_badge_subtitle",
+      "label": "BIO Badge Subtitle",
+      "default": "100%"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_halal_badge",
+      "label": "Show Halal Badge",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "halal_badge_title",
+      "label": "Halal Badge Title",
+      "default": "حلال"
+    },
+    {
+      "type": "text",
+      "id": "halal_badge_subtitle",
+      "label": "Halal Badge Subtitle",
+      "default": "HALAL"
+    },
+    {
+      "type": "text",
+      "id": "age_suffix",
+      "label": "Age Suffix",
+      "default": "Monat"
+    },
+    {
+      "type": "text",
+      "id": "price_subtext",
+      "label": "Price Subtext",
+      "default": "pro Beutel · 110 g"
+    },
+    {
+      "type": "text",
+      "id": "pack_price_suffix",
+      "label": "Pack Price Prefix",
+      "default": "6er-Pack"
+    },
+    {
+      "type": "text",
+      "id": "add_to_cart_text",
+      "label": "Add to Cart Button Text",
+      "default": "In den Korb"
+    },
+    {
+      "type": "text",
+      "id": "sold_out_text",
+      "label": "Sold Out Button Text",
+      "default": "Ausverkauft"
+    },
+    {
+      "type": "text",
+      "id": "shipping_notice",
+      "label": "Shipping Notice Text",
+      "default": "Versand in 24 h · Gratis Versand ab 29 €"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 60
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Main Details"
+    }
+  ]
+}
+{% endschema %}

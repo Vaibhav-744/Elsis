@@ -331,6 +331,7 @@
         "36addb13-cd73-4713-a15c-7d846c4724e7",
         "1180d91b-75f9-49d9-a9db-2b9f5a49408d"
       ],
+      "disabled": true,
       "settings": {
         "container": "default",
         "padding_full_width": 0,
@@ -418,6 +419,7 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
+      "disabled": true,
       "settings": {
         "display_product_block": true,
         "product_block_container": "container",
@@ -471,6 +473,7 @@
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
+      "disabled": true,
       "settings": {
         "display_product_recently_viewed": true,
         "product_recently_viewed_container": "container",
@@ -523,11 +526,102 @@
         "border_width_card": 5,
         "border_color_card": "#f0f1f4"
       }
+    },
+    "product_pdp_TxKCEf": {
+      "type": "product-pdp",
+      "name": "Product Main Details",
+      "settings": {
+        "bg_color": "#f8f2e8",
+        "show_breadcrumbs": true,
+        "breadcrumb_home": "Home",
+        "breadcrumb_shop": "Produkte",
+        "show_bio_badge": true,
+        "bio_badge_title": "BIO",
+        "bio_badge_subtitle": "100%",
+        "show_halal_badge": true,
+        "halal_badge_title": "حلال",
+        "halal_badge_subtitle": "HALAL",
+        "age_suffix": "Monat",
+        "price_subtext": "pro Beutel · 110 g",
+        "pack_price_suffix": "6er-Pack",
+        "add_to_cart_text": "In den Korb",
+        "sold_out_text": "Ausverkauft",
+        "shipping_notice": "Versand in 24 h · Gratis Versand ab 29 €",
+        "padding_top": 40,
+        "padding_bottom": 60
+      }
+    },
+    "product_flavour_switcher_AbiQDT": {
+      "type": "product-flavour-switcher",
+      "name": "Product Variety Switcher",
+      "settings": {
+        "title": "",
+        "title_color": "#197d25",
+        "switcher_collection": "shop",
+        "bg_color": "#f8f2e8",
+        "padding_top": 0,
+        "padding_bottom": 60
+      }
+    },
+    "product_details_XEEPPV": {
+      "type": "product-details",
+      "blocks": {
+        "accordion_gw3nEW": {
+          "type": "accordion",
+          "settings": {
+            "title": "Zutaten",
+            "content": "{{ product.metafields.custom.zutaten | metafield_tag }}"
+          }
+        },
+        "accordion_TR7Qg4": {
+          "type": "accordion",
+          "settings": {
+            "title": "Nährwerte",
+            "content": "{{ product.metafields.custom.nahrwerte | metafield_tag }}"
+          }
+        },
+        "accordion_bwcNwP": {
+          "type": "accordion",
+          "settings": {
+            "title": "Zubereitung & Aufbewahrung",
+            "content": "{{ product.metafields.custom.zubereitung_aufbewahrung | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "accordion_gw3nEW",
+        "accordion_TR7Qg4",
+        "accordion_bwcNwP"
+      ],
+      "name": "Product Details Tabs",
+      "settings": {
+        "title": "gut zu wissen",
+        "title_color": "#197d25",
+        "bg_color": "#ffffff",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
+    "product_cross_sell_bF8xVt": {
+      "type": "product-cross-sell",
+      "name": "Product Cross Sell Grid",
+      "settings": {
+        "title": "auch lecker",
+        "title_color": "#197d25",
+        "cross_collection": "shop",
+        "bg_color": "rgba(0,0,0,0)",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
     "product-recommendations",
-    "product-recently-viewed"
+    "product-recently-viewed",
+    "product_pdp_TxKCEf",
+    "product_flavour_switcher_AbiQDT",
+    "product_details_XEEPPV",
+    "product_cross_sell_bF8xVt"
   ]
 }
