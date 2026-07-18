@@ -89,6 +89,22 @@
         "height": 60
       }
     },
+    "elsis_product_block_Sorten": {
+      "type": "elsis-product-block",
+      "name": "Elsis Product Block",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title_1": "unsere",
+        "title_2": "Sorten",
+        "subtitle": "Fünf Bio-Rezepturen – abgestimmt auf jeden kleinen Meilenstein deines Kindes.",
+        "collection": "all",
+        "product_limit": 5,
+        "show_button": true,
+        "btn_text": "alle Produkte",
+        "padding_top": 32,
+        "padding_bottom": 96
+      }
+    },
     "elsis_meal_marquee_AqMV6X": {
       "type": "elsis-meal-marquee",
       "blocks": {
@@ -425,9 +441,10 @@
     }
   },
   "order": [
-    "elsis_hero_QEwDzn",
-    "elsis_wave_VByrTb",
-    "elsis_meal_marquee_AqMV6X",
+      "elsis_hero_QEwDzn",
+      "elsis_wave_VByrTb",
+      "elsis_product_block_Sorten",
+      "elsis_meal_marquee_AqMV6X",
     "elsis_story_6dqrHT",
     "elsis_cta_banner_UPEcEi",
     "elsis_values_jNCmaU",

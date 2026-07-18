@@ -194,6 +194,18 @@
       gap: 12px;
     }
   }
+
+  #ElsisFooter-{{ section.id }} .newsletter-success-msg {
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    color: {{ section.settings.news_title_color }} !important;
+    font-size: 17px !important;
+  }
+
+  #ElsisFooter-{{ section.id }} .newsletter-error-msg {
+    color: red !important;
+    margin-bottom: 8px !important;
+  }
 {%- endstyle -%}
 
 <footer id="ElsisFooter-{{ section.id }}">
@@ -215,12 +227,12 @@
             <input type="hidden" name="contact[tags]" value="newsletter">
             <div class="newsletter-form-container">
               {%- if form.posted_successfully? -%}
-                <div style="font-family: var(--heading-font); font-weight: 600; color: {{ section.settings.news_title_color }}; font-size: 17px;">
+                <div class="newsletter-success-msg">
                   {{ section.settings.news_success_msg }} 🌱
                 </div>
               {%- else -%}
                 {%- if form.errors -%}
-                  <div class="form__message" style="color: red; margin-bottom: 8px;">
+                  <div class="form__message newsletter-error-msg">
                     {{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
                   </div>
                 {%- endif -%}

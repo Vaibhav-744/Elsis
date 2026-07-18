@@ -52,7 +52,7 @@
   }
 
   #ElsisStory-{{ section.id }} .story-image-placeholder-label span {
-    font-family: ui-monospace, Menlo, monospace;
+    font-family: var(--body-font);
     font-size: 12px;
     color: #9DBE9E;
     background: rgba(255,255,255,0.85);
@@ -69,6 +69,22 @@
 
   #ElsisStory-{{ section.id }} .story-text-container {
     text-align: left;
+  }
+
+  #ElsisStory-{{ section.id }} .story-title {
+    color: {{ section.settings.title_color }} !important;
+    text-align: left !important;
+    margin: 0 !important;
+  }
+
+  #ElsisStory-{{ section.id }} .story-title-span-1 {
+    display: block !important;
+  }
+
+  #ElsisStory-{{ section.id }} .story-title-span-2 {
+    display: block !important;
+    margin-top: 4px !important;
+    margin-bottom: 8px !important;
   }
 
   #ElsisStory-{{ section.id }} .story-subtitle {
@@ -136,12 +152,12 @@
 
     <div class="story-text-container">
       {%- if section.settings.title_1 != blank or section.settings.title_2 != blank -%}
-        <h2 class="h2" style="color: {{ section.settings.title_color }}; text-align: left; margin: 0;">
+        <h2 class="h2 story-title">
           {%- if section.settings.title_1 != blank -%}
-            <span style="display: block;">{{ section.settings.title_1 }}</span>
+            <span class="story-title-span-1">{{ section.settings.title_1 }}</span>
           {%- endif -%}
           {%- if section.settings.title_2 != blank -%}
-            <span style="display: block; margin-top: 4px; margin-bottom: 8px;">{{ section.settings.title_2 }}</span>
+            <span class="story-title-span-2">{{ section.settings.title_2 }}</span>
           {%- endif -%}
         </h2>
       {%- endif -%}

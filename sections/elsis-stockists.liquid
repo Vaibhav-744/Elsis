@@ -44,7 +44,7 @@
   }
 
   #ElsisStockists-{{ section.id }} .stockist-placeholder span {
-    font-family: ui-monospace, monospace;
+    font-family: var(--body-font);
     font-size: 11px;
     color: #9B9588;
   }
@@ -54,7 +54,7 @@
     width: auto;
     max-width: 150px;
     height: auto;
-    max-height: 80px;
+    max-height: var(--max-height, 80px);
     object-fit: contain;
   }
 {%- endstyle -%}
@@ -69,7 +69,7 @@
       {%- for block in section.blocks -%}
         <div class="stockist-logo-item" {{ block.shopify_attributes }}>
           {%- if block.settings.logo != blank -%}
-            <img class="stockist-img" src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.title }}" loading="lazy" style="max-height: {{ block.settings.height }}px;">
+            <img class="stockist-img" src="{{ block.settings.logo | image_url: width: 300 }}" alt="{{ block.settings.title }}" loading="lazy" style="--max-height: {{ block.settings.height }}px;">
           {%- else -%}
             <div class="stockist-placeholder">
               <span>{{ block.settings.title }}</span>

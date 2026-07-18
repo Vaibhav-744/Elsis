@@ -66,6 +66,7 @@
     border-radius: 50%;
     background: #fff;
     display:block;
+    box-shadow: inset 0 0 0 10px var(--plate-color);
   }
 
   #ElsisMealMarquee-{{ section.id }} .dish-inner {
@@ -73,6 +74,8 @@
     inset: 20%;
     border-radius: 50%;
     overflow: hidden;
+    background-color: var(--food-color);
+    background-image: repeating-radial-gradient(circle at 38% 34%, rgba(255,255,255,.32) 0 12px, transparent 12px 30px), repeating-linear-gradient(125deg, rgba(0,0,0,.05) 0 14px, transparent 14px 30px);
   }
 
   #ElsisMealMarquee-{{ section.id }} .dish-highlight {
@@ -90,7 +93,7 @@
     left: 50%;
     bottom: 8%;
     transform: translateX(-50%);
-    font-family: ui-monospace, Menlo, monospace;
+    font-family: var(--body-font);
     font-size: 11px;
     color: {{ section.settings.dish_label_color }};
     background: rgba(255, 255, 255, 0.9);
@@ -130,8 +133,8 @@
         {%- for block in section.blocks -%}
           <div class="elsis-meal-item" {{ block.shopify_attributes }}>
             <div class="dish-plate">
-              <div class="dish-outer" style="box-shadow: inset 0 0 0 10px {{ block.settings.plate_color }};"></div>
-              <div class="dish-inner" style="background-color: {{ block.settings.food_color }}; background-image: repeating-radial-gradient(circle at 38% 34%, rgba(255,255,255,.32) 0 12px, transparent 12px 30px), repeating-linear-gradient(125deg, rgba(0,0,0,.05) 0 14px, transparent 14px 30px);">
+              <div class="dish-outer" style="--plate-color: {{ block.settings.plate_color }};"></div>
+              <div class="dish-inner" style="--food-color: {{ block.settings.food_color }};">
                 <div class="dish-highlight"></div>
               </div>
               <div class="dish-label-tag">{{ block.settings.title }}</div>
@@ -144,8 +147,8 @@
         {%- for block in section.blocks -%}
           <div class="elsis-meal-item">
             <div class="dish-plate">
-              <div class="dish-outer" style="box-shadow: inset 0 0 0 10px {{ block.settings.plate_color }};"></div>
-              <div class="dish-inner" style="background-color: {{ block.settings.food_color }}; background-image: repeating-radial-gradient(circle at 38% 34%, rgba(255,255,255,.32) 0 12px, transparent 12px 30px), repeating-linear-gradient(125deg, rgba(0,0,0,.05) 0 14px, transparent 14px 30px);">
+              <div class="dish-outer" style="--plate-color: {{ block.settings.plate_color }};"></div>
+              <div class="dish-inner" style="--food-color: {{ block.settings.food_color }};">
                 <div class="dish-highlight"></div>
               </div>
               <div class="dish-label-tag">{{ block.settings.title }}</div>

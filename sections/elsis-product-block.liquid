@@ -1,0 +1,898 @@
+{%- style -%}
+  #ElsisProductBlock-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 5% {{ section.settings.padding_bottom }}px;
+  }
+
+  /* Layout Containers */
+  #ElsisProductBlock-{{ section.id }} .elsis-section-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-header-wrapper {
+    text-align: center;
+    margin: 0 auto 52px;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-section-h2 {
+    color: #197D25 !important;
+    text-align: center !important;
+    margin: 0 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-section-h2-word-1 {
+    display: block !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-section-h2-word-2 {
+    display: block !important;
+    margin-top: 4px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-section-subtitle {
+    font-family: var(--body-font) !important;
+    font-size: 17px !important;
+    color: #5C7A60 !important;
+    max-width: 520px !important;
+    margin: 18px auto 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-carousel-wrap {
+    position: relative;
+    padding: 0 54px;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-viewport-inner {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 18px 0;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-grid-inner {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    align-items: stretch;
+  }
+
+  /* Cards Styling */
+  #ElsisProductBlock-{{ section.id }} .elsis-card {
+    border-radius: 22px !important;
+    padding: 62px 18px 22px !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--card-bg, #DCEAD2) !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: transform .28s ease !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-card:hover {
+    transform: translateY(-10px) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-card:hover .elsis-pouch {
+    transform: translateY(-12px) rotate(-4deg) scale(1.05) !important;
+  }
+
+  /* Age Badge */
+  #ElsisProductBlock-{{ section.id }} .elsis-age-badge {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 16%, transparent) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: .92 !important;
+    z-index: 5 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-age-badge-number {
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-age-badge-text {
+    font-family: var(--heading-font) !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  /* Custom Pouch Drawing (Liquid SVG & Gradients) */
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch {
+    width: 118px !important;
+    margin: -52px auto 12px !important;
+    position: relative !important;
+    transition: transform .28s ease !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-design {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 3/4.1 !important;
+    filter: drop-shadow(0 10px 16px rgba(0,0,0,.12)) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute !important;
+    left: 50% !important;
+    top: -3px !important;
+    transform: translateX(-50%) !important;
+    width: 20% !important;
+    height: 14px !important;
+    background: var(--accent-color, #197D25) !important;
+    border-radius: 7px 7px 2px 2px !important;
+    z-index: 3 !important;
+    display: block !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-neck {
+    position: absolute !important;
+    left: 50% !important;
+    top: 8px !important;
+    transform: translateX(-50%) !important;
+    width: 42% !important;
+    height: 13px !important;
+    background: var(--accent-color, #197D25) !important;
+    border-radius: 8px !important;
+    z-index: 2 !important;
+    display: block !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-body {
+    position: absolute !important;
+    inset: 16px 0 0 !important;
+    background: #fff !important;
+    border: 2.5px solid var(--accent-color, #197D25) !important;
+    border-radius: 14px 14px 30px 30px / 18px 18px 46px 46px !important;
+    overflow: hidden !important;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--card-bg, #DCEAD2) 53%, transparent) 0 8px, transparent 8px 18px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding: 14px 9px 16px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-reflection {
+    position: absolute !important;
+    top: 14% !important;
+    left: 18% !important;
+    width: 64% !important;
+    height: 50% !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.6) !important;
+    display: block !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-pouch-label {
+    position: relative !important;
+    text-align: center !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    color: var(--accent-color, #197D25) !important;
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    background: rgba(255,255,255,.85) !important;
+    padding: 6px 7px !important;
+    border-radius: 9px !important;
+    word-break: break-word !important;
+  }
+
+  /* Custom Type Tag */
+  #ElsisProductBlock-{{ section.id }} .elsis-custom-type-tag {
+    display: inline-block !important;
+    align-self: flex-start !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 14%, transparent) !important;
+    color: var(--accent-color, #197D25) !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 10px !important;
+    padding: 3px 9px !important;
+    border-radius: 20px !important;
+    margin-bottom: 8px !important;
+    line-height:normal;
+  }
+
+  /* Card Heading & Title Link */
+  #ElsisProductBlock-{{ section.id }} .elsis-card-title {
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    color: var(--accent-color, #197D25) !important;
+    margin: 0 0 6px !important;
+    line-height: 1.1 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-card-title a {
+    color: inherit !important;
+    text-decoration: none !important;
+    background: none !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+
+  /* Card Description */
+  #ElsisProductBlock-{{ section.id }} .elsis-card-description {
+    font-family: var(--body-font) !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    color: color-mix(in srgb, var(--accent-color, #197D25) 70%, #000) !important;
+    margin: 0 0 14px !important;
+    flex: 1 !important;
+  }
+
+  /* Cart Form & Action Layouts */
+  #ElsisProductBlock-{{ section.id }} .elsis-cart-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 2px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-cart-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-price-col {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-price-text {
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-price-sub {
+    font-family: var(--body-font) !important;
+    font-size: 11px !important;
+    color: color-mix(in srgb, var(--accent-color, #197D25) 70%, #000) !important;
+    display: block !important;
+  }
+
+  /* Quantity controls */
+  #ElsisProductBlock-{{ section.id }} .elsis-qty {
+    display: flex !important;
+    align-items: center !important;
+    background: #fff !important;
+    border: 1.5px solid color-mix(in srgb, var(--accent-color, #197D25) 20%, transparent) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    flex: none !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-btn {
+    cursor: pointer !important;
+    border: none !important;
+    background: none !important;
+    width: 32px !important;
+    height: 36px !important;
+    font-family: var(--heading-font) !important;
+    color: var(--accent-color, #197D25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-dec-btn {
+    font-size: 20px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-inc-btn {
+    font-size: 19px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-val-display {
+    min-width: 20px !important;
+    text-align: center !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  /* Add button */
+  #ElsisProductBlock-{{ section.id }} .elsis-add {
+    cursor: pointer !important;
+    border: none !important;
+    background: var(--accent-color, #197D25) !important;
+    color: #fff !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+    border-radius: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: transform .2s, background .2s !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-add:hover {
+    transform: scale(1.12) rotate(-6deg) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-add[disabled="disabled"] {
+    cursor: not-allowed !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 40%, #ccc) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-add[disabled="disabled"]:hover {
+    transform: none !important;
+  }
+
+  /* Carousel Arrows */
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 6 !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(25, 125, 37, .25) !important;
+    background: #fff !important;
+    color: #197D25 !important;
+    cursor: pointer !important;
+    font-size: 26px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12) !important;
+    font-family: var(--body-font) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: transform .2s, background .2s, color .2s !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-arrow:hover {
+    background: #197D25 !important;
+    color: #fff !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-prev {
+    left: 3px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-next {
+    right: 3px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-viewport {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Carousel Dots */
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-dots {
+    display: flex !important;
+    gap: 8px !important;
+    justify-content: center !important;
+    margin-top: 20px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-dot {
+    width: 9px !important;
+    height: 9px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    padding: 0 !important;
+    background: #CDE0CE !important;
+    cursor: pointer !important;
+    transition: transform .2s, background .2s !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-dot:hover {
+    background: #197D25 !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-prod-dot.active {
+    background: #197D25 !important;
+    transform: scale(1.35) !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-dec-btn:hover,
+  #ElsisProductBlock-{{ section.id }} .elsis-qty-inc-btn:hover {
+    background: rgba(0,0,0,.06) !important;
+  }
+
+  /* Footer Button Container */
+  #ElsisProductBlock-{{ section.id }} .elsis-footer-btn-wrap {
+    text-align: center !important;
+    margin-top: 34px !important;
+  }
+
+  #ElsisProductBlock-{{ section.id }} .elsis-footer-btn-wrap .elsis-cta {
+    display: inline-block !important;
+    background: #197D25 !important;
+    color: #fff !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    padding: 15px 34px !important;
+    border-radius: 28px 32px 26px 30px / 32px 26px 30px 28px !important;
+  }
+
+  @media(max-width:760px) {
+    #ElsisProductBlock-{{ section.id }} .elsis-prod-carousel-wrap {
+      padding: 0 !important;
+    }
+    #ElsisProductBlock-{{ section.id }} .elsis-prod-arrow {
+      display: none !important;
+    }
+    #ElsisProductBlock-{{ section.id }} .elsis-prod-viewport {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+      scroll-padding-left: 16px !important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ElsisProductBlock-{{ section.id }}" data-screen-label="Sorten">
+  <div class="elsis-section-wrapper">
+    {%- if section.settings.title_1 != blank or section.settings.title_2 != blank or section.settings.subtitle != blank -%}
+      <div class="elsis-header-wrapper">
+        {%- if section.settings.title_1 != blank or section.settings.title_2 != blank -%}
+          <h2 class="h2 elsis-section-h2">
+            {%- if section.settings.title_1 != blank -%}
+              <span class="elsis-section-h2-word-1">{{ section.settings.title_1 }}</span>
+            {%- endif -%}
+            {%- if section.settings.title_2 != blank -%}
+              <span class="elsis-section-h2-word-2">{{ section.settings.title_2 }}</span>
+            {%- endif -%}
+          </h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="elsis-section-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div id="elsis-prod-carousel-{{ section.id }}" class="elsis-prod-carousel-wrap">
+      <div class="elsis-prod-viewport elsis-prod-viewport-inner">
+        <div class="elsis-prod-grid elsis-prod-grid-inner">
+
+          {%- assign collection_handle = section.settings.collection -%}
+          {%- assign product_limit = section.settings.product_limit -%}
+
+          {%- if collections[collection_handle].products.size > 0 -%}
+            {%- for product in collections[collection_handle].products limit: product_limit -%}
+              {%- liquid
+                assign bg_color = product.metafields.custom.product_card_background_color | default: '#DCEAD2'
+                assign btn_color = product.metafields.custom.product_card_button_color | default: '#197D25'
+                assign age_limit = product.metafields.custom.product_age_limit
+                assign custom_type = product.metafields.custom.product_custom_type
+                assign short_desc = product.metafields.custom.product_short_description
+                assign current_variant = product.selected_or_first_available_variant
+                assign variant_id = current_variant.id
+              -%}
+
+              <div class="elsis-card" style="--card-bg: {{ bg_color }}; --accent-color: {{ btn_color }};">
+                
+                {%- comment -%} Age Badge {%- endcomment -%}
+                {%- if age_limit != blank -%}
+                  <div class="elsis-age-badge">
+                    <span class="elsis-age-badge-number">{{ age_limit }}</span>
+                    <span class="elsis-age-badge-text">MONAT</span>
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Vector Pouch {%- endcomment -%}
+                <div class="elsis-pouch">
+                  <div class="elsis-pouch-design">
+                    <div class="elsis-pouch-cap-top"></div>
+                    <div class="elsis-pouch-neck"></div>
+                    <div class="elsis-pouch-body">
+                      <div class="elsis-pouch-reflection"></div>
+                      <div class="elsis-pouch-label">
+                        {{ product.title }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {%- comment -%} Custom Type Tag {%- endcomment -%}
+                {%- if custom_type != blank -%}
+                  <div class="elsis-custom-type-tag">
+                    {{ custom_type }}
+                  </div>
+                {%- endif -%}
+
+                {%- comment -%} Product Title {%- endcomment -%}
+                <h3 class="elsis-card-title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+
+                {%- comment -%} Product Short Description {%- endcomment -%}
+                <p class="elsis-card-description">
+                  {{ short_desc }}
+                </p>
+
+                {%- comment -%} Cart Form & Quantity Controls {%- endcomment -%}
+                <form action="{{ routes.cart_url }}/add" method="post" class="variants elsis-product-form" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+                  <input type="hidden" name="id" value="{{ variant_id }}">
+                  <input type="hidden" name="quantity" class="elsis-qty-input" value="1">
+                  
+                  <div class="elsis-cart-actions">
+                    <div class="elsis-cart-row">
+                      <div class="elsis-price-col">
+                        <span class="elsis-price-text">
+                          {{ product.price | money }}
+                        </span>
+                        <span class="elsis-price-sub">
+                          pro Stück
+                        </span>
+                      </div>
+                      
+                      <div class="elsis-qty">
+                        <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+                        <span class="elsis-qty-val-display">1</span>
+                        <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+                      </div>
+                    </div>
+                    
+                    {%- if current_variant.available -%}
+                      <button class="elsis-add" data-name="{{ product.title | escape }}" type="submit" name="add" data-btn-addToCart>
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="9" cy="20" r="1.2"/>
+                          <circle cx="18" cy="20" r="1.2"/>
+                          <path d="M2 3h3l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2L22 7H6"/>
+                        </svg>
+                        In den Korb
+                      </button>
+                    {%- else -%}
+                      <button class="elsis-add" type="submit" name="add" disabled="disabled">
+                        Ausverkauft
+                      </button>
+                    {%- endif -%}
+                  </div>
+                </form>
+
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for i in (1..5) -%}
+              <div class="elsis-card" style="--card-bg: #DCEAD2; --accent-color: #197D25;">
+                <div class="elsis-age-badge">
+                  <span class="elsis-age-badge-number">6+</span>
+                  <span class="elsis-age-badge-text">MONAT</span>
+                </div>
+                <div class="elsis-pouch">
+                  <div class="elsis-pouch-design">
+                    <div class="elsis-pouch-cap-top"></div>
+                    <div class="elsis-pouch-neck"></div>
+                    <div class="elsis-pouch-body">
+                      <div class="elsis-pouch-reflection"></div>
+                      <div class="elsis-pouch-label">
+                        Gemüse · Huhn · Reis
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="elsis-custom-type-tag">
+                  6 Stück
+                </div>
+                <h3 class="elsis-card-title">
+                  <a href="#">Gemüse · Huhn · Reis</a>
+                </h3>
+                <p class="elsis-card-description">
+                  Mit Halal-Hühnchen. Ohne Zusatz von Salz.
+                </p>
+                <div class="elsis-cart-actions">
+                  <div class="elsis-cart-row">
+                    <div class="elsis-price-col">
+                      <span class="elsis-price-text">
+                        1,99&nbsp;€
+                      </span>
+                      <span class="elsis-price-sub">
+                        pro Stück
+                      </span>
+                    </div>
+                    <div class="elsis-qty">
+                      <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+                      <span class="elsis-qty-val-display">1</span>
+                      <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+                    </div>
+                  </div>
+                  <button class="elsis-add" type="button">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="9" cy="20" r="1.2"/>
+                      <circle cx="18" cy="20" r="1.2"/>
+                      <path d="M2 3h3l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2L22 7H6"/>
+                    </svg>
+                    In den Korb
+                  </button>
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
+
+        </div>
+      </div>
+      <button id="elsis-prod-prev-{{ section.id }}" class="elsis-prod-arrow elsis-prod-prev" aria-label="Zurück">‹</button>
+      <button id="elsis-prod-next-{{ section.id }}" class="elsis-prod-arrow elsis-prod-next" aria-label="Weiter">›</button>
+    </div>
+
+    <div id="elsis-prod-dots-{{ section.id }}" class="elsis-prod-dots"></div>
+
+    {%- if section.settings.show_button -%}
+      <div class="elsis-footer-btn-wrap">
+        <a class="elsis-cta" href="{{ section.settings.btn_link | default: routes.all_products_collection_url }}">
+          {{ section.settings.btn_text }}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const productSection = document.getElementById('ElsisProductBlock-{{ section.id }}');
+    if (!productSection) return;
+
+    // Quantity adjustments
+    productSection.querySelectorAll('.elsis-product-form').forEach(form => {
+      const decBtn = form.querySelector('.elsis-qty-dec-btn');
+      const incBtn = form.querySelector('.elsis-qty-inc-btn');
+      const displayVal = form.querySelector('.elsis-qty-val-display');
+      const inputVal = form.querySelector('.elsis-qty-input');
+      
+      if (decBtn && incBtn && displayVal && inputVal) {
+        decBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let currentVal = parseInt(inputVal.value) || 1;
+          if (currentVal > 1) {
+            currentVal--;
+            inputVal.value = currentVal;
+            displayVal.textContent = currentVal;
+          }
+        });
+        
+        incBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          let currentVal = parseInt(inputVal.value) || 1;
+          currentVal++;
+          inputVal.value = currentVal;
+          displayVal.textContent = currentVal;
+        });
+      }
+    });
+
+    // Carousel logic
+    (() => {
+      const wrap = document.getElementById('elsis-prod-carousel-{{ section.id }}');
+      if (!wrap) return;
+      const viewport = wrap.querySelector('.elsis-prod-viewport');
+      const track = wrap.querySelector('.elsis-prod-grid');
+      const cards = Array.from(track.querySelectorAll('.elsis-card'));
+      const N = cards.length;
+      if (!N) return;
+      const dotsWrap = document.getElementById('elsis-prod-dots-{{ section.id }}');
+      const nx = document.getElementById('elsis-prod-next-{{ section.id }}'); 
+      const pv = document.getElementById('elsis-prod-prev-{{ section.id }}'); 
+      let step = 0, timer = null, uTimer = null;
+      let dots = [];
+      
+      const gap = () => (window.innerWidth <= 760 ? 12 : 18);
+      const calcPer = () => { 
+        const w = window.innerWidth; 
+        return w >= 1000 ? 4 : (w >= 720 ? 3 : (w >= 520 ? 2 : 1.5)); 
+      };
+
+      function size() {
+        const per = calcPer(), g = gap();
+        track.style.gap = g + 'px';
+        const cs = getComputedStyle(viewport);
+        const pad = parseFloat(cs.paddingLeft || 0) + parseFloat(cs.paddingRight || 0);
+        const vw = viewport.clientWidth - pad;
+        const cw = (vw - g * (per - 1)) / per;
+        step = cw + g;
+        cards.forEach(c => { 
+          c.style.flex = '0 0 ' + cw + 'px'; 
+          c.style.width = cw + 'px'; 
+          c.style.scrollSnapAlign = 'start'; 
+        });
+
+        // Recreate dots dynamically based on number of visible items
+        const numDots = Math.max(1, Math.ceil(N - per + 1));
+        if (dotsWrap) {
+          dotsWrap.innerHTML = '';
+          if (numDots > 1) {
+            dotsWrap.style.display = 'flex';
+            for (let i = 0; i < numDots; i++) {
+              const d = document.createElement('button');
+              d.className = 'elsis-prod-dot';
+              d.setAttribute('aria-label', 'Produkt ' + (i + 1));
+              d.addEventListener('click', () => { 
+                viewport.scrollTo({ left: i * step, behavior: 'smooth' }); 
+                pauseResume(); 
+              });
+              dotsWrap.appendChild(d);
+            }
+          } else {
+            dotsWrap.style.display = 'none';
+          }
+        }
+        
+        // Hide arrows if all items fit on the screen
+        if (nx) nx.style.display = numDots <= 1 ? 'none' : 'flex';
+        if (pv) pv.style.display = numDots <= 1 ? 'none' : 'flex';
+
+        dots = dotsWrap ? Array.from(dotsWrap.querySelectorAll('.elsis-prod-dot')) : [];
+        updateDots();
+      }
+
+      function updateDots() {
+        if (!step || !dots.length) return;
+        const i = Math.max(0, Math.min(dots.length - 1, Math.round(viewport.scrollLeft / step)));
+        dots.forEach((d, k) => { 
+          d.classList.toggle('active', k === i); 
+        });
+      }
+
+      function next() {
+        const max = viewport.scrollWidth - viewport.clientWidth;
+        if (viewport.scrollLeft >= max - 4) { 
+          viewport.scrollTo({ left: 0, behavior: 'smooth' }); 
+        } else { 
+          viewport.scrollBy({ left: step, behavior: 'smooth' }); 
+        }
+      }
+
+      function start() { 
+        if (timer) clearInterval(timer); 
+        timer = setInterval(next, 5000); 
+      }
+
+      function stop() { 
+        if (timer) { 
+          clearInterval(timer); 
+          timer = null; 
+        } 
+      }
+
+      function pauseResume() { 
+        stop(); 
+        clearTimeout(uTimer); 
+        uTimer = setTimeout(start, 4000); 
+      }
+
+      size();
+      window.addEventListener('resize', size);
+      viewport.addEventListener('scroll', updateDots, { passive: true });
+
+      if (nx) nx.addEventListener('click', () => { next(); pauseResume(); });
+      if (pv) pv.addEventListener('click', () => { viewport.scrollBy({ left: -step, behavior: 'smooth' }); pauseResume(); });
+
+      wrap.addEventListener('mouseenter', stop);
+      wrap.addEventListener('mouseleave', start);
+      viewport.addEventListener('touchstart', stop, { passive: true });
+      viewport.addEventListener('touchend', () => { 
+        clearTimeout(uTimer); 
+        uTimer = setTimeout(start, 3500); 
+      }, { passive: true });
+
+      start();
+      setTimeout(size, 120);
+    })();
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Elsis Product Block",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title First Word",
+      "default": "unsere"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title Second Word",
+      "default": "Sorten"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Fünf Bio-Rezepturen – abgestimmt auf jeden kleinen Meilenstein deines Kindes."
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 2,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "label": "Product Limit"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_button",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "alle Produkte"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 96
+    }
+  ],
+  "presets": [
+    {
+      "name": "Elsis Product Block"
+    }
+  ]
+}
+{% endschema %}

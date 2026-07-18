@@ -63,6 +63,7 @@
     line-height: .86;
     margin: 14px 0 0;
     letter-spacing: -.01em;
+    font-size: clamp(70px, 13vw, 168px);
   }
 
   #ElsisHero-{{ section.id }} .hero-btn-wrap {
@@ -243,6 +244,141 @@
       font-size: 15px;
     }
   }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-pouch-outer {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4.1;
+    filter: drop-shadow(0 10px 16px rgba(0,0,0,.12));
+    display:block;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute;
+    left: 50%;
+    top: -3px;
+    transform: translateX(-50%);
+    width: 20%;
+    height: 14px;
+    background: var(--pouch-accent, #197D25);
+    border-radius: 7px 7px 2px 2px;
+    z-index: 3;
+    display:block;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-cap-base {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    transform: translateX(-50%);
+    width: 42%;
+    height: 13px;
+    background: var(--pouch-accent, #197D25);
+    border-radius: 8px;
+    z-index: 2;
+    display:block;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-body {
+    position: absolute;
+    inset: 16px 0 0;
+    background-color: var(--pouch-bg, #fff);
+    border: 2.5px solid var(--pouch-accent, #197D25);
+    border-radius: 14px 14px 30px 30px / 18px 18px 46px 46px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--pouch-stripe, #ddd) 53%, transparent) 0 8px, transparent 8px 18px) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 14px 9px 16px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-age {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    background: var(--pouch-accent, #197D25);
+    color: #fff;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 18px;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-shine {
+    position: absolute;
+    top: 14%;
+    left: 18%;
+    width: 64%;
+    height: 50%;
+    border-radius: 50%;
+    background: rgba(255,255,255,.6);
+    display:block;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-pouch-label {
+    position: relative;
+    text-align: center;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: var(--pouch-accent, #197D25);
+    font-size: 11px;
+    line-height: 1.15;
+    background: rgba(255,255,255,.85);
+    padding: 6px 7px;
+    border-radius: 9px;
+    display:block;
+  }
+
+  /* Hero Carousel Arrows */
+  #ElsisHero-{{ section.id }} .elsis-hero-arrow {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 50% !important;
+    border: 1.5px solid rgba(25, 125, 37, .25) !important;
+    background: #fff !important;
+    color: #197D25 !important;
+    cursor: pointer !important;
+    font-size: 26px !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12) !important;
+    font-family: var(--body-font) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    transition: transform .2s, background .2s, color .2s !important;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-arrow:hover {
+    background: #197D25 !important;
+    color: #fff !important;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-prev {
+    left: -24px !important;
+  }
+
+  #ElsisHero-{{ section.id }} .elsis-hero-next {
+    right: -24px !important;
+  }
+
+  /* Responsive Positioning */
+  @media (max-width: 960px) {
+    #ElsisHero-{{ section.id }} .elsis-hero-prev {
+      left: 6px !important;
+    }
+    #ElsisHero-{{ section.id }} .elsis-hero-next {
+      right: 6px !important;
+    }
+  }
 {%- endstyle -%}
 
 <section id="ElsisHero-{{ section.id }}" data-screen-label="Hero">
@@ -276,6 +412,8 @@
   </div>
 
   <div class="elsis-hero-area" id="ElsisHeroArea-{{ section.id }}">
+    <button id="elsis-hero-prev-{{ section.id }}" class="elsis-hero-arrow elsis-hero-prev" aria-label="Zurück">‹</button>
+    <button id="elsis-hero-next-{{ section.id }}" class="elsis-hero-arrow elsis-hero-next" aria-label="Weiter">›</button>
     <div class="elsis-hero-badge elsis-hero-badge-bio" style="--rot: -10deg;">
       <span>{{ section.settings.bio_badge_title }}</span>
       <span>{{ section.settings.bio_badge_subtitle }}</span>
@@ -351,14 +489,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const flavour = d.flavour || '';
     const age = d.age || '';
     
-    el.style.cssText = 'position:relative;width:100%;aspect-ratio:3/4.1;filter:drop-shadow(0 10px 16px rgba(0,0,0,.12));';
+    el.className = 'elsis-hero-pouch-el elsis-hero-pouch-outer';
+    el.style.setProperty('--pouch-bg', bg);
+    el.style.setProperty('--pouch-stripe', stripe);
+    el.style.setProperty('--pouch-stripe-alpha', stripe + '88');
+    el.style.setProperty('--pouch-accent', accent);
+    
     el.innerHTML =
-      '<div style="position:absolute;left:50%;top:-3px;transform:translateX(-50%);width:20%;height:14px;background:' + accent + ';border-radius:7px 7px 2px 2px;z-index:3;"></div>' +
-      '<div style="position:absolute;left:50%;top:8px;transform:translateX(-50%);width:42%;height:13px;background:' + accent + ';border-radius:8px;z-index:2;"></div>' +
-      '<div style="position:absolute;inset:16px 0 0;background:' + bg + ';border:2.5px solid ' + accent + ';border-radius:14px 14px 30px 30px / 18px 18px 46px 46px;overflow:hidden;background-image:repeating-linear-gradient(135deg,' + stripe + '88 0 8px,transparent 8px 18px);display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:14px 9px 16px;">' +
-        (age ? '<div style="position:absolute;top:9px;left:9px;background:' + accent + ';color:#fff;font-family:Fredoka,sans-serif;font-weight:700;font-size:10px;padding:3px 8px;border-radius:18px;">' + age + '</div>' : '') +
-        '<div style="position:absolute;top:14%;left:18%;width:64%;height:50%;border-radius:50%;background:rgba(255,255,255,.6);"></div>' +
-        '<div style="position:relative;text-align:center;font-family:Fredoka,sans-serif;font-weight:600;color:' + accent + ';font-size:11px;line-height:1.15;background:rgba(255,255,255,.85);padding:6px 7px;border-radius:9px;">' + flavour + '</div>' +
+      '<div class="elsis-pouch-cap-top"></div>' +
+      '<div class="elsis-pouch-cap-base"></div>' +
+      '<div class="elsis-pouch-body">' +
+        (age ? '<div class="elsis-pouch-age">' + age + '</div>' : '') +
+        '<div class="elsis-pouch-shine"></div>' +
+        '<div class="elsis-pouch-label">' + flavour + '</div>' +
       '</div>';
   }
 
@@ -420,6 +563,31 @@ document.addEventListener('DOMContentLoaded', function() {
     mx = null;
     start();
   });
+
+  const prevBtn = document.getElementById('elsis-hero-prev-{{ section.id }}');
+  const nextBtn = document.getElementById('elsis-hero-next-{{ section.id }}');
+  if (prevBtn) {
+    prevBtn.addEventListener('mousedown', e => e.stopPropagation());
+    prevBtn.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    prevBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      stop();
+      shift(-1);
+      start();
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('mousedown', e => e.stopPropagation());
+    nextBtn.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    nextBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      e.preventDefault();
+      stop();
+      shift(1);
+      start();
+    });
+  }
 });
 </script>
 

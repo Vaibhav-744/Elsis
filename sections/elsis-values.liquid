@@ -35,6 +35,15 @@
     text-align: left;
   }
 
+  #ElsisValues-{{ section.id }} .values-title span:first-child {
+    display: block !important;
+  }
+
+  #ElsisValues-{{ section.id }} .values-title span:last-child {
+    display: block !important;
+    margin-top: 4px !important;
+  }
+
   #ElsisValues-{{ section.id }} .values-header-right {
     color: {{ section.settings.desc_color }};
   }
@@ -120,10 +129,10 @@
         {%- if section.settings.title_1 != blank or section.settings.title_2 != blank -%}
           <h2 class="values-title h2">
             {%- if section.settings.title_1 != blank -%}
-              <span style="display: block;">{{ section.settings.title_1 }}</span>
+              <span>{{ section.settings.title_1 }}</span>
             {%- endif -%}
             {%- if section.settings.title_2 != blank -%}
-              <span style="display: block; margin-top: 4px;">{{ section.settings.title_2 }}</span>
+              <span>{{ section.settings.title_2 }}</span>
             {%- endif -%}
           </h2>
         {%- endif -%}
@@ -149,12 +158,15 @@
           #ElsisValItem-{{ block.id }} .value-desc {
             color: {{ block.settings.item_desc_color }};
           }
+          #ElsisValItem-{{ block.id }} .value-symbol-text {
+            font-size: {{ block.settings.text_size }}px !important;
+          }
         {%- endstyle -%}
         <div id="ElsisValItem-{{ block.id }}" class="value-card" {{ block.shopify_attributes }}>
           <div class="value-outer-circle">
             <div class="value-inner-circle">
               {%- if block.settings.symbol_type == 'text' -%}
-                <span style="font-size: {{ block.settings.text_size }}px;">{{ block.settings.symbol_text }}</span>
+                <span class="value-symbol-text">{{ block.settings.symbol_text }}</span>
               {%- else -%}
                 {{ block.settings.symbol_svg }}
               {%- endif -%}

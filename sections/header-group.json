@@ -129,9 +129,14 @@
             "header_icons_color_hover": "#197d25",
             "header_icons_border_color": "rgba(0,0,0,0)",
             "header_icons_border_sticky_color": "rgba(0,0,0,0)",
-            "cart_count_bubble_color": "#115A1B",
-            "cart_count_bubble_bg": "#FFD42E",
-            "cart_count_bubble_bg_gradient": ""
+            "cart_count_bubble_color": "#115a1b",
+            "cart_count_bubble_bg": "#ffd42e",
+            "cart_count_bubble_bg_gradient": "",
+            "show_cta_btn": true,
+            "cta_btn_text": "Jetzt kaufen",
+            "cta_btn_url": "",
+            "cta_btn_bg": "#d9756e",
+            "cta_btn_color": "#ffffff"
           }
         }
       },
@@ -172,7 +177,7 @@
           "type": "logo",
           "settings": {
             "logo_mobile": "shopify://shop_images/elsis_logo_white_1.png",
-            "logo_width_mobile": 75,
+            "logo_width_mobile": 90,
             "logo_text": "",
             "logo_font_size": 20,
             "logo_font_weight": "900",
@@ -192,8 +197,8 @@
           "settings": {
             "icon": "2",
             "color": "#197d25",
-            "color_bubble": "#115A1B",
-            "bg_bubble": "#FFD42E"
+            "color_bubble": "#115a1b",
+            "bg_bubble": "#ffd42e"
           }
         }
       },

@@ -23,6 +23,7 @@
     z-index: 1;
     background-size: cover;
     background-position: center;
+    background-image: var(--bg-image);
   }
 
   #ElsisLifestyle-{{ section.id }} .lifestyle-bg-placeholder {
@@ -95,7 +96,7 @@
 <section id="ElsisLifestyle-{{ section.id }}">
   <div class="lifestyle-card">
     {%- if section.settings.image != blank -%}
-      <div class="lifestyle-bg-image" style="background-image: url('{{ section.settings.image | image_url: width: 1400 }}');"></div>
+      <div class="lifestyle-bg-image" style="--bg-image: url('{{ section.settings.image | image_url: width: 1400 }}');"></div>
       <div class="lifestyle-overlay"></div>
     {%- else -%}
       <div class="lifestyle-bg-placeholder"></div>

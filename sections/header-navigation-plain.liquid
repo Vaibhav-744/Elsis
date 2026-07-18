@@ -26,6 +26,139 @@
         {%- if section.settings.enable_transparent -%}
             .section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .menu-lv-1:not(.menu-sale) .menu-lv-1__action,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .header-logo .header__heading-text,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .top-language-currency .dropdown-label .text,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .halo-top-language+.halo-top-currency:before,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .top-language-currency .dropdown-label .text+svg{color:{{section.settings.transparent_color}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .menu-lv-1:hover .menu-lv-1__action,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .header-logo:hover .header__heading-text,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .top-language-currency:hover .dropdown-label .text,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .top-language-currency:hover .halo-top-language+.halo-top-currency:before,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .top-language-currency:hover .dropdown-label .text+svg{color:{{section.settings.transparent_color_hover}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .header-icons-main-border .header--icon-border:before{background:{{section.settings.transparent_color}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .menu-lv-1>.link-effect>.text:after,.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .menu-lv-1:hover>.link-effect>.text:after{background:{{section.settings.transparent_color_hover}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .header__icon svg{fill:{{section.settings.transparent_color}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .header__icon:hover svg{fill:{{section.settings.transparent_color_hover}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .stroke-icon svg{stroke:{{section.settings.transparent_color}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .stroke-icon:hover svg{stroke:{{section.settings.transparent_color_hover}}}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent{background-color:transparent;position:absolute;width:100%;z-index:3}.section-header-navigation:not(.scrolled-past-header) .header-plain--transparent .logo__main{display:none}
         {%- endif -%}
+
+        /* Custom Header Styling Resets & CTA Button */
+        .header-nav-plain .header-icons {
+            display: flex !important;
+            align-items: center !important;
+            gap: 14px !important;
+            justify-content: flex-end !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .header-nav-plain .header-icons .header__iconItem,
+        .header-nav-plain .header-icons .header--account,
+        .header-nav-plain .header-icons .header--cart,
+        .header-nav-plain .header-icons .header--wishlist {
+            padding: 0 !important;
+            margin: 0 !important;
+            height: auto !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+
+        .header-nav-plain .header-icons .header__icon {
+            border: 1px solid rgba(25, 125, 37, 0.2) !important;
+            background: #ffffff !important;
+            border-radius: 50% !important;
+            width: 46px !important;
+            height: 46px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            transition: border-color 0.2s, background-color 0.2s, transform 0.2s !important;
+            position: relative !important;
+        }
+
+        .header-nav-plain .header-icons .header__icon:hover {
+            border-color: rgba(25, 125, 37, 0.5) !important;
+            background-color: #fcfbfa !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .header-nav-plain .header-icons svg {
+            width: 17px !important;
+            height: 17px !important;
+            fill: #197D25 !important;
+            stroke: none !important;
+        }
+
+        .header-nav-plain .header-icons .stroke-icon svg,
+        .header-nav-plain .header-icons .header__icon--account svg {
+            fill: #197D25 !important;
+            stroke: none !important;
+        }
+
+        .header-nav-plain .header--icon-border:before {
+            display: none !important;
+        }
+
+        /* Cart count bubble styling */
+        .header-nav-plain .header-icons .header__icon--cart .cart-count-bubble {
+            position: absolute !important;
+            top: -5px !important;
+            right: -5px !important;
+            background: #FFD42E !important;
+            color: #115A1B !important;
+            font-size: 11px !important;
+            font-weight: 800 !important;
+            width: 20px !important;
+            height: 20px !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            border-radius: 50% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important;
+            z-index: 5 !important;
+        }
+
+        .header-nav-plain .header-icons .header__icon--cart .cart-count-bubble .text {
+            display: inline-block !important;
+            color: #115A1B !important;
+            font-family: var(--heading-font), sans-serif !important;
+            font-weight: 800 !important;
+            font-size: 11px !important;
+            line-height: 20px !important;
+            text-align: center !important;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Custom CTA Button styling */
+        .header-nav-plain .header-icons .header--cta-btn {
+            display: flex !important;
+            align-items: center !important;
+            height: auto !important;
+        }
+
+        .header-nav-plain .header-icons .header-cta-btn-link {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 7px !important;
+            background: var(--btn-bg, #D9756E) !important;
+            color: var(--btn-color, #ffffff) !important;
+            font-family: var(--heading-font), sans-serif !important;
+            font-weight: 600 !important;
+            font-size: 16px !important;
+            padding: 11px 22px !important;
+            border-radius: 24px 28px 22px 26px / 28px 22px 26px 24px !important;
+            text-decoration: none !important;
+            line-height: 1.2 !important;
+            transition: transform 0.2s, opacity 0.2s !important;
+        }
+
+        .header-nav-plain .header-icons .header-cta-btn-link:hover {
+            transform: scale(1.04) !important;
+            opacity: 0.95 !important;
+        }
+
+        .header-nav-plain .header-icons .header-cta-btn-link svg {
+            width: 15px !important;
+            height: 15px !important;
+            fill: var(--btn-color, #ffffff) !important;
+            stroke: none !important;
+        }
+
+        /* Hide CTA on mobile header */
+        @media screen and (max-width: 1024px) {
+            .header-nav-plain .header-icons .header--cta-btn {
+                display: none !important;
+            }
+        }
     }
 </style>
 {%-liquid
@@ -90,6 +223,14 @@
             </div>
             {%- when 'header_icons' -%}
             <div class="header-icons header-item header-item--side d-flex flex-align-stretch flex-wrap fs-0{% if block.settings.show_language_currency_sticky == false and block.settings.show_search_sticky == false and block.settings.show_customer_sticky == false and block.settings.show_wishlist_sticky == false and block.settings.show_cart_sticky == false %} show-main-menu{% endif %}{% if block.settings.show_language_currency == false and block.settings.show_search == false and block.settings.show_customer == false and block.settings.show_wishlist == false and block.settings.show_cart == false %} hide-main-menu{% endif %}{% if block.settings.header_icons_border_color != 'rgba(0,0,0,0)' and block.settings.header_icons_border_color != blank %} header-icons-border header-icons-main-border{% endif %}{% if block.settings.header_icons_border_sticky_color != 'rgba(0,0,0,0)' and block.settings.header_icons_border_sticky_color != blank %} header-icons-border header-icons-sticky-border{% endif %}" style="--header_icons_color: {{block.settings.header_icons_color}};--header_icons_color_hover: {{block.settings.header_icons_color_hover}};--header_icons_border_color: {{block.settings.header_icons_border_color}};--header_icons_border_sticky_color: {{block.settings.header_icons_border_sticky_color}};--cart_count_bubble_bg: {% if block.settings.cart_count_bubble_bg_gradient != blank %}{{ block.settings.cart_count_bubble_bg_gradient }}{% else %}{{ block.settings.cart_count_bubble_bg }}{% endif %};--cart_count_bubble_color: {{block.settings.cart_count_bubble_color}};--cart_count_bubble_font_size: {% if block.settings.text_font_size <= 12 %}{{block.settings.text_font_size | append: 'px'}}{% else %} {{block.settings.text_font_size | minus: 2 | append: 'px'}}{% endif %};--text_font_size: {{block.settings.text_font_size | append: 'px' }}">
+                {%- if block.settings.show_cta_btn -%}
+                    <div class="header--cta-btn">
+                        <a class="header-cta-btn-link" href="{{ block.settings.cta_btn_url | default: '#sorten' }}" style="--btn-bg: {{ block.settings.cta_btn_bg }}; --btn-color: {{ block.settings.cta_btn_color }};">
+                            {{ block.settings.cta_btn_text }}
+                            <svg width="15" height="15" viewBox="0 0 24 24"><path d="M12 21s-7-4.5-9.3-9.2C1.2 8.6 2.8 5 6.2 5c2 0 3.2 1.2 3.8 2.2C10.6 6.2 11.8 5 13.8 5c3.4 0 5 3.6 3.5 6.8C19 16.5 12 21 12 21z"/></svg>
+                        </a>
+                    </div>
+                {%- endif -%}
                 {%- if block.settings.show_language_currency or block.settings.show_language_currency_sticky -%}
                 <div class="header-language_currency language_currency_style_2 d-flex flex-align-center h-100 p-relative header--icon-border{% if block.settings.show_language_currency_sticky%}{% if block.settings.show_language_currency%}{% else %} hide-main-menu{% endif %}{% else %}{% if block.settings.show_language_currency%} show-main-menu{% endif %}{% endif %}">
                     <div class="top-language-currency d-flex flex-wrap sticky_effect{% if settings.enable_currencies %} enable-currency{% endif %}">
@@ -1016,6 +1157,39 @@ if (sticky != undefined || sticky != null) {
                     "type": "color_background",
                     "id": "cart_count_bubble_bg_gradient",
                     "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+                },
+                {
+                    "type": "header",
+                    "content": "Custom CTA Button"
+                },
+                {
+                    "type": "checkbox",
+                    "id": "show_cta_btn",
+                    "label": "Show CTA Button",
+                    "default": true
+                },
+                {
+                    "type": "text",
+                    "id": "cta_btn_text",
+                    "label": "Button Text",
+                    "default": "Jetzt kaufen"
+                },
+                {
+                    "type": "url",
+                    "id": "cta_btn_url",
+                    "label": "Button Link"
+                },
+                {
+                    "type": "color",
+                    "id": "cta_btn_bg",
+                    "label": "Button Background Color",
+                    "default": "#D9756E"
+                },
+                {
+                    "type": "color",
+                    "id": "cta_btn_color",
+                    "label": "Button Text Color",
+                    "default": "#ffffff"
                 }
             ]
         },
