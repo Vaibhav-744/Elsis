@@ -1,0 +1,841 @@
+{%- style -%}
+  #ShopGrid-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ShopGrid-{{ section.id }} .grid-container {
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  /* Grid wrapper */
+  #ShopGrid-{{ section.id }} .elsis-shop-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  /* Normal Cards Styling */
+  #ShopGrid-{{ section.id }} .elsis-card {
+    border-radius: 22px !important;
+    padding: 62px 18px 22px !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--card-bg, #DCEAD2) !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: transform .28s ease !important;
+    color: #2E5E35;
+    text-align: left;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card:hover {
+    transform: translateY(-10px) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card:hover .elsis-pouch {
+    transform: translateY(-12px) rotate(-4deg) scale(1.05) !important;
+  }
+
+  /* Age Badge */
+  #ShopGrid-{{ section.id }} .elsis-age-badge {
+    position: absolute !important;
+    top: 14px !important;
+    right: 14px !important;
+    width: 50px !important;
+    height: 50px !important;
+    border-radius: 50% !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 16%, transparent) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: .92 !important;
+    z-index: 5 !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-age-badge-number {
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 17px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-age-badge-text {
+    font-family: var(--heading-font) !important;
+    font-size: 8px !important;
+    font-weight: 700 !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  /* Pouch Drawing */
+  #ShopGrid-{{ section.id }} .elsis-pouch {
+    width: 118px !important;
+    margin: -52px auto 12px !important;
+    position: relative !important;
+    transition: transform .28s ease !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-design {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 3/4.1 !important;
+    filter: drop-shadow(0 10px 16px rgba(0,0,0,.12)) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-cap-top {
+    position: absolute !important;
+    left: 50% !important;
+    top: -3px !important;
+    transform: translateX(-50%) !important;
+    width: 20% !important;
+    height: 14px !important;
+    background: var(--accent-color, #197D25) !important;
+    border-radius: 7px 7px 2px 2px !important;
+    z-index: 3 !important;
+    display: block !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-neck {
+    position: absolute !important;
+    left: 50% !important;
+    top: 8px !important;
+    transform: translateX(-50%) !important;
+    width: 42% !important;
+    height: 13px !important;
+    background: var(--accent-color, #197D25) !important;
+    border-radius: 8px !important;
+    z-index: 2 !important;
+    display: block !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-body {
+    position: absolute !important;
+    inset: 16px 0 0 !important;
+    background: #fff !important;
+    border: 2.5px solid var(--accent-color, #197D25) !important;
+    border-radius: 14px 14px 30px 30px / 18px 18px 46px 46px !important;
+    overflow: hidden !important;
+    background-image: repeating-linear-gradient(135deg, color-mix(in srgb, var(--card-bg, #DCEAD2) 53%, transparent) 0 8px, transparent 8px 18px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    padding: 14px 9px 16px !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-reflection {
+    position: absolute !important;
+    top: 14% !important;
+    left: 18% !important;
+    width: 64% !important;
+    height: 50% !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.6) !important;
+    display: block !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-pouch-label {
+    position: relative !important;
+    text-align: center !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    color: var(--accent-color, #197D25) !important;
+    font-size: 11px !important;
+    line-height: 1.15 !important;
+    background: rgba(255,255,255,.85) !important;
+    padding: 6px 7px !important;
+    border-radius: 9px !important;
+    word-break: break-word !important;
+  }
+
+  /* Tag */
+  #ShopGrid-{{ section.id }} .elsis-custom-type-tag {
+    display: inline-block !important;
+    align-self: flex-start !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 14%, transparent) !important;
+    color: var(--accent-color, #197D25) !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 10px !important;
+    padding: 3px 9px !important;
+    border-radius: 20px !important;
+    margin-bottom: 8px !important;
+    line-height: normal;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-title {
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+    color: var(--accent-color, #197D25) !important;
+    margin: 0 0 6px !important;
+    line-height: 1.1 !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-title a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-description {
+    font-family: var(--body-font) !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    color: color-mix(in srgb, var(--accent-color, #197D25) 70%, #000) !important;
+    margin: 0 0 14px !important;
+    flex: 1 !important;
+  }
+
+  /* Cart & Actions */
+  #ShopGrid-{{ section.id }} .elsis-cart-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin-top: 2px !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-cart-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-price-col {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-price-text {
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 18px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-price-sub {
+    font-family: var(--body-font) !important;
+    font-size: 11px !important;
+    color: color-mix(in srgb, var(--accent-color, #197D25) 70%, #000) !important;
+    display: block !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-qty {
+    display: flex !important;
+    align-items: center !important;
+    background: #fff !important;
+    border: 1.5px solid color-mix(in srgb, var(--accent-color, #197D25) 20%, transparent) !important;
+    border-radius: 22px !important;
+    overflow: hidden !important;
+    flex: none !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-qty-btn {
+    cursor: pointer !important;
+    border: none !important;
+    background: none !important;
+    width: 32px !important;
+    height: 36px !important;
+    font-family: var(--heading-font) !important;
+    color: var(--accent-color, #197D25) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-qty-dec-btn {
+    font-size: 20px !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-qty-inc-btn {
+    font-size: 19px !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-qty-val-display {
+    min-width: 20px !important;
+    text-align: center !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    color: var(--accent-color, #197D25) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-add {
+    cursor: pointer !important;
+    border: none !important;
+    background: var(--accent-color, #197D25) !important;
+    color: #fff !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    padding: 12px 16px !important;
+    border-radius: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: transform .2s, background .2s !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-add:hover {
+    transform: scale(1.06) rotate(-2deg) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-add[disabled="disabled"] {
+    cursor: not-allowed !important;
+    background: color-mix(in srgb, var(--accent-color, #197D25) 40%, #ccc) !important;
+  }
+
+  /* Special Probierpaket Card Layout */
+  #ShopGrid-{{ section.id }} .elsis-card-special {
+    background: #197D25 !important;
+    color: #F8F2E8 !important;
+    padding: 34px 22px 22px !important;
+    overflow: hidden !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .special-circle-decor {
+    position: absolute !important;
+    bottom: -40px !important;
+    right: -30px !important;
+    width: 150px !important;
+    height: 150px !important;
+    border-radius: 50% !important;
+    background: rgba(248, 242, 232, .09) !important;
+    z-index: 1;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .special-badge {
+    display: inline-block !important;
+    align-self: flex-start !important;
+    background: #FFD42E !important;
+    color: #115A1B !important;
+    font-family: var(--heading-font) !important;
+    font-weight: 600 !important;
+    font-size: 11px !important;
+    padding: 4px 11px !important;
+    border-radius: 20px !important;
+    margin-bottom: 12px !important;
+    z-index: 2;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .special-title {
+    font-family: var(--heading-font) !important;
+    font-weight: 700 !important;
+    font-size: 24px !important;
+    line-height: 1.05 !important;
+    margin: 0 0 8px !important;
+    color: #fff !important;
+    text-align: left !important;
+    z-index: 2;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .special-desc {
+    font-family: var(--body-font) !important;
+    font-size: 13.5px !important;
+    line-height: 1.5 !important;
+    color: #D7E6DC !important;
+    margin: 0 0 14px !important;
+    flex: 1 !important;
+    z-index: 2;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-price-text {
+    color: #FFD42E !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-price-sub {
+    color: #B9D2BF !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-qty {
+    background: rgba(255, 255, 255, .12) !important;
+    border: 1.5px solid rgba(255, 255, 255, .35) !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-qty-btn {
+    color: #fff !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-qty-val-display {
+    color: #fff !important;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-add {
+    background: #FFD42E !important;
+    color: #115A1B !important;
+    z-index: 2;
+  }
+
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-add svg path {
+    stroke: #115A1B !important;
+  }
+  
+  #ShopGrid-{{ section.id }} .elsis-card-special .elsis-add svg circle {
+    stroke: #115A1B !important;
+  }
+
+  /* Info block */
+  #ShopGrid-{{ section.id }} .elsis-shop-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  #ShopGrid-{{ section.id }} .info-card-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #F8F2E8;
+    border-radius: 20px;
+    padding: 18px 20px;
+    text-align: left;
+  }
+
+  #ShopGrid-{{ section.id }} .info-card-badge-round {
+    flex: none;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #ShopGrid-{{ section.id }} .info-card-text-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #ShopGrid-{{ section.id }} .info-card-title-main {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 15px;
+    color: #197D25;
+  }
+
+  #ShopGrid-{{ section.id }} .info-card-sub-main {
+    font-size: 13px;
+    color: #5C7A60;
+  }
+
+  /* Responsive Grid Adjustments */
+  @media(max-width:980px){
+    #ShopGrid-{{ section.id }} .elsis-shop-grid {
+      grid-template-columns: repeat(2, 1fr)!important;
+    }
+  }
+
+  @media(max-width:760px){
+    #ShopGrid-{{ section.id }} .elsis-shop-info {
+      grid-template-columns: 1fr!important;
+      gap: 18px!important;
+    }
+  }
+
+  @media(max-width:560px){
+    #ShopGrid-{{ section.id }} .elsis-shop-grid {
+      grid-template-columns: 1fr 1fr!important;
+      gap: 12px!important;
+    }
+    #ShopGrid-{{ section.id }} .elsis-card {
+      padding: 50px 12px 14px!important;
+    }
+    #ShopGrid-{{ section.id }} .elsis-pouch {
+      width: 90px !important;
+      margin: -44px auto 10px !important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ShopGrid-{{ section.id }}" class="elsis-shop-grid-container" data-screen-label="ShopGrid">
+  <div class="grid-container">
+    <div class="elsis-shop-grid">
+      {%- assign product_limit = section.settings.product_limit -%}
+
+      {%- if collection.products.size > 0 -%}
+        {%- for product in collection.products limit: product_limit -%}
+          {%- liquid
+            assign bg_color = product.metafields.custom.product_card_background_color | default: '#DCEAD2'
+            assign btn_color = product.metafields.custom.product_card_button_color | default: '#197D25'
+            assign age_limit = product.metafields.custom.product_age_limit
+            assign custom_type = product.metafields.custom.product_custom_type
+            assign short_desc = product.metafields.custom.product_short_description
+            assign current_variant = product.selected_or_first_available_variant
+            assign variant_id = current_variant.id
+          -%}
+
+          {%- if product.handle contains 'probierpaket' -%}
+            <!-- Probierpaket Special Layout -->
+            <div class="elsis-card elsis-card-special" data-age-group="alle">
+              <div class="special-circle-decor"></div>
+              <div class="special-badge">Beliebt zum Start</div>
+              <h3 class="special-title">{{ product.title }}</h3>
+              <p class="special-desc">{{ short_desc }}</p>
+
+              <form action="{{ routes.cart_url }}/add" method="post" class="variants elsis-product-form" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ variant_id }}">
+                <input type="hidden" name="quantity" class="elsis-qty-input" value="1">
+
+                <div class="elsis-cart-actions">
+                  <div class="elsis-cart-row">
+                    <div class="elsis-price-col">
+                      <span class="elsis-price-text">{{ product.price | money }}</span>
+                      <span class="elsis-price-sub">
+                        {%- if product.compare_at_price > product.price -%}
+                          statt {{ product.compare_at_price | money }}
+                        {%- else -%}
+                          Paketpreis
+                        {%- endif -%}
+                      </span>
+                    </div>
+
+                    <div class="elsis-qty">
+                      <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+                      <span class="elsis-qty-val-display">1</span>
+                      <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+                    </div>
+                  </div>
+
+                  <button class="elsis-add" type="submit" name="add" data-btn-addToCart>
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#115A1B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="9" cy="20" r="1.2"/>
+                      <circle cx="18" cy="20" r="1.2"/>
+                      <path d="M2 3h3l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2L22 7H6"/>
+                    </svg>
+                    In den Korb
+                  </button>
+                </div>
+              </form>
+            </div>
+          {%- else -%}
+            {%- if age_limit != blank -%}
+              {%- assign card_age = age_limit -%}
+            {%- else -%}
+              {%- assign card_age = 'alle' -%}
+            {%- endif -%}
+            <!-- Standard Variety Card -->
+            <div class="elsis-card" data-age-group="{{ card_age }}" style="--card-bg: {{ bg_color }}; --accent-color: {{ btn_color }};">
+              {%- if age_limit != blank -%}
+                <div class="elsis-age-badge">
+                  <span class="elsis-age-badge-number">{{ age_limit }}</span>
+                  <span class="elsis-age-badge-text">MONAT</span>
+                </div>
+              {%- endif -%}
+
+              <div class="elsis-pouch">
+                <div class="elsis-pouch-design">
+                  <div class="elsis-pouch-cap-top"></div>
+                  <div class="elsis-pouch-neck"></div>
+                  <div class="elsis-pouch-body">
+                    <div class="elsis-pouch-reflection"></div>
+                    <div class="elsis-pouch-label">{{ product.title }}</div>
+                  </div>
+                </div>
+              </div>
+
+              {%- if custom_type != blank -%}
+                <div class="elsis-custom-type-tag">{{ custom_type }}</div>
+              {%- endif -%}
+
+              <h3 class="elsis-card-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+
+              <p class="elsis-card-description">{{ short_desc }}</p>
+
+              <form action="{{ routes.cart_url }}/add" method="post" class="variants elsis-product-form" data-product-id="{{ product.id }}" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="{{ variant_id }}">
+                <input type="hidden" name="quantity" class="elsis-qty-input" value="1">
+
+                <div class="elsis-cart-actions">
+                  <div class="elsis-cart-row">
+                    <div class="elsis-price-col">
+                      <span class="elsis-price-text">{{ product.price | money }}</span>
+                      <span class="elsis-price-sub">pro Stück</span>
+                    </div>
+
+                    <div class="elsis-qty">
+                      <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+                      <span class="elsis-qty-val-display">1</span>
+                      <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+                    </div>
+                  </div>
+
+                  {%- if current_variant.available -%}
+                    <button class="elsis-add" type="submit" name="add" data-btn-addToCart>
+                      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="20" r="1.2"/>
+                        <circle cx="18" cy="20" r="1.2"/>
+                        <path d="M2 3h3l2.4 12.2a1.6 1.6 0 0 0 1.6 1.3h8.5a1.6 1.6 0 0 0 1.6-1.2L22 7H6"/>
+                      </svg>
+                      In den Korb
+                    </button>
+                  {%- else -%}
+                    <button class="elsis-add" type="submit" name="add" disabled="disabled">
+                      Ausverkauft
+                    </button>
+                  {%- endif -%}
+                </div>
+              </form>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <!-- Fallback Placeholder Card Loop -->
+        {%- for i in (1..3) -%}
+          <div class="elsis-card" data-age-group="6" style="--card-bg: #DCEAD2; --accent-color: #197D25;">
+            <div class="elsis-age-badge">
+              <span class="elsis-age-badge-number">6+</span>
+              <span class="elsis-age-badge-text">MONAT</span>
+            </div>
+            <div class="elsis-pouch">
+              <div class="elsis-pouch-design">
+                <div class="elsis-pouch-cap-top"></div>
+                <div class="elsis-pouch-neck"></div>
+                <div class="elsis-pouch-body">
+                  <div class="elsis-pouch-reflection"></div>
+                  <div class="elsis-pouch-label">Gemüse · Huhn · Reis</div>
+                </div>
+              </div>
+            </div>
+            <div class="elsis-custom-type-tag">Halal Huhn</div>
+            <h3 class="elsis-card-title"><a href="#">Gemüse · Huhn · Reis</a></h3>
+            <p class="elsis-card-description">Mit Halal-Hühnchen. Ohne Zusatz von Salz.</p>
+            <div class="elsis-cart-actions">
+              <div class="elsis-cart-row">
+                <div class="elsis-price-col">
+                  <span class="elsis-price-text">1,99 €</span>
+                  <span class="elsis-price-sub">pro Stück</span>
+                </div>
+                <div class="elsis-qty">
+                  <button type="button" class="elsis-qty-btn elsis-qty-dec-btn" aria-label="weniger">−</button>
+                  <span class="elsis-qty-val-display">1</span>
+                  <button type="button" class="elsis-qty-btn elsis-qty-inc-btn" aria-label="mehr">+</button>
+                </div>
+              </div>
+              <button class="elsis-add" type="button">In den Korb</button>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+
+    <!-- Store Info Cards Row -->
+    {%- if section.settings.show_info_cards -%}
+      <div class="elsis-shop-info">
+        <div class="info-card-item">
+          <div class="info-card-badge-round" style="background: #197D25; color: #fff;">
+            {{ section.settings.info_1_badge }}
+          </div>
+          <div class="info-card-text-wrap">
+            <div class="info-card-title-main">{{ section.settings.info_1_title }}</div>
+            <div class="info-card-sub-main">{{ section.settings.info_1_subtext }}</div>
+          </div>
+        </div>
+        
+        <div class="info-card-item">
+          <div class="info-card-badge-round" style="background: #E89A4C; color: #115A1B;">
+            {{ section.settings.info_2_badge }}
+          </div>
+          <div class="info-card-text-wrap">
+            <div class="info-card-title-main">{{ section.settings.info_2_title }}</div>
+            <div class="info-card-sub-main">{{ section.settings.info_2_subtext }}</div>
+          </div>
+        </div>
+        
+        <div class="info-card-item">
+          <div class="info-card-badge-round" style="background: #D9756E; color: #fff;">
+            {{ section.settings.info_3_badge }}
+          </div>
+          <div class="info-card-text-wrap">
+            <div class="info-card-title-main">{{ section.settings.info_3_title }}</div>
+            <div class="info-card-sub-main">{{ section.settings.info_3_subtext }}</div>
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<script>
+function initShopGrid() {
+  // Select globally or by tag/class to be safe
+  document.querySelectorAll('.elsis-product-form').forEach(form => {
+    const decBtn = form.querySelector('.elsis-qty-dec-btn');
+    const incBtn = form.querySelector('.elsis-qty-inc-btn');
+    const displayVal = form.querySelector('.elsis-qty-val-display');
+    const inputVal = form.querySelector('.elsis-qty-input');
+    
+    if (decBtn && incBtn && displayVal && inputVal) {
+      if (decBtn.dataset.qtyInit) return;
+      decBtn.dataset.qtyInit = 'true';
+
+      decBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentVal = parseInt(inputVal.value) || 1;
+        if (currentVal > 1) {
+          currentVal--;
+          inputVal.value = currentVal;
+          displayVal.textContent = currentVal;
+        }
+      });
+      
+      incBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentVal = parseInt(inputVal.value) || 1;
+        currentVal++;
+        inputVal.value = currentVal;
+        displayVal.textContent = currentVal;
+      });
+    }
+  });
+}
+
+initShopGrid();
+document.addEventListener('DOMContentLoaded', initShopGrid);
+document.addEventListener('shopify:section:load', initShopGrid);
+</script>
+
+{% schema %}
+{
+  "name": "Shop Product Grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+
+    {
+      "type": "range",
+      "id": "product_limit",
+      "min": 3,
+      "max": 30,
+      "step": 1,
+      "label": "Product Limit",
+      "default": 12
+    },
+    {
+      "type": "header",
+      "content": "Wave Divider Settings"
+    },
+    {
+      "type": "color",
+      "id": "wave_bg_color",
+      "label": "Wave Background",
+      "default": "#f8f2e8"
+    },
+    {
+      "type": "color",
+      "id": "wave_color",
+      "label": "Wave SVG Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Store Info Highlights"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_info_cards",
+      "label": "Show Store Info Highlights",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "info_1_badge",
+      "label": "Card 1 Badge Text",
+      "default": "3+"
+    },
+    {
+      "type": "text",
+      "id": "info_1_title",
+      "label": "Card 1 Title",
+      "default": "Mindestbestellung"
+    },
+    {
+      "type": "text",
+      "id": "info_1_subtext",
+      "label": "Card 1 Subtext",
+      "default": "ab 3 Beutel pro Bestellung"
+    },
+    {
+      "type": "text",
+      "id": "info_2_badge",
+      "label": "Card 2 Badge Text",
+      "default": "29 €"
+    },
+    {
+      "type": "text",
+      "id": "info_2_title",
+      "label": "Card 2 Title",
+      "default": "Gratis Versand"
+    },
+    {
+      "type": "text",
+      "id": "info_2_subtext",
+      "label": "Card 2 Subtext",
+      "default": "für Bestellungen ab 29 €"
+    },
+    {
+      "type": "text",
+      "id": "info_3_badge",
+      "label": "Card 3 Badge Text",
+      "default": "24h"
+    },
+    {
+      "type": "text",
+      "id": "info_3_title",
+      "label": "Card 3 Title",
+      "default": "Schneller Versand"
+    },
+    {
+      "type": "text",
+      "id": "info_3_subtext",
+      "label": "Card 3 Subtext",
+      "default": "werktags innerhalb von 24 h"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Product Grid"
+    }
+  ]
+}
+{% endschema %}

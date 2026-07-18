@@ -9,37 +9,9 @@
  */
 {
   "sections": {
-    "google-map": {
-      "type": "google-map",
-      "settings": {
-        "show_custom_map": true,
-        "container": "fullwidth",
-        "mg_top_desktop": 0,
-        "mg_top_tablet": 0,
-        "mg_top_mobile": 0,
-        "mg_bottom_desktop": 30,
-        "mg_bottom_tablet": 0,
-        "mg_bottom_mobile": 0,
-        "block_title": "",
-        "block_text": "",
-        "block_align": "center",
-        "block_max_width": 300,
-        "btn_text": "",
-        "btn_text_color": "",
-        "btn_border_color": "",
-        "btn_bg_color": "",
-        "btn_bg_color_gradient": "",
-        "btn_text_color_hover": "",
-        "btn_border_color_hover": "",
-        "btn_bg_color_hover": "",
-        "btn_bg_color_hover_gradient": "",
-        "btn_max_width": 205,
-        "btn_link": "",
-        "block_content": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0985086794008!2d-122.40480278434755!3d37.7877311191863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808814a1b309%3A0x616fef8687897e9!2s685%20Market%20St%2C%20San%20Francisco%2C%20CA%2094105%2C%20Hoa%20K%E1%BB%B3!5e0!3m2!1svi!2s!4v1658982243728!5m2!1svi!2s\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>"
-      }
-    },
     "main": {
       "type": "main-contact-us-1",
+      "disabled": true,
       "settings": {
         "show_breadcrumb": true,
         "breadcrumb_alignment": "left",
@@ -65,10 +37,180 @@
         "contact_info_content_2": "<p>Opening Hours:\n<br>\nMON to SAT: \n9:00AM - 10:00PM\n<br>\nSUN: 10:00AM - 6:00PM</p>",
         "enable_border_top": true
       }
+    },
+    "contact_hero_zx8VLR": {
+      "type": "contact-hero",
+      "name": "Contact Hero",
+      "settings": {
+        "bg_color": "#f8f2e8",
+        "show_pattern": true,
+        "pattern_color_1": "#6ab37a",
+        "pattern_color_2": "#197925",
+        "pattern_opacity": 10,
+        "show_clouds": true,
+        "show_breadcrumbs": true,
+        "breadcrumb_home_text": "Home",
+        "breadcrumb_current_text": "Kontakt",
+        "breadcrumb_color": "#6ab37a",
+        "breadcrumb_active_color": "#197d25",
+        "title": "sprichmit uns",
+        "title_color": "#197d25",
+        "text": "Fragen zu Bestellung, Zutaten oder Beikost? Wir sind für dich da – als Eltern und als Team.",
+        "text_color": "#5c7a60",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "contact_form_c3EAFP": {
+      "type": "contact-form",
+      "blocks": {
+        "info_card_c7wNLH": {
+          "type": "info_card",
+          "settings": {
+            "title": "E-Mail",
+            "value": "<p><a href=\"mailto:info@elsis-organics.de\" title=\"mailto:info@elsis-organics.de\">info@elsis-organics.de</a></p>",
+            "subtext": "Antwort werktags innerhalb von 24 Stunden.",
+            "card_bg": "#dcead2",
+            "card_fg": "#197d25",
+            "badge_bg": "#197d25",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "icon_text": "B2B",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"></path><path d=\"m22 6-10 7L2 6\"></path></svg>"
+          }
+        },
+        "info_card_Ji6nNA": {
+          "type": "info_card",
+          "settings": {
+            "title": "Adresse",
+            "value": "",
+            "subtext": "Kaya Foods<br>Grubenweg 19<br>38268 Lengede, Deutschland",
+            "card_bg": "#fbe3be",
+            "card_fg": "#8a5417",
+            "badge_bg": "#d8842f",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "icon_text": "B2B",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"></path><circle cx=\"12\" cy=\"10\" r=\"3\"></circle></svg>"
+          }
+        },
+        "info_card_8rLKYD": {
+          "type": "info_card",
+          "settings": {
+            "title": "Social Media",
+            "value": "<p>Instagram · Facebook</p>",
+            "subtext": "Folge uns für Beikost-Tipps und Neuigkeiten.",
+            "card_bg": "#f2d9dd",
+            "card_fg": "#7e3b50",
+            "badge_bg": "#c06b82",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "icon_text": "B2B",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewbox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"></rect><circle cx=\"12\" cy=\"12\" r=\"4.5\"></circle><circle cx=\"17.5\" cy=\"6.5\" r=\"1.2\" fill=\"#fff\" stroke=\"none\"></circle></svg>"
+          }
+        },
+        "info_card_VfRan7": {
+          "type": "info_card",
+          "settings": {
+            "title": "Händler werden",
+            "value": "",
+            "subtext": "Du möchtest Elsis in deinem Geschäft anbieten? Schreib uns – wir melden uns mit unserem Händlerpaket.",
+            "card_bg": "#d6e4e9",
+            "card_fg": "#3c5a66",
+            "badge_bg": "#4e7e94",
+            "badge_text_color": "#ffffff",
+            "icon_type": "text",
+            "icon_text": "B2B",
+            "svg_icon": ""
+          }
+        }
+      },
+      "block_order": [
+        "info_card_c7wNLH",
+        "info_card_Ji6nNA",
+        "info_card_8rLKYD",
+        "info_card_VfRan7"
+      ],
+      "name": "Contact Grid & Form",
+      "settings": {
+        "bg_color": "#f8f2e8",
+        "form_title": "schreib uns eine Nachricht",
+        "form_title_color": "#197d25",
+        "name_label": "Name",
+        "email_label": "E-Mail",
+        "subject_label": "Thema",
+        "message_label": "Nachricht",
+        "submit_button_text": "Nachricht senden",
+        "submit_bg_color": "#197d25",
+        "submit_text_color": "#ffffff",
+        "padding_top": 50,
+        "padding_bottom": 80
+      }
+    },
+    "contact_faq_kX7yre": {
+      "type": "contact-faq",
+      "blocks": {
+        "faq_item_f3axLm": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Ab welchem Alter ist Elsis geeignet?",
+            "answer": "<p>Unsere fruchtigen Snacks eignen sich ab dem 4. Monat, die herzhaften Mahlzeiten ab dem 6. bzw. 8. Monat. Die passende Altersangabe findest du auf jedem Beutel.</p>"
+          }
+        },
+        "faq_item_RaDTTc": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind alle Produkte wirklich halal?",
+            "answer": "<p>Ja. Das gesamte Fleisch stammt aus halal-zertifizierter Herkunft und wird entsprechend geprüft.</p>"
+          }
+        },
+        "faq_item_RrmNp9": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wie hoch ist die Mindestbestellung?",
+            "answer": "<p>Die Mindestbestellung liegt bei 3 Beuteln. Ab 29 € liefern wir versandkostenfrei.</p>"
+          }
+        },
+        "faq_item_BFjtW4": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wie schnell wird geliefert?",
+            "answer": "<p>Werktags bestellt, verschicken wir deine Bestellung innerhalb von 24 Stunden.</p>"
+          }
+        },
+        "faq_item_GwmUit": {
+          "type": "faq_item",
+          "settings": {
+            "title": "Kann ich Elsis auch im Laden kaufen?",
+            "answer": "<p>Ja, Elsis ist bei ausgewählten Händlern erhältlich. Alle Verkaufsstellen findest du in unserer Händlersuche.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_f3axLm",
+        "faq_item_RaDTTc",
+        "faq_item_RrmNp9",
+        "faq_item_BFjtW4",
+        "faq_item_GwmUit"
+      ],
+      "name": "Contact FAQ Section",
+      "settings": {
+        "bg_color": "#ffffff",
+        "title": "häufige Fragen",
+        "title_color": "#197d25",
+        "question_color": "#197d25",
+        "answer_color": "#3d6344",
+        "icon_color": "#6ab37a",
+        "border_color": "#6ab37a66",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
-    "google-map",
-    "main"
+    "main",
+    "contact_hero_zx8VLR",
+    "contact_form_c3EAFP",
+    "contact_faq_kX7yre"
   ]
 }

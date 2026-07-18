@@ -1,0 +1,323 @@
+{%- style -%}
+  #AboutValues-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #AboutValues-{{ section.id }} .values-container {
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+
+  #AboutValues-{{ section.id }} .values-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    font-size: clamp(32px, 5vw, 56px);
+    text-align: center;
+    line-height: .95;
+    margin: 0 0 50px;
+  }
+
+  #AboutValues-{{ section.id }} .elsis-val-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  #AboutValues-{{ section.id }} .value-card {
+    text-align: center;
+  }
+
+  #AboutValues-{{ section.id }} .value-outer-circle {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #AboutValues-{{ section.id }} .value-inner-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    font-weight: 700;
+  }
+
+  #AboutValues-{{ section.id }} .value-inner-circle svg {
+    width: 30px;
+    height: 30px;
+    display: block;
+    fill: none;
+  }
+
+  #AboutValues-{{ section.id }} .value-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+
+  #AboutValues-{{ section.id }} .value-desc {
+    font-size: 13px;
+    margin: 0;
+  }
+
+  @media(max-width:760px){
+    #AboutValues-{{ section.id }} .elsis-val-grid {
+      grid-template-columns: 1fr 1fr!important;
+      gap: 24px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="AboutValues-{{ section.id }}" data-screen-label="Werte">
+  <div class="values-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="values-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="elsis-val-grid">
+      {%- for block in section.blocks -%}
+        {%- style -%}
+          #AboutValItem-{{ block.id }} .value-outer-circle {
+            background-color: {{ block.settings.outer_circle_bg }};
+          }
+          #AboutValItem-{{ block.id }} .value-inner-circle {
+            background-color: {{ block.settings.inner_circle_bg }};
+            color: {{ block.settings.inner_circle_text_color }};
+          }
+          #AboutValItem-{{ block.id }} .value-title {
+            color: {{ block.settings.item_title_color }};
+          }
+          #AboutValItem-{{ block.id }} .value-desc {
+            color: {{ block.settings.item_desc_color }};
+          }
+          #AboutValItem-{{ block.id }} .value-symbol-text {
+            font-size: {{ block.settings.text_size }}px !important;
+          }
+        {%- endstyle -%}
+        
+        <div id="AboutValItem-{{ block.id }}" class="value-card" {{ block.shopify_attributes }}>
+          <div class="value-outer-circle">
+            <div class="value-inner-circle">
+              {%- if block.settings.symbol_type == 'text' -%}
+                <span class="value-symbol-text">{{ block.settings.symbol_text }}</span>
+              {%- else -%}
+                {{ block.settings.symbol_svg }}
+              {%- endif -%}
+            </div>
+          </div>
+          <h3 class="value-title">{{ block.settings.title }}</h3>
+          <p class="value-desc">{{ block.settings.description }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Brand Values",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "wofür wir stehen"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_block",
+      "name": "Value Block",
+      "settings": [
+        {
+          "type": "select",
+          "id": "symbol_type",
+          "label": "Symbol Type",
+          "options": [
+            {
+              "value": "text",
+              "label": "Text"
+            },
+            {
+              "value": "svg",
+              "label": "SVG"
+            }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "symbol_text",
+          "label": "Symbol Text (e.g. BIO, حلال)",
+          "default": "BIO"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 10,
+          "max": 28,
+          "step": 1,
+          "unit": "px",
+          "label": "Symbol Text Size",
+          "default": 16
+        },
+        {
+          "type": "textarea",
+          "id": "symbol_svg",
+          "label": "Symbol SVG Code",
+          "info": "Used if SVG symbol type is selected"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Value Title"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Value Description"
+        },
+        {
+          "type": "color",
+          "id": "outer_circle_bg",
+          "label": "Outer Circle Background",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "inner_circle_bg",
+          "label": "Inner Circle Background",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "inner_circle_text_color",
+          "label": "Inner Circle Symbol/Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "item_title_color",
+          "label": "Title Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "item_desc_color",
+          "label": "Description Color",
+          "default": "#5C7A60"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Brand Values",
+      "blocks": [
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "BIO",
+            "text_size": 16,
+            "title": "biologisch",
+            "description": "EU-Bio zertifizierte Zutaten, ohne chemische Zusätze",
+            "outer_circle_bg": "#DCEAD2",
+            "inner_circle_bg": "#197D25",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#197D25",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "حلال",
+            "text_size": 19,
+            "title": "halal",
+            "description": "Fleisch aus garantiert halal-zertifizierter Herkunft",
+            "outer_circle_bg": "#F2D9DD",
+            "inner_circle_bg": "#D9756E",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#A24A62",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "text",
+            "symbol_text": "MSC",
+            "text_size": 15,
+            "title": "nachhaltiger Fisch",
+            "description": "Fisch nur aus MSC-zertifizierter Fischerei",
+            "outer_circle_bg": "#D6E4E9",
+            "inner_circle_bg": "#4E7E94",
+            "inner_circle_text_color": "#ffffff",
+            "item_title_color": "#2A5566",
+            "item_desc_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "value_block",
+          "settings": {
+            "symbol_type": "svg",
+            "symbol_svg": "<svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#115A1B\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12a9 9 0 0 1 9-9 9 9 0 0 1 6.5 2.8L21 8\"/><path d=\"M21 3v5h-5\"/><path d=\"M21 12a9 9 0 0 1-9 9 9 9 0 0 1-6.5-2.8L3 16\"/><path d=\"M3 21v-5h5\"/></svg>",
+            "title": "verantwortlich",
+            "description": "Beutel zu 100 % recycelbar",
+            "outer_circle_bg": "#FBE3BE",
+            "inner_circle_bg": "#E89A4C",
+            "inner_circle_text_color": "#115A1B",
+            "item_title_color": "#B5610F",
+            "item_desc_color": "#5C7A60"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

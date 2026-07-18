@@ -1,0 +1,254 @@
+{%- style -%}
+  #ContactFaq-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #ContactFaq-{{ section.id }} .faq-container {
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  #ContactFaq-{{ section.id }} .faq-title {
+    font-family: var(--heading-font);
+    color: {{ section.settings.title_color }};
+    text-align: center;
+    font-size: clamp(30px, 4.5vw, 52px);
+    line-height: .95;
+    margin: 0 0 40px;
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-item {
+    border-bottom: 1px solid {{ section.settings.border_color }};
+    text-align: left;
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-q {
+    width: 100%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 0;
+    text-align: left;
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 19px;
+    color: {{ section.settings.question_color }};
+    outline: none;
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-ic {
+    flex: none;
+    font-size: 26px;
+    color: {{ section.settings.icon_color }};
+    transition: transform .25s;
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-a-inner {
+    padding: 0 0 22px 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: {{ section.settings.answer_color }};
+  }
+
+  #ContactFaq-{{ section.id }} .elsis-faq-a-inner a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: 700;
+  }
+{%- endstyle -%}
+
+<section id="ContactFaq-{{ section.id }}" data-screen-label="FAQ">
+  <div class="faq-container">
+    {%- if section.settings.title != blank -%}
+      <h2 class="faq-title">{{ section.settings.title }}</h2>
+    {%- endif -%}
+
+    <div class="elsis-faq-list">
+      {%- for block in section.blocks -%}
+        <div class="elsis-faq-item" {{ block.shopify_attributes }}>
+          <button type="button" class="elsis-faq-q" aria-expanded="false">
+            {{ block.settings.title | escape }}
+            <span class="elsis-faq-ic">+</span>
+          </button>
+          <div class="elsis-faq-a">
+            <div class="elsis-faq-a-inner p">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const section = document.getElementById('ContactFaq-{{ section.id }}');
+  if (!section) return;
+
+  const questions = section.querySelectorAll('.elsis-faq-q');
+
+  questions.forEach(q => {
+    q.addEventListener('click', () => {
+      const parent = q.closest('.elsis-faq-item');
+      const a = parent.querySelector('.elsis-faq-a');
+      const ic = q.querySelector('.elsis-faq-ic');
+      const isExpanded = q.getAttribute('aria-expanded') === 'true';
+
+      // Close all FAQs in this section
+      section.querySelectorAll('.elsis-faq-a').forEach(el => el.style.maxHeight = '0px');
+      section.querySelectorAll('.elsis-faq-ic').forEach(el => el.style.transform = 'rotate(0deg)');
+      section.querySelectorAll('.elsis-faq-q').forEach(el => el.setAttribute('aria-expanded', 'false'));
+
+      if (!isExpanded) {
+        a.style.maxHeight = a.scrollHeight + 'px';
+        ic.style.transform = 'rotate(45deg)';
+        q.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Contact FAQ Section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "häufige Fragen"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Headline Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "question_color",
+      "label": "Question Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "answer_color",
+      "label": "Answer Color",
+      "default": "#3D6344"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Accordion Toggle Icon Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Accordion Line Color",
+      "default": "rgba(106, 179, 122, 0.4)"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 80,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 80,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Question",
+          "default": "FAQ Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>FAQ Answer goes here.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact FAQ Section",
+      "blocks": [
+        {
+          "type": "faq_item",
+          "settings": {
+            "title": "Ab welchem Alter ist Elsis geeignet?",
+            "answer": "<p>Unsere fruchtigen Snacks eignen sich ab dem 4. Monat, die herzhaften Mahlzeiten ab dem 6. bzw. 8. Monat. Die passende Altersangabe findest du auf jedem Beutel.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "title": "Sind alle Produkte wirklich halal?",
+            "answer": "<p>Ja. Das gesamte Fleisch stammt aus halal-zertifizierter Herkunft und wird entsprechend geprüft.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wie hoch ist die Mindestbestellung?",
+            "answer": "<p>Die Mindestbestellung liegt bei 3 Beuteln. Ab 29 € liefern wir versandkostenfrei.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "title": "Wie schnell wird geliefert?",
+            "answer": "<p>Werktags bestellt, verschicken wir deine Bestellung innerhalb von 24 Stunden.</p>"
+          }
+        },
+        {
+          "type": "faq_item",
+          "settings": {
+            "title": "Kann ich Elsis auch im Laden kaufen?",
+            "answer": "<p>Ja, Elsis ist bei ausgewählten Händlern erhältlich. Alle Verkaufsstellen findest du in unserer Händlersuche.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

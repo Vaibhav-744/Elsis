@@ -1,0 +1,356 @@
+{%- style -%}
+  #AboutProcess-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #AboutProcess-{{ section.id }} .process-container {
+    max-width: 1170px;
+    margin: 0 auto;
+  }
+
+  #AboutProcess-{{ section.id }} .process-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 54px;
+  }
+
+  #AboutProcess-{{ section.id }} .process-subtitle {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    color: {{ section.settings.subtitle_color }};
+    font-size: 15px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  #AboutProcess-{{ section.id }} .process-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    font-size: clamp(30px, 4.5vw, 50px);
+    line-height: 1;
+    margin: 10px 0 0;
+  }
+
+  #AboutProcess-{{ section.id }} .elsis-about-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-card {
+    text-align: center;
+  }
+
+  #AboutProcess-{{ section.id }} .step-image-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  #AboutProcess-{{ section.id }} .step-image-placeholder {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    border-radius: 22px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-image-placeholder-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #AboutProcess-{{ section.id }} .step-image-placeholder-label span {
+    font-family: var(--body-font);
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 6px 12px;
+    border-radius: 20px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-image-wrap img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 22px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-number {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 16px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 18px;
+    margin: 4px 0 6px;
+  }
+
+  #AboutProcess-{{ section.id }} .step-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  @media(max-width:900px){
+    #AboutProcess-{{ section.id }} .elsis-about-steps {
+      grid-template-columns: 1fr 1fr!important;
+    }
+  }
+  @media(max-width:520px){
+    #AboutProcess-{{ section.id }} .elsis-about-steps {
+      grid-template-columns: 1fr 1fr!important;
+      gap: 16px!important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="AboutProcess-{{ section.id }}" data-screen-label="Prozess">
+  <div class="process-container">
+    <div class="process-header">
+      {%- if section.settings.subtitle != blank -%}
+        <div class="process-subtitle">{{ section.settings.subtitle }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="process-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    <div class="elsis-about-steps">
+      {%- for block in section.blocks -%}
+        {%- style -%}
+          #AboutProcessItem-{{ block.id }} .step-image-placeholder {
+            background-color: {{ block.settings.placeholder_bg }};
+            background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 0 10px, transparent 10px 20px);
+          }
+          #AboutProcessItem-{{ block.id }} .step-image-placeholder-label span {
+            color: {{ block.settings.placeholder_fg }};
+          }
+          #AboutProcessItem-{{ block.id }} .step-number {
+            color: {{ block.settings.step_number_color }};
+          }
+          #AboutProcessItem-{{ block.id }} .step-title {
+            color: {{ block.settings.title_color }};
+          }
+          #AboutProcessItem-{{ block.id }} .step-desc {
+            color: {{ block.settings.text_color }};
+          }
+        {%- endstyle -%}
+        
+        <div id="AboutProcessItem-{{ block.id }}" class="step-card" {{ block.shopify_attributes }}>
+          <div class="step-image-wrap">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.title }}
+            {%- else -%}
+              <div class="step-image-placeholder">
+                <div class="step-image-placeholder-label">
+                  <span>{{ block.settings.placeholder_label }}</span>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+          <div class="step-number">{{ block.settings.step_number }}</div>
+          <h3 class="step-title">{{ block.settings.title }}</h3>
+          <p class="step-desc">{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Process Grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Vom Feld bis zum Löffel"
+    },
+    {
+      "type": "color",
+      "id": "subtitle_color",
+      "label": "Subtitle Color",
+      "default": "#6AB37A"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "so entsteht jeder Beutel"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 90
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step_block",
+      "name": "Process Step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Step Image"
+        },
+        {
+          "type": "text",
+          "id": "placeholder_label",
+          "label": "Placeholder Label",
+          "default": "Bio-Anbau"
+        },
+        {
+          "type": "color",
+          "id": "placeholder_bg",
+          "label": "Placeholder Background",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "placeholder_fg",
+          "label": "Placeholder Text Color",
+          "default": "#9DBE9E"
+        },
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number/Identifier",
+          "default": "01"
+        },
+        {
+          "type": "color",
+          "id": "step_number_color",
+          "label": "Step Number Color",
+          "default": "#E89A4C"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step Title"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description text",
+          "default": "Step description goes here."
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Description Color",
+          "default": "#5C7A60"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Process Grid",
+      "blocks": [
+        {
+          "type": "step_block",
+          "settings": {
+            "placeholder_label": "Bio-Anbau",
+            "placeholder_bg": "#DCEAD2",
+            "placeholder_fg": "#9DBE9E",
+            "step_number": "01",
+            "step_number_color": "#E89A4C",
+            "title": "Bio-Zutaten",
+            "text": "Gemüse, Obst und Getreide aus kontrolliert biologischem Anbau.",
+            "title_color": "#197D25",
+            "text_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "step_block",
+          "settings": {
+            "placeholder_label": "Schonend gegart",
+            "placeholder_bg": "#FBE3BE",
+            "placeholder_fg": "#E0B98A",
+            "step_number": "02",
+            "step_number_color": "#E89A4C",
+            "title": "Schonend gegart",
+            "text": "Sanft zubereitet, damit Vitamine und Geschmack erhalten bleiben.",
+            "title_color": "#197D25",
+            "text_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "step_block",
+          "settings": {
+            "placeholder_label": "Sicher verpackt",
+            "placeholder_bg": "#D6E4E9",
+            "placeholder_fg": "#A6C4CE",
+            "step_number": "03",
+            "step_number_color": "#E89A4C",
+            "title": "Sicher verpackt",
+            "text": "In 100 % recycelbare Beutel abgefüllt – praktisch für unterwegs.",
+            "title_color": "#197D25",
+            "text_color": "#5C7A60"
+          }
+        },
+        {
+          "type": "step_block",
+          "settings": {
+            "placeholder_label": "Erster Löffel",
+            "placeholder_bg": "#F2D9DD",
+            "placeholder_fg": "#D9AEB7",
+            "step_number": "04",
+            "step_number_color": "#E89A4C",
+            "title": "Direkt genießbar",
+            "text": "Bei Raumtemperatur direkt verzehrbar oder kurz im Wasserbad erwärmt.",
+            "title_color": "#197D25",
+            "text_color": "#5C7A60"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

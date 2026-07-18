@@ -11,6 +11,7 @@
   "sections": {
     "banner": {
       "type": "main-collection-banner",
+      "disabled": true,
       "settings": {
         "show_breadcrumb": true,
         "breadcrumb_alignment": "left",
@@ -23,6 +24,7 @@
         "show_page_title": true,
         "page_title_alignment": "left",
         "container": "default",
+        "padding_full_width": 0,
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
@@ -97,7 +99,6 @@
           "settings": {
             "show_block": true,
             "heading": "",
-            "image": "shopify://shop_images/blog-sidebar-1.jpg",
             "link": ""
           }
         },
@@ -106,7 +107,6 @@
           "settings": {
             "show_block": true,
             "heading": "",
-            "image": "shopify://shop_images/blog-sidebar-2.jpg",
             "link": ""
           }
         },
@@ -129,10 +129,12 @@
         "34930b49-8499-46d3-bf41-2cbb334ca73d",
         "2f7f02ac-4072-40ea-844f-59943e256971"
       ],
+      "disabled": true,
       "settings": {
         "colors_bg": "rgba(0,0,0,0)",
         "colors_bg_gradient": "",
         "container": "default",
+        "padding_full_width": 0,
         "mg_top_desktop": 0,
         "mg_top_tablet": 0,
         "mg_top_mobile": 0,
@@ -140,6 +142,7 @@
         "mg_bottom_tablet": 0,
         "mg_bottom_mobile": 0,
         "show_sidebar": true,
+        "sidebar_collapse": "collapse",
         "enable_sticky": false,
         "sidebar_layout": "layout_1",
         "sidebar_collapse_default": "expand",
@@ -173,11 +176,16 @@
         "link_banner_2": "",
         "show_banner_3": true,
         "banner_position_3": "12",
-        "link_banner_3": ""
+        "link_banner_3": "",
+        "product_space_between_vert_desk": 30,
+        "product_space_between_vert_mb": 16,
+        "product_space_between_horiz_desk": 60,
+        "product_space_between_horiz_mb": 30
       }
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
+      "disabled": true,
       "settings": {
         "display_product_recently_viewed": true,
         "product_recently_viewed_container": "container",
@@ -230,11 +238,120 @@
         "border_width_card": 5,
         "border_color_card": "#f0f1f4"
       }
+    },
+    "shop_hero_7gpGwx": {
+      "type": "shop-hero",
+      "blocks": {
+        "filter_pill_4JRXhY": {
+          "type": "filter_pill",
+          "settings": {
+            "label": "Alle Sorten",
+            "filter_value": "alle"
+          }
+        },
+        "filter_pill_kP44UR": {
+          "type": "filter_pill",
+          "settings": {
+            "label": "ab 4. Monat",
+            "filter_value": "4"
+          }
+        },
+        "filter_pill_k6fyiW": {
+          "type": "filter_pill",
+          "settings": {
+            "label": "ab 6. Monat",
+            "filter_value": "6"
+          }
+        },
+        "filter_pill_rtd7LX": {
+          "type": "filter_pill",
+          "settings": {
+            "label": "ab 8. Monat",
+            "filter_value": "8"
+          }
+        }
+      },
+      "block_order": [
+        "filter_pill_4JRXhY",
+        "filter_pill_kP44UR",
+        "filter_pill_k6fyiW",
+        "filter_pill_rtd7LX"
+      ],
+      "name": "Shop Hero",
+      "settings": {
+        "bg_color": "#f8f2e8",
+        "show_pattern": true,
+        "pattern_color_1": "#6ab37a",
+        "pattern_color_2": "#197925",
+        "pattern_opacity": 10,
+        "show_clouds": false,
+        "show_breadcrumbs": true,
+        "breadcrumb_home_text": "Home",
+        "breadcrumb_current_text": "Produkte",
+        "breadcrumb_color": "#6ab37a",
+        "breadcrumb_active_color": "#197d25",
+        "title": "unsere <br>Produkte",
+        "title_color": "#197d25",
+        "text": "Fünf Bio-Rezepturen und ein Probierpaket – halal, ohne unnötige Zusätze und im 100% recycelbaren Beutel.",
+        "text_color": "#5c7a60",
+        "padding_top": 48,
+        "padding_bottom": 34
+      }
+    },
+    "elsis_wave_UPL9pA": {
+      "type": "elsis-wave",
+      "name": "Elsis Wave Divider",
+      "settings": {
+        "bg_color": "#f8f2e8",
+        "wave_color": "#ffffff",
+        "height": 60
+      }
+    },
+    "shop_grid_hEjJ8P": {
+      "type": "shop-grid",
+      "name": "Shop Product Grid",
+      "settings": {
+        "bg_color": "#ffffff",
+        "product_limit": 12,
+        "wave_bg_color": "#f8f2e8",
+        "wave_color": "#ffffff",
+        "show_info_cards": true,
+        "info_1_badge": "3+",
+        "info_1_title": "Mindestbestellung",
+        "info_1_subtext": "ab 3 Beutel pro Bestellung",
+        "info_2_badge": "29 €",
+        "info_2_title": "Gratis Versand",
+        "info_2_subtext": "für Bestellungen ab 29 €",
+        "info_3_badge": "24h",
+        "info_3_title": "Schneller Versand",
+        "info_3_subtext": "werktags innerhalb von 24 h",
+        "padding_top": 40,
+        "padding_bottom": 80
+      }
+    },
+    "elsis_hearts_marquee_FnRym8": {
+      "type": "elsis-hearts-marquee",
+      "name": "Elsis Hearts Marquee",
+      "settings": {
+        "bg_color": "#ffffff",
+        "bar_bg_color": "#f8f2e8",
+        "text": "halal ♥ biologisch ♥ verantwortlich ♥ 100% recycelbar ♥",
+        "text_color": "#197d25",
+        "font_size": 20,
+        "tilt_angle": -3,
+        "speed": 24,
+        "padding_top": 40,
+        "bar_padding": 16
+      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "product-recently-viewed"
+    "product-recently-viewed",
+    "shop_hero_7gpGwx",
+    "elsis_wave_UPL9pA",
+    "shop_grid_hEjJ8P",
+    "elsis_hearts_marquee_FnRym8"
   ]
 }

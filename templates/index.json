@@ -51,7 +51,7 @@
       "name": "Elsis Hero",
       "settings": {
         "bg_color": "#f8f2e8",
-        "show_pattern": true,
+        "show_pattern": false,
         "pattern_color_1": "#6ab37a33",
         "pattern_color_2": "#19792512",
         "pattern_opacity": 50,
@@ -101,6 +101,7 @@
         "product_limit": 5,
         "show_button": true,
         "btn_text": "alle Produkte",
+        "btn_link": "",
         "padding_top": 32,
         "padding_bottom": 96
       }
@@ -441,10 +442,10 @@
     }
   },
   "order": [
-      "elsis_hero_QEwDzn",
-      "elsis_wave_VByrTb",
-      "elsis_product_block_Sorten",
-      "elsis_meal_marquee_AqMV6X",
+    "elsis_hero_QEwDzn",
+    "elsis_wave_VByrTb",
+    "elsis_product_block_Sorten",
+    "elsis_meal_marquee_AqMV6X",
     "elsis_story_6dqrHT",
     "elsis_cta_banner_UPEcEi",
     "elsis_values_jNCmaU",

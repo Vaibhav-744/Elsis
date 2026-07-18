@@ -1,0 +1,501 @@
+{%- style -%}
+  #ContactFormSection-{{ section.id }} {
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-contact-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  #ContactFormSection-{{ section.id }} .contact-form-card {
+    background: #fff;
+    border-radius: 26px;
+    padding: 38px 5%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+  }
+
+  #ContactFormSection-{{ section.id }} .contact-form-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.form_title_color }};
+    font-size: clamp(24px, 3vw, 32px);
+    margin: 0 0 22px;
+    text-align: left;
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-contact-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  #ContactFormSection-{{ section.id }} .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  #ContactFormSection-{{ section.id }} .form-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+  }
+
+  #ContactFormSection-{{ section.id }} .form-field-group label {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 14px;
+    color: {{ section.settings.form_title_color }};
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-contact-input {
+    border: 1.5px solid rgba(25,125,37,.25);
+    background: #F8F2E8;
+    border-radius: 16px;
+    padding: 13px 16px;
+    font-family: var(--body-font);
+    font-size: 15px;
+    color: #197D25;
+    outline: none;
+    width: 100%;
+    transition: border-color 0.2s;
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-contact-input:focus {
+    border-color: #197D25;
+  }
+
+  #ContactFormSection-{{ section.id }} select.elsis-contact-input {
+    appearance: auto;
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-cta {
+    cursor: pointer;
+    border: none;
+    background-color: {{ section.settings.submit_bg_color }};
+    color: {{ section.settings.submit_text_color }};
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 17px;
+    padding: 15px 32px;
+    border-radius: 28px 32px 26px 30px / 32px 26px 30px 28px;
+    align-self: flex-start;
+    transition: transform .2s ease;
+  }
+
+  #ContactFormSection-{{ section.id }} .elsis-cta:hover {
+    transform: scale(1.06) rotate(-2deg);
+  }
+
+  #ContactFormSection-{{ section.id }} .info-cards-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card {
+    border-radius: 22px;
+    padding: 26px 24px;
+    text-align: left;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-badge {
+    flex: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-badge svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-badge span {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-title {
+    font-family: var(--heading-font);
+    font-weight: 600;
+    font-size: 18px;
+    margin: 0;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-value {
+    font-size: 15px;
+    font-weight: 700;
+    word-break: break-word;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-value p {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    color: inherit;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-value a {
+    color: inherit;
+    text-decoration: underline;
+    font-weight: inherit;
+  }
+
+  #ContactFormSection-{{ section.id }} .info-card-subtext {
+    font-size: 13px;
+    margin: 6px 0 0;
+  }
+
+  @media(max-width:760px){
+    #ContactFormSection-{{ section.id }} .elsis-contact-grid {
+      grid-template-columns: 1fr!important;
+      gap: 32px;
+    }
+  }
+
+  @media(max-width:480px){
+    #ContactFormSection-{{ section.id }} .form-grid-2 {
+      grid-template-columns: 1fr!important;
+    }
+  }
+{%- endstyle -%}
+
+<section id="ContactFormSection-{{ section.id }}" data-screen-label="KontaktForm">
+  <div class="elsis-contact-grid">
+    <!-- Form Side -->
+    <div class="contact-form-card">
+      {%- if section.settings.form_title != blank -%}
+        <h2 class="contact-form-title">{{ section.settings.form_title }}</h2>
+      {%- endif -%}
+
+      {%- form 'contact', id: 'ContactForm' -%}
+        {%- if form.posted_successfully? -%}
+          <div style="background: #dcead2; border: 1.5px solid #197d25; color: #197d25; padding: 15px; border-radius: 16px; margin-bottom: 20px; font-weight: 600; text-align: left;">
+            {{ 'templates.contact.form.post_success' | t | default: "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet." }}
+          </div>
+        {%- elsif form.errors -%}
+          <div style="background: #f2d9dd; border: 1.5px solid #d9756e; color: #d9756e; padding: 15px; border-radius: 16px; margin-bottom: 20px; font-weight: 600; text-align: left;">
+            {{ form.errors | default_errors }}
+          </div>
+        {%- endif -%}
+
+        <div class="elsis-contact-form-wrapper">
+          <div class="form-grid-2">
+            <div class="form-field-group">
+              <label for="ec-name-{{ section.id }}">{{ section.settings.name_label }}</label>
+              <input id="ec-name-{{ section.id }}" name="contact[name]" required class="elsis-contact-input" type="text" placeholder="Dein Name" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+            </div>
+            <div class="form-field-group">
+              <label for="ec-mail-{{ section.id }}">{{ section.settings.email_label }}</label>
+              <input id="ec-mail-{{ section.id }}" name="contact[email]" required class="elsis-contact-input" type="email" placeholder="deine@email.de" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+            </div>
+          </div>
+          
+          <div class="form-field-group">
+            <label for="ec-subject-{{ section.id }}">{{ section.settings.subject_label }}</label>
+            <select id="ec-subject-{{ section.id }}" name="contact[Subject]" class="elsis-contact-input">
+              <option>Frage zu einer Bestellung</option>
+              <option>Frage zu Zutaten / Allergenen</option>
+              <option>Händler werden</option>
+              <option>Feedback</option>
+              <option>Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="form-field-group">
+            <label for="ec-msg-{{ section.id }}">{{ section.settings.message_label }}</label>
+            <textarea id="ec-msg-{{ section.id }}" name="contact[body]" required class="elsis-contact-input" rows="5" placeholder="Wie können wir helfen?">{{ form.body }}</textarea>
+          </div>
+
+          <button type="submit" class="elsis-cta">{{ section.settings.submit_button_text }}</button>
+        </div>
+      {%- endform -%}
+    </div>
+
+    <!-- Info Side -->
+    <div class="info-cards-stack">
+      {%- for block in section.blocks -%}
+        {%- style -%}
+          #ElsisInfoCard-{{ block.id }} {
+            background-color: {{ block.settings.card_bg }};
+            color: {{ block.settings.card_fg }};
+          }
+          #ElsisInfoCard-{{ block.id }} .info-card-badge {
+            background-color: {{ block.settings.badge_bg }};
+            color: {{ block.settings.badge_text_color }};
+          }
+          #ElsisInfoCard-{{ block.id }} .info-card-title {
+            color: {{ block.settings.badge_bg }};
+          }
+        {%- endstyle -%}
+        
+        <div id="ElsisInfoCard-{{ block.id }}" class="info-card" {{ block.shopify_attributes }}>
+          <div class="info-card-header">
+            <div class="info-card-badge">
+              {%- if block.settings.icon_type == 'svg' -%}
+                {{ block.settings.svg_icon }}
+              {%- else -%}
+                <span>{{ block.settings.icon_text }}</span>
+              {%- endif -%}
+            </div>
+            <h3 class="info-card-title">{{ block.settings.title }}</h3>
+          </div>
+          <div class="info-card-value">
+            {{ block.settings.value }}
+          </div>
+          {%- if block.settings.subtext != blank -%}
+            <div class="info-card-subtext">{{ block.settings.subtext }}</div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact Grid & Form",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "rgba(0,0,0,0)"
+    },
+    {
+      "type": "text",
+      "id": "form_title",
+      "label": "Form Title",
+      "default": "schreib uns eine Nachricht"
+    },
+    {
+      "type": "color",
+      "id": "form_title_color",
+      "label": "Form Title/Label Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "text",
+      "id": "name_label",
+      "label": "Name Label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email Label",
+      "default": "E-Mail"
+    },
+    {
+      "type": "text",
+      "id": "subject_label",
+      "label": "Subject Dropdown Label",
+      "default": "Thema"
+    },
+    {
+      "type": "text",
+      "id": "message_label",
+      "label": "Message Label",
+      "default": "Nachricht"
+    },
+    {
+      "type": "text",
+      "id": "submit_button_text",
+      "label": "Submit Button Text",
+      "default": "Nachricht senden"
+    },
+    {
+      "type": "color",
+      "id": "submit_bg_color",
+      "label": "Submit Button Background Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "color",
+      "id": "submit_text_color",
+      "label": "Submit Button Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "info_card",
+      "name": "Info Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Card Title"
+        },
+        {
+          "type": "richtext",
+          "id": "value",
+          "label": "Card Value/Main Content"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Subtext",
+          "default": "Optional subtext details"
+        },
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background Color",
+          "default": "#DCEAD2"
+        },
+        {
+          "type": "color",
+          "id": "card_fg",
+          "label": "Card Text/Content Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg",
+          "label": "Badge Background / Accent Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge Text/Icon Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Badge Icon Type",
+          "options": [
+            {
+              "value": "svg",
+              "label": "SVG Icon"
+            },
+            {
+              "value": "text",
+              "label": "Plain Text Badge"
+            }
+          ],
+          "default": "svg"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Badge Plain Text (e.g. B2B)",
+          "default": "B2B"
+        },
+        {
+          "type": "textarea",
+          "id": "svg_icon",
+          "label": "Badge SVG Icon Code",
+          "info": "Insert raw SVG element code"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Grid & Form",
+      "blocks": [
+        {
+          "type": "info_card",
+          "settings": {
+            "title": "E-Mail",
+            "value": "<p><a href=\"mailto:info@elsis-organics.de\">info@elsis-organics.de</a></p>",
+            "subtext": "Antwort werktags innerhalb von 24 Stunden.",
+            "card_bg": "#DCEAD2",
+            "card_fg": "#197D25",
+            "badge_bg": "#197D25",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z\"/><path d=\"m22 6-10 7L2 6\"/></svg>"
+          }
+        },
+        {
+          "type": "info_card",
+          "settings": {
+            "title": "Adresse",
+            "value": "<p>Kaya Foods<br>Grubenweg 19<br>38268 Lengede, Deutschland</p>",
+            "subtext": "",
+            "card_bg": "#FBE3BE",
+            "card_fg": "#8A5417",
+            "badge_bg": "#D8842F",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>"
+          }
+        },
+        {
+          "type": "info_card",
+          "settings": {
+            "title": "Social Media",
+            "value": "<p><a href=\"#\">Instagram</a> · <a href=\"#\">Facebook</a></p>",
+            "subtext": "Folge uns für Beikost-Tipps und Neuigkeiten.",
+            "card_bg": "#F2D9DD",
+            "card_fg": "#7E3B50",
+            "badge_bg": "#C06B82",
+            "badge_text_color": "#ffffff",
+            "icon_type": "svg",
+            "svg_icon": "<svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#fff\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"2\" y=\"2\" width=\"20\" height=\"20\" rx=\"5\"/><circle cx=\"12\" cy=\"12\" r=\"4.5\"/><circle cx=\"17.5\" cy=\"6.5\" r=\"1.2\" fill=\"#fff\" stroke=\"none\"/></svg>"
+          }
+        },
+        {
+          "type": "info_card",
+          "settings": {
+            "title": "Händler werden",
+            "value": "<p>Du möchtest Elsis in deinem Geschäft anbieten? Schreib uns – wir melden uns mit unserem Händlerpaket.</p>",
+            "subtext": "",
+            "card_bg": "#D6E4E9",
+            "card_fg": "#3C5A66",
+            "badge_bg": "#4E7E94",
+            "badge_text_color": "#ffffff",
+            "icon_type": "text",
+            "icon_text": "B2B"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

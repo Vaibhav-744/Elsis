@@ -1,0 +1,248 @@
+{%- style -%}
+  #AboutOrigin-{{ section.id }} {
+    background-color: {{ section.settings.bg_color }};
+    padding: {{ section.settings.padding_top }}px 4% {{ section.settings.padding_bottom }}px;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-grid {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    color: {{ section.settings.title_color }};
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1;
+    margin: 0 0 16px;
+    text-align: left;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: {{ section.settings.text_color }};
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-text p {
+    margin: 0 0 12px;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-badges-wrap {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-badge {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--heading-font);
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-badge-top {
+    font-weight: 700;
+  }
+
+  #AboutOrigin-{{ section.id }} .origin-badge-bottom {
+    font-size: 9px;
+    letter-spacing: .06em;
+    margin-top: 4px;
+  }
+
+  @media(max-width:760px){
+    #AboutOrigin-{{ section.id }} .origin-grid {
+      grid-template-columns: 1fr !important;
+      gap: 32px;
+    }
+  }
+{%- endstyle -%}
+
+<section id="AboutOrigin-{{ section.id }}" data-screen-label="Herkunft">
+  <div class="origin-grid">
+    <div>
+      {%- if section.settings.title != blank -%}
+        <h2 class="origin-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      
+      {%- if section.settings.text != blank -%}
+        <div class="origin-text">
+          {{ section.settings.text }}
+        </div>
+      {%- endif -%}
+    </div>
+    
+    <div class="origin-badges-wrap">
+      {%- for block in section.blocks -%}
+        {%- style -%}
+          #AboutOriginBadge-{{ block.id }} {
+            background-color: {{ block.settings.badge_bg_color }};
+            color: {{ block.settings.badge_text_color }};
+          }
+          #AboutOriginBadge-{{ block.id }} .origin-badge-top {
+            font-size: {{ block.settings.badge_text_top_size }}px;
+          }
+        {%- endstyle -%}
+        
+        <div id="AboutOriginBadge-{{ block.id }}" class="origin-badge" {{ block.shopify_attributes }}>
+          <span class="origin-badge-top">{{ block.settings.badge_text_top }}</span>
+          <span class="origin-badge-bottom">{{ block.settings.badge_text_bottom }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Origin Block",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "hergestellt in Deutschland"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#197D25"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text Content",
+      "default": "<p>Elsis wird von Kaya Foods in Lengede (Niedersachsen) entwickelt und produziert – nach strengen deutschen und europäischen Standards für Babynahrung.</p><p>Kurze Wege, geprüfte Lieferanten und eine Rezeptur, hinter der wir zu 100 % stehen.</p>"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#3D6344"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 70
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 70
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge_block",
+      "name": "Round Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "badge_text_top",
+          "label": "Top Large Text",
+          "default": "DE"
+        },
+        {
+          "type": "range",
+          "id": "badge_text_top_size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "Top Text Size",
+          "default": 20
+        },
+        {
+          "type": "textarea",
+          "id": "badge_text_bottom",
+          "label": "Bottom Sub-label (HTML allowed)",
+          "default": "MADE IN<br>GERMANY"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Badge Background Color",
+          "default": "#197D25"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge Text Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About Origin Block",
+      "blocks": [
+        {
+          "type": "badge_block",
+          "settings": {
+            "badge_text_top": "DE",
+            "badge_text_top_size": 20,
+            "badge_text_bottom": "MADE IN<br>GERMANY",
+            "badge_bg_color": "#197D25",
+            "badge_text_color": "#ffffff"
+          }
+        },
+        {
+          "type": "badge_block",
+          "settings": {
+            "badge_text_top": "100%",
+            "badge_text_top_size": 18,
+            "badge_text_bottom": "RECYCELBAR",
+            "badge_bg_color": "#FFD42E",
+            "badge_text_color": "#115A1B"
+          }
+        },
+        {
+          "type": "badge_block",
+          "settings": {
+            "badge_text_top": "حلال",
+            "badge_text_top_size": 18,
+            "badge_text_bottom": "ZERTIFIZIERT",
+            "badge_bg_color": "#D9756E",
+            "badge_text_color": "#ffffff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
