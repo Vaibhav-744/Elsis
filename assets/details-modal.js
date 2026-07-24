@@ -4,9 +4,11 @@ class DetailsModal extends HTMLElement {
         this.detailsContainer = this.querySelector('details');
         this.summaryToggle = this.querySelector('summary');
 
+        if (!this.detailsContainer || !this.summaryToggle) return;
+
         this.detailsContainer.addEventListener(
             'keyup',
-            (event) => event.code.toUpperCase() === 'ESCAPE' && this.close()
+            (event) => event.code && event.code.toUpperCase() === 'ESCAPE' && this.close()
         );
 
         this.summaryToggle.addEventListener(
@@ -14,10 +16,14 @@ class DetailsModal extends HTMLElement {
             this.onSummaryClick.bind(this)
         );
 
-        this.querySelector('button[type="button"]').addEventListener(
-            'click',
-            this.close.bind(this)
-        );
+        const closeButtons = this.querySelectorAll('.header-search-close, .search-modal__close-button');
+        closeButtons.forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                this.close();
+            });
+        });
 
         this.summaryToggle.setAttribute('role', 'button');
         this.summaryToggle.setAttribute('aria-expanded', 'false');
@@ -29,8 +35,8 @@ class DetailsModal extends HTMLElement {
 
     onSummaryClick(event) {
         event.preventDefault();
-
-        event.target.closest('details').hasAttribute('open') ? this.close() : this.open(event);
+        event.stopPropagation();
+        this.isOpen() ? this.close() : this.open(event);
     }
 
     onBodyClick(event) {
@@ -39,23 +45,43 @@ class DetailsModal extends HTMLElement {
 
     open(event) {
         this.onBodyClickEvent = this.onBodyClickEvent || this.onBodyClick.bind(this);
-        event.target.closest('details').setAttribute('open', true);
-        document.body.addEventListener('click', this.onBodyClickEvent);
+        this.detailsContainer.setAttribute('open', 'true');
+        this.summaryToggle.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('sticky-search-open');
+        document.documentElement.classList.add('sticky-search-open');
 
-        trapFocus(
-            this.detailsContainer.querySelector('[tabindex="-1"]'),
-            this.detailsContainer.querySelector('input:not([type="hidden"])')
-        );
+        const header = this.closest('[class*="section-header-"]');
+        if (header) {
+            header.classList.add('sticky-search-menu-open');
+        }
 
-        var target = $(this.detailsContainer.querySelector('input:not([type="hidden"])').closest('.quickSearch')),
-            quickSearch = target.closest('.quickSearch');
+        setTimeout(() => {
+            const input = this.querySelector('input[type="search"], input[name="q"]');
+            if (input) {
+                input.focus();
+            }
+        }, 100);
+
+        setTimeout(() => {
+            document.body.addEventListener('click', this.onBodyClickEvent);
+        }, 50);
     }
 
     close(focusToggle = true) {
-        removeTrapFocus(focusToggle ? this.summaryToggle : null);
         this.detailsContainer.removeAttribute('open');
+        this.summaryToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('sticky-search-open');
+        document.documentElement.classList.remove('sticky-search-open');
+
+        const header = this.closest('[class*="section-header-"]');
+        if (header) {
+            header.classList.remove('sticky-search-menu-open');
+        }
+
         document.body.removeEventListener('click', this.onBodyClickEvent);
     }
 }
 
-customElements.define('details-modal', DetailsModal);
+if (!customElements.get('details-modal')) {
+    customElements.define('details-modal', DetailsModal);
+}

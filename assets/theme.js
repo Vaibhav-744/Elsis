@@ -536,7 +536,7 @@
 
         headerStickySearchForm: function() {
             var iconSearchSlt = '[data-search-sticky-form]';
-            var iconSearchMenu = '[data-search-menu-sticky-form] .icon-search';
+            var iconSearchMenu = '[data-search-menu-sticky-form], [data-search-menu-sticky-form] *';
             var iconSearchMenuCustom = '[data-search-menu-sticky-form] .icon-search-custom';
 
             if ($(window).width() > 1025) {
@@ -559,11 +559,23 @@
 
                 // Click Search Icon On Header Nav And Sticky Menu
                 $(document).off('click.toggleSearch', iconSearchMenu).on('click.toggleSearch', iconSearchMenu, function(event) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    $(event.target).closest('[class*="section-header-"]').addClass('sticky-search-menu-open');
-                    $(event.target).closest('.section-header-navigation').css('z-index', '101');
-                    $('.search_details').attr('open','true');
+                    var $detailsModal = $(event.target).closest('details-modal');
+                    var $details = $(event.target).closest('.search_details, details');
+                    var $header = $(event.target).closest('[class*="section-header-"]');
+                    
+                    if ($header.length) {
+                        $header.addClass('sticky-search-menu-open');
+                        $header.css('z-index', '101');
+                    }
+                    $('body').addClass('sticky-search-open');
+                    $('html').addClass('sticky-search-open');
+
+                    if ($details.length && !$details.attr('open')) {
+                        $details.attr('open', 'true');
+                        setTimeout(function() {
+                            $details.find('input[type="search"], input[name="q"]').focus();
+                        }, 100);
+                    }
                 });
 
                 // Click Search Icon On Header Hamburger - Search Dropdown Style Layout Custom
@@ -575,10 +587,12 @@
                     var formSearch = $('.header-navigation .search-modal__form'),
                         quickSearch = $('.header-navigation .quickSearchResultsWrap');
                     if ($('[class*="section-header-"]').hasClass('sticky-search-menu-open') && !formSearch.has(event.target).length && !quickSearch.has(event.target).length && !$(event.target).hasClass('search-modal__content') && $(event.target).closest('.search-modal__content').length == 0) {
-                        const header = $(iconSearchMenu).closest('.section-header-navigation');
-                        const index = header.data('index');
+                        const header = $('[data-search-menu-sticky-form]').closest('.section-header-navigation');
+                        const index = header.data('index') || '10';
 
                         $('[class*="section-header-"]').removeClass('sticky-search-menu-open');
+                        $('body').removeClass('sticky-search-open');
+                        $('html').removeClass('sticky-search-open');
                         
                         header.css('z-index', index);
                         $('.header-navigation .search_details').removeAttr('open');

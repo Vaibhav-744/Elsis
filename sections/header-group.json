@@ -18,21 +18,21 @@
           "type": "link",
           "settings": {
             "title": "Blog",
-            "link": ""
+            "link": "/#custom-about"
           }
         },
         "link_KYXEyH": {
           "type": "link",
           "settings": {
             "title": "Häufige Fragen",
-            "link": ""
+            "link": "/pages/contact#custom-faq"
           }
         },
         "link_EaRBn4": {
           "type": "link",
           "settings": {
             "title": "Händlersuche",
-            "link": ""
+            "link": "/#custom-stockist"
           }
         }
       },
@@ -134,7 +134,7 @@
             "cart_count_bubble_bg_gradient": "",
             "show_cta_btn": true,
             "cta_btn_text": "Jetzt kaufen",
-            "cta_btn_url": "",
+            "cta_btn_url": "shopify://collections/shop",
             "cta_btn_bg": "#d9756e",
             "cta_btn_color": "#ffffff"
           }

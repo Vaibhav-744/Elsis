@@ -53,12 +53,12 @@
         "breadcrumb_current_text": "Kontakt",
         "breadcrumb_color": "#6ab37a",
         "breadcrumb_active_color": "#197d25",
-        "title": "sprichmit uns",
+        "title": "sprichmit<br> uns",
         "title_color": "#197d25",
         "text": "Fragen zu Bestellung, Zutaten oder Beikost? Wir sind für dich da – als Eltern und als Team.",
         "text_color": "#5c7a60",
-        "padding_top": 40,
-        "padding_bottom": 40
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "contact_form_c3EAFP": {
@@ -143,7 +143,7 @@
         "submit_button_text": "Nachricht senden",
         "submit_bg_color": "#197d25",
         "submit_text_color": "#ffffff",
-        "padding_top": 50,
+        "padding_top": 30,
         "padding_bottom": 80
       }
     },

@@ -137,7 +137,7 @@
     <div class="story-cloud"></div>
   {%- endif -%}
 
-  <div class="story-grid">
+  <div class="story-grid" id="custom-about">
     <div class="story-image-wrap">
       {%- if section.settings.image != blank -%}
         {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.title_1 }}
