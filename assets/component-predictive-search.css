@@ -932,6 +932,11 @@ predictive-search[loading] .predictive-search__results-list:first-child {
         animation: none;
         transform: none;
     }
+     html body .header__search,
+    html body details-modal.header__search{
+        position:relative !important;
+        top:0 !important;
+    }
 
     html.sticky-search-open,
     body.sticky-search-open,
